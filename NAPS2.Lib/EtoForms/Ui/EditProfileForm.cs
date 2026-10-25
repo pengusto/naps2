@@ -43,7 +43,7 @@ public class EditProfileForm : EtoDialogBase
         IIconProvider iconProvider) : base(config)
     {
         Title = UiStrings.EditProfileFormTitle;
-        IconName = "blueprints_small";
+        IconName = "blueprints";
 
         _errorOutput = errorOutput;
         _profileNameTracker = profileNameTracker;
@@ -346,6 +346,7 @@ public class EditProfileForm : EtoDialogBase
             if (!ScanProfile.IsDeviceLocked)
             {
                 ScanProfile.Device = ScanProfileDevice.FromScanDevice(_deviceSelectorWidget.Choice.Device);
+                ScanProfile.DriverName = DeviceDriver.ToString().ToLowerInvariant();
             }
             return true;
         }
@@ -401,6 +402,7 @@ public class EditProfileForm : EtoDialogBase
             FlipDuplexedPages = ScanProfile.FlipDuplexedPages,
             TwainImpl = ScanProfile.TwainImpl,
             TwainProgress = ScanProfile.TwainProgress,
+            AppleImpl = ScanProfile.AppleImpl,
 
             ExcludeBlankPages = ScanProfile.ExcludeBlankPages,
             BlankPageWhiteThreshold = ScanProfile.BlankPageWhiteThreshold,

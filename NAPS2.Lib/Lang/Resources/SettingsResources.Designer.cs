@@ -60,6 +60,33 @@ namespace NAPS2.Lang.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        internal static string AppleImpl_Default {
+            get {
+                return ResourceManager.GetString("AppleImpl_Default", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to File Transfer.
+        /// </summary>
+        internal static string AppleImpl_FileTransfer {
+            get {
+                return ResourceManager.GetString("AppleImpl_FileTransfer", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Memory Transfer.
+        /// </summary>
+        internal static string AppleImpl_MemoryTransfer {
+            get {
+                return ResourceManager.GetString("AppleImpl_MemoryTransfer", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Black and White.
         /// </summary>
         internal static string BitDepth_1BlackAndWhite {
@@ -614,6 +641,42 @@ namespace NAPS2.Lang.Resources {
         internal static string WiaVersion_Wia20 {
             get {
                 return ResourceManager.GetString("WiaVersion_Wia20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top.
+        /// </summary>
+        internal static string DockStyle_Top {
+            get {
+                return ResourceManager.GetString("DockStyle_Top", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        internal static string DockStyle_Left {
+            get {
+                return ResourceManager.GetString("DockStyle_Left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottom.
+        /// </summary>
+        internal static string DockStyle_Bottom {
+            get {
+                return ResourceManager.GetString("DockStyle_Bottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right.
+        /// </summary>
+        internal static string DockStyle_Right {
+            get {
+                return ResourceManager.GetString("DockStyle_Right", resourceCulture);
             }
         }
     }

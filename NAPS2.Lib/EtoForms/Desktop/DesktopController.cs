@@ -37,6 +37,7 @@ public class DesktopController
     private readonly ISharedDeviceManager _sharedDeviceManager;
     private readonly ProcessCoordinator _processCoordinator;
     private readonly RecoveryManager _recoveryManager;
+    private readonly EditWithController _editWithController;
     private readonly ImageTransfer _imageTransfer = new();
 
     private bool _closed;
@@ -54,7 +55,7 @@ public class DesktopController
         DesktopImagesController desktopImagesController, IDesktopScanController desktopScanController,
         DesktopFormProvider desktopFormProvider, IScannedImagePrinter scannedImagePrinter,
         ISharedDeviceManager sharedDeviceManager, ProcessCoordinator processCoordinator,
-        RecoveryManager recoveryManager)
+        RecoveryManager recoveryManager, EditWithController editWithController)
     {
         _scanningContext = scanningContext;
         _imageList = imageList;
@@ -76,6 +77,7 @@ public class DesktopController
         _sharedDeviceManager = sharedDeviceManager;
         _processCoordinator = processCoordinator;
         _recoveryManager = recoveryManager;
+        _editWithController = editWithController;
     }
 
     internal bool HasActiveOperations => _operationProgress.ActiveOperations.Any();
@@ -99,6 +101,7 @@ public class DesktopController
         ShowRecoveryPrompt();
         ImportFilesFromCommandLine();
         InitThumbnailRendering();
+        _editWithController.LoadAppIcon().AssertNoAwait();
         await RunStillImageEvents();
         SetFirstRunDate();
         ShowDonationOrReviewPrompt();
@@ -207,7 +210,7 @@ public class DesktopController
         Paths.DeleteTempSubfolder();
         _closed = true;
         _thumbnailController.Dispose();
-        _scanningContext.WorkerFactory!.StopSpareWorkers();
+        _scanningContext.WorkerFactory!.StopSpareWorkers().Wait();
     }
 
     public bool PrepareForClosing(bool userClosing)

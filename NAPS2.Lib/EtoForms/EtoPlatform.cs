@@ -25,6 +25,8 @@ public abstract class EtoPlatform
     public virtual bool IsGtk => false;
     public virtual bool IsMac => false;
     public virtual bool IsWinForms => false;
+    public virtual bool IsWpf => false;
+    public bool IsWindows => IsWinForms || IsWpf;
 
     public abstract IIconProvider IconProvider { get; }
     public abstract IDarkModeProvider DarkModeProvider { get; }
@@ -46,6 +48,14 @@ public abstract class EtoPlatform
     public abstract Application CreateApplicationCore();
     public abstract void SetSystemTheme();
     public abstract IListView<T> CreateListView<T>(ListViewBehavior<T> behavior) where T : notnull;
+    public abstract ISettingsNavigator CreateSettingsNavigator();
+
+    public virtual bool SupportsWindowSidebar => false;
+    public virtual void AttachWindowSidebar(Window window, Control sidebar, WindowSidebarOptions options) =>
+        throw new NotSupportedException();
+    public virtual void SetWindowSidebarVisible(Window window, bool visible) =>
+        throw new NotSupportedException();
+
     public abstract void ConfigureImageButton(Button button, ButtonFlags flags);
     public abstract Bitmap ToBitmap(IMemoryImage image);
     public abstract IMemoryImage FromBitmap(Bitmap bitmap);
@@ -54,6 +64,11 @@ public abstract class EtoPlatform
     public abstract Control CreateContainer();
     public abstract void AddToContainer(Control container, Control control, bool inOverlay);
     public abstract void RemoveFromContainer(Control container, Control control);
+
+    public abstract Control CreateScrollContainer();
+    public abstract Control GetScrollContentContainer(Control scrollContainer);
+    public abstract void SetScrollContentSize(Control scrollContainer, Size size);
+    public abstract int GetVerticalScrollBarWidth(Control scrollContainer);
 
     public abstract void ConfigureDonateButton(Button button);
 
@@ -69,6 +84,13 @@ public abstract class EtoPlatform
     public virtual void AsyncInvoke(Application application, Action action)
     {
         application.AsyncInvoke(action);
+    }
+
+    public virtual Size GetContainerSize(Control container) => container.Size;
+
+    public virtual void AttachContainerSizeChanged(Window window, Control container, Action action)
+    {
+        container.SizeChanged += (_, _) => action();
     }
 
     public virtual void SetContainerSize(Window window, Control container, Size size, int padding)
@@ -106,6 +128,8 @@ public abstract class EtoPlatform
         return control.GetPreferredSize(availableSpace);
     }
 
+    public virtual SizeF GetMinimumSize(Control control) => SizeF.Empty;
+
     public virtual LayoutElement FormatProgressBar(ProgressBar progressBar)
     {
         return progressBar.Width(420).Padding(top: 10, bottom: 10);
@@ -121,6 +145,10 @@ public abstract class EtoPlatform
     }
 
     public virtual void ConfigureZoomButton(Button button, string icon)
+    {
+    }
+
+    public virtual void SetAccessibleName(Control control, string name)
     {
     }
 
@@ -142,7 +170,7 @@ public abstract class EtoPlatform
     {
     }
 
-    public virtual LayoutElement CreateGroupBox(string title, LayoutElement content)
+    public virtual LayoutElement CreateGroupBox(string title, LayoutElement content, GroupBoxHeaderStyle headerStyle)
     {
         var groupBox = new GroupBox { Text = title };
         return L.Overlay(groupBox, L.Buffer(content, 6, IsGtk ? 21 : 18, 6, 6));
@@ -152,12 +180,14 @@ public abstract class EtoPlatform
     {
     }
 
+    public virtual void ConfigureSmallToolBar(ToolBar toolBar)
+    {
+    }
+
     public virtual void ConfigureEllipsis(Label label)
     {
         // TODO: Maybe implement our own ellipsis logic that uses text-measuring to strip trailing characters and add "..."?
     }
-
-    public virtual Bitmap? ExtractAssociatedIcon(string exePath) => throw new NotSupportedException();
 
     public virtual void HandleKeyDown(Control control, Func<Keys, bool> handle)
     {
@@ -185,6 +215,10 @@ public abstract class EtoPlatform
     }
 
     public virtual void SetImageSize(ToolItem toolItem, int size)
+    {
+    }
+
+    public virtual void SetImageSize(ImageView imageView, int size)
     {
     }
 

@@ -15,3 +15,7 @@ es60w/downloads/
 es60w/**/bin/
 es60w/**/obj/
 es60w/**/__pycache__/
+
+# Licence texts are source inputs, not restored package caches.
+!es60w/licenses/packages/
+!es60w/licenses/packages/**

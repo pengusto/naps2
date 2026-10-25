@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net10.0-windows</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <RootNamespace>NAPS2</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+    <UseWPF>true</UseWPF>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <!-- Application.ThemeMode (Fluent) is still marked experimental -->
+    <NoWarn>$(NoWarn);WPF0001</NoWarn>
+
+    <Title>NAPS2 - Not Another PDF Scanner</Title>
+    <Product>NAPS2 - Not Another PDF Scanner</Product>
+    <Configurations>Debug;Release;DebugLang</Configurations>
+  </PropertyGroup>
+
+  <Import Project="..\NAPS2.Setup\targets\CommonTargets.targets" />
+  <Import Project="..\NAPS2.Setup\targets\LibUsers.targets" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\NAPS2.Lib\NAPS2.Lib.csproj" />
+    <ProjectReference Include="..\NAPS2.Images.Wpf\NAPS2.Images.Wpf.csproj" />
+    <PackageReference Include="Eto.Forms" Version="2.11.0" />
+    <PackageReference Include="Eto.Platform.Wpf" Version="2.11.0" />
+    <PackageReference Include="NAPS2.Windows.Printing" Version="0.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Windows platform services shared with NAPS2.Lib.WinForms -->
+    <!-- TODO: Move these to a shared project (e.g. NAPS2.Lib.WindowsCommon) -->
+    <Compile Include="..\NAPS2.Lib.WinForms\EtoForms\WinForms\WindowsDarkModeProvider.cs" LinkBase="Windows\EtoForms" />
+    <Compile Include="..\NAPS2.Lib.WinForms\ImportExport\Email\Mapi\*.cs" LinkBase="Windows\ImportExport\Email\Mapi" />
+    <Compile Include="..\NAPS2.Lib.WinForms\Logging\WindowsEventLogger.cs" LinkBase="Windows\Logging" />
+    <Compile Include="..\NAPS2.Lib.WinForms\Platform\Windows\WindowsApplicationLifecycle.cs" LinkBase="Windows\Platform\Windows" />
+    <Compile Include="..\NAPS2.Lib.WinForms\Platform\Windows\WindowsOpenWith.cs" LinkBase="Windows\Platform\Windows" />
+    <Compile Include="..\NAPS2.Lib.WinForms\Platform\Windows\WindowsServiceManager.cs" LinkBase="Windows\Platform\Windows" />
+  </ItemGroup>
+
+</Project>

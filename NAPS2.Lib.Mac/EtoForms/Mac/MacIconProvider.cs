@@ -11,7 +11,6 @@ public class MacIconProvider : IIconProvider
         { "add", "plus.circle" },
         { "pencil", "pencil" },
         { "cross", "trash" },
-        { "cross_small", "xmark" },
         { "accept", "checkmark.circle" },
         { "wireless", "wifi" },
         { "blueprints", "list.bullet" },
@@ -58,8 +57,11 @@ public class MacIconProvider : IIconProvider
         { "switch_hor", "arrow.left.and.right" },
         { "switch_ver", "arrow.up.and.down" },
         { "help",  "questionmark.circle" },
-        // TODO: This doesn't render properly as it's very wide and gets squished
-        // { "keyboard", "keyboard" },
+        { "cog", "gearshape" },
+        { "picture", "photo" },
+        { "email", "envelope" },
+        // This is very wide, so it gets squished unless the image view preserves the aspect ratio
+        { "keyboard", "keyboard" },
         // TODO: Consider these
         // { "network_ip", "wifi.router" },
         // { "device", "scanner" },
@@ -72,26 +74,24 @@ public class MacIconProvider : IIconProvider
         _defaultIconProvider = defaultIconProvider;
     }
 
-    public Bitmap? GetIcon(string name, float scale = 1f, bool oversized = false)
+    public Bitmap? GetIcon(string name, IconScenario scenario, float scale = 1f)
     {
-        if (!OperatingSystem.IsMacOSVersionAtLeast(11) && name == "arrow_rotate_anticlockwise")
+        int size = scenario.ToSize();
+        if (!OperatingSystem.IsMacOSVersionAtLeast(11) && name == "arrow_rotate_anticlockwise" && size == 32)
         {
             // TODO: Verify this fixes the rotate menu on macOS 10.15
             // TODO: Also maybe map other icons to 16x16 versions (e.g. control_play_blue) for better rendering
-            return _defaultIconProvider.GetIcon("arrow_rotate_anticlockwise_small");
+            return _defaultIconProvider.GetIcon(name, IconScenario.Menu);
         }
         if (OperatingSystem.IsMacOSVersionAtLeast(11))
         {
-            if (!IconMap.ContainsKey(name) && name.EndsWith("_small"))
+            var symbolName = name == "cross" && size == 16 ? "xmark" : IconMap.GetValueOrDefault(name);
+            if (symbolName != null)
             {
-                name = name.Substring(0, name.Length - 6);
-            }
-            if (IconMap.ContainsKey(name))
-            {
-                var symbol = NSImage.GetSystemSymbol(IconMap[name], null);
+                var symbol = NSImage.GetSystemSymbol(symbolName, null);
                 if (symbol != null)
                 {
-                    if (oversized)
+                    if (scenario == IconScenario.LargeButton)
                     {
                         symbol = symbol.GetImage(NSImageSymbolConfiguration.Create(32, 0.1))!;
                     }
@@ -105,8 +105,8 @@ public class MacIconProvider : IIconProvider
                 }
             }
         }
-        return _defaultIconProvider.GetIcon(name, scale);
+        return _defaultIconProvider.GetIcon(name, scenario, scale);
     }
 
-    public Icon? GetFormIcon(string name, float scale = 1f) => null;
+    public Icon? ToFormIcon(Bitmap bitmap) => null;
 }

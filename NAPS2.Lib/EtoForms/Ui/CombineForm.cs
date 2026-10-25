@@ -20,7 +20,7 @@ public class CombineForm : ImageFormBase
         base(config, imageList, thumbnailController)
     {
         Title = UiStrings.Combine;
-        IconName = "combine_small";
+        IconName = "combine";
         HelpText = UiStrings.CombineHelp;
 
         _scanningContext = scanningContext;
@@ -39,25 +39,25 @@ public class CombineForm : ImageFormBase
             C.Filler(),
             L.Row(
                 L.Row(
-                    C.IconButton("shape_align_left_small", () => SetHOffset(0)),
-                    C.IconButton("shape_align_center_small", () => SetHOffset(0.5)),
-                    C.IconButton("shape_align_right_small", () => SetHOffset(1.0))
+                    C.IconButton("shape_align_left", UiStrings.AlignLeft, () => SetHOffset(0)),
+                    C.IconButton("shape_align_center", UiStrings.AlignCenter, () => SetHOffset(0.5)),
+                    C.IconButton("shape_align_right", UiStrings.AlignRight, () => SetHOffset(1.0))
                 ).Visible(_alignVis),
                 C.Spacer().Width(14),
-                C.IconButton("combine_hor_small",
+                C.IconButton("combine_hor", UiStrings.ToggleOrientation,
                     () => SetOrientation(CombineOrientation.Horizontal)),
-                C.IconButton("switch_ver_small", SwapImages)
+                C.IconButton("switch_ver", UiStrings.Swap, SwapImages)
             ).Visible(!_horizontalOrientationVis),
             L.Row(
                 L.Row(
-                    C.IconButton("shape_align_top_small", () => SetVOffset(0)),
-                    C.IconButton("shape_align_middle_small", () => SetVOffset(0.5)),
-                    C.IconButton("shape_align_bottom_small", () => SetVOffset(1.0))
+                    C.IconButton("shape_align_top", UiStrings.AlignTop, () => SetVOffset(0)),
+                    C.IconButton("shape_align_middle", UiStrings.AlignMiddle, () => SetVOffset(0.5)),
+                    C.IconButton("shape_align_bottom", UiStrings.AlignBottom, () => SetVOffset(1.0))
                 ).Visible(_alignVis),
                 C.Spacer().Width(14),
-                C.IconButton("combine_ver_small",
+                C.IconButton("combine_ver", UiStrings.ToggleOrientation,
                     () => SetOrientation(CombineOrientation.Vertical)),
-                C.IconButton("switch_hor_small", SwapImages)
+                C.IconButton("switch_hor", UiStrings.Swap, SwapImages)
             ).Visible(_horizontalOrientationVis),
             C.Filler()
         );
@@ -158,8 +158,8 @@ public class CombineForm : ImageFormBase
         var workingArea = GetScreenWorkingArea();
         var widthRatio1 = WorkingImage1.Width / workingArea.Width;
         var heightRatio1 = WorkingImage1.Height / workingArea.Height;
-        var widthRatio2 = WorkingImage1.Width / workingArea.Width;
-        var heightRatio2 = WorkingImage1.Height / workingArea.Height;
+        var widthRatio2 = WorkingImage2.Width / workingArea.Width;
+        var heightRatio2 = WorkingImage2.Height / workingArea.Height;
         var maxRatio = new[] { widthRatio1, heightRatio1, widthRatio2, heightRatio2 }.Max();
         if (maxRatio > 1)
         {

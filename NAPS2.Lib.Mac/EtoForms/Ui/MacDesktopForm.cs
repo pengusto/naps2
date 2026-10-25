@@ -1,3 +1,4 @@
+using Eto.Drawing;
 using Eto.Forms;
 using NAPS2.EtoForms.Desktop;
 using NAPS2.EtoForms.Layout;
@@ -10,7 +11,10 @@ namespace NAPS2.EtoForms.Ui;
 
 public class MacDesktopForm : DesktopForm
 {
+    private readonly Sidebar _sidebar;
     private NSSlider? _zoomSlider;
+    // The native sidebar (see EtoPlatform.AttachWindowSidebar) has its own layout
+    private LayoutController? _sidebarLayout;
 
     public MacDesktopForm(
         Naps2Config config,
@@ -30,11 +34,72 @@ public class MacDesktopForm : DesktopForm
         IDesktopSubFormController desktopSubFormController,
         Lazy<DesktopCommands> commands,
         Sidebar sidebar,
-        IIconProvider iconProvider)
+        IIconProvider iconProvider,
+        EditWithController editWithController)
         : base(config, keyboardShortcuts, notificationManager, cultureHelper, colorScheme, profileManager, imageList,
             thumbnailController, thumbnailProvider, desktopController, desktopScanController, imageListActions,
-            imageListViewBehavior, desktopFormProvider, desktopSubFormController, commands, sidebar, iconProvider)
+            imageListViewBehavior, desktopFormProvider, desktopSubFormController, commands, sidebar, iconProvider,
+            editWithController)
     {
+        _sidebar = sidebar;
+    }
+
+    protected override LayoutElement BuildSidebarLayout(LayoutElement mainContent)
+    {
+        if (SidebarHidden)
+        {
+            return base.BuildSidebarLayout(mainContent);
+        }
+        if (_sidebarLayout == null)
+        {
+            _sidebarLayout = new LayoutController { RootPadding = 0 };
+            _sidebarLayout.BindHosted(this);
+            LayoutController.Invalidated += (_, _) => _sidebarLayout.Invalidate();
+        }
+        _sidebarLayout.Content = _sidebar.CreateView(this, true);
+        if (_sidebar.IsVisible)
+        {
+            // The native sidebar is outside the layout, so it's added to the window size separately
+            FormStateController.DefaultClientSize -= new Size(SidebarWidth, 0);
+        }
+        return mainContent;
+    }
+
+    private int SidebarWidth => Math.Max(Config.Get(c => c.SidebarWidth), Sidebar.MIN_SIDEBAR_WIDTH);
+
+    protected override void OnLoadComplete(EventArgs e)
+    {
+        base.OnLoadComplete(e);
+        if (_sidebarLayout != null)
+        {
+            EtoPlatform.Current.AttachWindowSidebar(this, _sidebarLayout.Container,
+                new WindowSidebarOptions
+                {
+                    Width = SidebarWidth,
+                    MinWidth = Sidebar.MIN_SIDEBAR_WIDTH,
+                    MinContentWidth = Sidebar.MIN_CONTENT_WIDTH,
+                    CanHide = true,
+                    Visible = _sidebar.IsVisible,
+                    ContentUnderTitleBar = true,
+                    WidthChanged = width => Config.User.Set(c => c.SidebarWidth, width),
+                    VisibleChanged = visible =>
+                    {
+                        if (visible != _sidebar.IsVisible)
+                        {
+                            base.ToggleSidebar();
+                        }
+                    }
+                });
+        }
+    }
+
+    public override void ToggleSidebar()
+    {
+        base.ToggleSidebar();
+        if (_sidebarLayout != null)
+        {
+            EtoPlatform.Current.SetWindowSidebarVisible(this, _sidebar.IsVisible);
+        }
     }
 
     protected override void UpdateTitle(ScanProfile? defaultProfile)

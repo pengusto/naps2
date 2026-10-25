@@ -1,7 +1,7 @@
 {
   "local_only": false,
   "public_release_cleared": false,
-  "application_base": "3481963789af647a9f9e0a19176a0d2f7f593b5d",
+  "application_base": "4643b6e1cec695f81ed0fa85d197cbf38e321d18",
   "architecture": "arm64",
   "minimum_macos_metadata": "14.0",
   "new_physical_scans": 0,
@@ -51,5 +51,8 @@
     "Downloaded quarantined Finder first launch on a separate Mac not tested",
     "Conservative framing may retain a thin border; no exact physical edge or Epson parity claim",
     "Not all permissive binaries independently rebuilt; source evidence levels retained"
-  ]
+  ],
+  "upstream_snapshot_kind": "master after official NAPS2 8.5.1; independent prerelease",
+  "upstream_commits_integrated": 153,
+  "prior_release_preserved": "es60w-v8.5.1-2"
 }

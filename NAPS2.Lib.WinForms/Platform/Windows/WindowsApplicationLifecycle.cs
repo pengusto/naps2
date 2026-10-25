@@ -1,5 +1,4 @@
 ﻿using System.Security.Principal;
-using System.Windows.Forms;
 using NAPS2.Remoting;
 
 namespace NAPS2.Platform.Windows;
@@ -40,7 +39,8 @@ public class WindowsApplicationLifecycle : ApplicationLifecycle
         {
             if (!silent)
             {
-                MessageBox.Show(message);
+                // This runs before the UI framework is initialized, so use the Win32 message box directly
+                Win32.MessageBox(IntPtr.Zero, message, "", 0);
             }
         }
 
@@ -185,14 +185,5 @@ public class WindowsApplicationLifecycle : ApplicationLifecycle
         {
             Win32.SetForegroundWindow(process.MainWindowHandle);
         }
-    }
-
-    public static IEnumerable<Process> GetOtherNaps2Processes()
-    {
-        Process currentProcess = Process.GetCurrentProcess();
-        var otherProcesses = Process.GetProcessesByName(currentProcess.ProcessName)
-            .Where(x => x.Id != currentProcess.Id)
-            .OrderByDescending(x => x.StartTime);
-        return otherProcesses;
     }
 }

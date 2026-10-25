@@ -17,6 +17,7 @@ internal class WorkerFactory : IWorkerFactory
     private readonly Dictionary<string, string> _environmentVariables;
 
     private Dictionary<WorkerType, BlockingCollection<WorkerContext>>? _workerQueues;
+    private bool _stoppedSpares;
 
     public static WorkerFactory CreateDefault()
     {
@@ -152,9 +153,19 @@ internal class WorkerFactory : IWorkerFactory
                 {
                     ConnectionTimeout = PIPE_CONNECTION_TIMEOUT
                 };
-                var channel = new NamedPipeChannel(".", string.Format(PIPE_NAME_FORMAT, proc.Id), options);
-                _workerQueues![workerType]
-                    .Add(new WorkerContext(scanningContext, workerType, new WorkerServiceAdapter(channel), proc));
+                var pipeName = PipeNames.Get(string.Format(PIPE_NAME_FORMAT, proc.Id));
+                var channel = new NamedPipeChannel(".", pipeName, options);
+                var worker = new WorkerContext(scanningContext, workerType, new WorkerServiceAdapter(channel), proc);
+                lock (this)
+                {
+                    if (!spare || !_stoppedSpares)
+                    {
+                        _workerQueues![workerType].Add(worker);
+                        return;
+                    }
+                }
+                // Spare workers were stopped while this one was starting
+                worker.Stop().AssertNoAwait();
             }
             catch (Exception ex)
             {
@@ -236,9 +247,13 @@ internal class WorkerFactory : IWorkerFactory
         }
     }
 
-    public void StopSpareWorkers()
+    public Task StopSpareWorkers()
     {
-        if (_workerQueues == null) return;
+        if (_workerQueues == null) return Task.CompletedTask;
+        lock (this)
+        {
+            _stoppedSpares = true;
+        }
         var stopTasks = new List<Task>();
         foreach (var queue in _workerQueues.Values)
         {
@@ -247,6 +262,6 @@ internal class WorkerFactory : IWorkerFactory
                 stopTasks.Add(worker.Stop());
             }
         }
-        Task.WhenAll(stopTasks).Wait();
+        return Task.WhenAll(stopTasks);
     }
 }

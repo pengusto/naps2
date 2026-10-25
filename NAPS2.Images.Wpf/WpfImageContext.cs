@@ -26,13 +26,8 @@ public class WpfImageContext : ImageContext
 
     protected override IMemoryImage LoadCore(Stream stream, ImageFileFormat format)
     {
-        var bitmap = new BitmapImage();
-        bitmap.BeginInit();
-        bitmap.StreamSource = stream;
-        bitmap.CacheOption = BitmapCacheOption.OnLoad;
-        bitmap.EndInit();
-        bitmap.Freeze();
-        return new WpfImage(new WriteableBitmap(bitmap));
+        var decoder = BitmapDecoder.Create(stream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+        return new WpfImage(decoder.Frames[0]);
     }
 
     protected override void LoadFramesCore(Action<IMemoryImage> produceImage, Stream stream,
@@ -46,7 +41,7 @@ public class WpfImageContext : ImageContext
             foreach (var frame in decoder.Frames)
             {
                 if (progress.IsCancellationRequested) return;
-                produceImage(new WpfImage(new WriteableBitmap(frame)));
+                produceImage(new WpfImage(frame));
                 progress.Report(++i, decoder.Frames.Count);
             }
             return;
@@ -59,7 +54,14 @@ public class WpfImageContext : ImageContext
 
     public BitmapSource RenderToBitmapSource(IRenderableImage image)
     {
-        return ((WpfImage) Render(image)).Bitmap;
+        using var rendered = (WpfImage) Render(image);
+        return rendered.ToBitmapSource();
+    }
+
+    public BitmapSource RenderToDisplayBitmapSource(IRenderableImage image)
+    {
+        using var rendered = (WpfImage) Render(image);
+        return rendered.ToDisplayBitmapSource();
     }
 
     public override IMemoryImage Create(int width, int height, ImagePixelFormat pixelFormat)
@@ -70,13 +72,12 @@ public class WpfImageContext : ImageContext
         }
         var wpfPixelFormat = pixelFormat switch
         {
-            ImagePixelFormat.ARGB32 => PixelFormats.Bgr32,
+            ImagePixelFormat.ARGB32 => PixelFormats.Bgra32,
             ImagePixelFormat.RGB24 => PixelFormats.Bgr24,
             ImagePixelFormat.Gray8 => PixelFormats.Gray8,
             ImagePixelFormat.BW1 => PixelFormats.BlackWhite,
             _ => throw new InvalidOperationException("Unsupported pixel format")
         };
-        var image = new WriteableBitmap(width, height, 0, 0, wpfPixelFormat, null);
-        return new WpfImage(image);
+        return new WpfImage(WpfPixelBuffer.Allocate(width, height, wpfPixelFormat, true), 0, 0);
     }
 }

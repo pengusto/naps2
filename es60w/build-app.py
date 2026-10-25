@@ -34,6 +34,11 @@ def main():
             p.error('Missing package source input: ' + name)
     subprocess.run(['clang', '-std=c11', '-Wall', '-Wextra', '-Werror', '-fsyntax-only',
         str(here / 'tools/helper-client/BundledScanImageLauncher.c')], check=True)
+    licence_manifest = json.loads((here / 'licenses/MANIFEST.json').read_text())
+    for name, expected in licence_manifest['files_sha256'].items():
+        file = here / 'licenses' / name
+        if not file.is_file() or hashlib.sha256(file.read_bytes()).hexdigest() != expected:
+            p.error('Missing or changed licence input: ' + name)
     out.mkdir(parents=True)
     # Apple's trimmer can retain CodeView paths even when symbols are disabled.
     # A clean, neutral build root avoids personal paths without rewriting DLLs.
@@ -103,7 +108,7 @@ def main():
         '--entitlements', str(repo / 'NAPS2.App.Mac/Entitlements.plist'),
         '--scanner-button-header', str(native / 'prefix/include/libusb-1.0/libusb.h'),
         '--report', str(out / 'package.json')], check=True)
-    result = {'architecture': 'arm64', 'release_version': '8.5.1-es60w.2',
+    result = {'architecture': 'arm64', 'release_version': '8.5.1-es60w.3',
               'full_app_and_static_registrar_rebuilt': True,
               'helper_libusb_jpeg_built_from_pinned_sources': True,
               'build_log_sha256': hashlib.sha256(log.read_bytes()).hexdigest(),

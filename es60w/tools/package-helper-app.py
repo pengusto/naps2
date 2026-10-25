@@ -105,7 +105,7 @@ def main():
         data = plistlib.loads(info.read_bytes())
         data.update(CFBundleIdentifier='de.pengusto.naps2.es60w',
                     CFBundleName='NAPS2 ES60W', CFBundleDisplayName='NAPS2 ES60W',
-                    CFBundleVersion='851002', CFBundleShortVersionString='8.5.1')
+                    CFBundleVersion='851003', CFBundleShortVersionString='8.5.1')
         data.pop('LSEnvironment', None)
         data.pop('CFBundleDocumentTypes', None)
         data.pop('CFBundleURLTypes', None)

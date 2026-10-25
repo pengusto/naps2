@@ -8,87 +8,95 @@ internal class SavePdfOperation : OperationBase
 {
     private readonly PdfExporter _pdfExporter;
     private readonly IOverwritePrompt _overwritePrompt;
+    private readonly NameManager _nameManager;
     private readonly IEmailProviderFactory? _emailProviderFactory;
 
-    public SavePdfOperation(PdfExporter pdfExporter, IOverwritePrompt overwritePrompt,
+    public SavePdfOperation(PdfExporter pdfExporter, IOverwritePrompt overwritePrompt, NameManager nameManager,
         IEmailProviderFactory? emailProviderFactory = null)
     {
         _pdfExporter = pdfExporter;
         _overwritePrompt = overwritePrompt;
+        _nameManager = nameManager;
         _emailProviderFactory = emailProviderFactory;
 
         AllowCancel = true;
         AllowBackground = true;
     }
 
-    // TODO: Do something with this re: notifications?
     public string? FirstFileSaved { get; private set; }
 
-    public bool Start(string fileName, Placeholders placeholders, ICollection<ProcessedImage> images,
-        PdfSettings pdfSettings, OcrParams ocrParams, EmailMessage? emailMessage = null,
-        string? overwriteFile = null)
+    /// <summary>
+    /// Saves the provided images to a PDF file with the given name, or one PDF per image if specified by the settings.
+    /// </summary>
+    /// <param name="fileName">The file name to save to, which may contain placeholders.</param>
+    /// <param name="images">The images to save.</param>
+    /// <param name="pdfSettings">The PDF settings.</param>
+    /// <param name="ocrParams">The OCR parameters.</param>
+    /// <param name="emailMessage">If specified, the saved file(s) are attached to the message and it is sent.</param>
+    /// <param name="saveParams">How files are named and existing files are handled.</param>
+    public bool Start(string fileName, ICollection<ProcessedImage> images, PdfSettings pdfSettings,
+        OcrParams ocrParams, EmailMessage? emailMessage = null, SaveParams? saveParams = null)
     {
-        // TODO: This needs tests. And ideally simplification.
         ProgressTitle = emailMessage != null ? MiscResources.EmailPdfProgress : MiscResources.SavePdfProgress;
-        var subFileName = placeholders.Substitute(fileName);
-        Status = new OperationStatus
-        {
-            StatusText = string.Format(MiscResources.SavingFormat, Path.GetFileName(subFileName)),
-            MaxProgress = images.Count
-        };
+        saveParams ??= new SaveParams();
 
+        var subFileName = _nameManager.Get(fileName, NameContext.FromSaveParams(saveParams));
         if (Directory.Exists(subFileName))
         {
             // Not supposed to be a directory, but ok...
-            subFileName = placeholders.Substitute(Path.Combine(subFileName, "$(n).pdf"));
+            fileName = Path.Combine(subFileName, "$(n).pdf");
         }
-        var singleFile = !pdfSettings.SinglePagePdfs || images.Count == 1;
-        if (singleFile)
-        {
-            if (File.Exists(subFileName))
-            {
-                if (subFileName != overwriteFile &&
-                    _overwritePrompt.ConfirmOverwrite(subFileName) != OverwriteResponse.Yes)
-                {
-                    FailedToStart();
-                    return false;
-                }
-                if (FileSystemHelper.IsFileInUse(subFileName, out var ex))
-                {
-                    InvokeError(MiscResources.FileInUse, ex!);
-                    FailedToStart();
-                    return false;
-                }
-            }
-        }
-
         var imagesByFile = pdfSettings.SinglePagePdfs
             ? images.Select(x => new[] { x }).ToArray()
             : new[] { images.ToArray() };
+        saveParams = saveParams with { BatchCount = Math.Max(saveParams.BatchCount ?? 1, imagesByFile.Length) };
+        var context = NameContext.FromSaveParams(saveParams);
+
+        var reservations = Enumerable.Range(0, imagesByFile.Length)
+            .Select(i => _nameManager.Reserve(fileName, context with { BatchIndex = (context.BatchIndex ?? 0) + i }))
+            .ToDisposableList();
+        var fileNames = reservations.Select(x => x.Name).ToArray();
+
+        Status = new OperationStatus
+        {
+            StatusText = string.Format(MiscResources.SavingFormat, Path.GetFileName(fileNames[0])),
+            MaxProgress = images.Count
+        };
+
+        var singleFile = imagesByFile.Length == 1;
+        if (singleFile && saveParams.OverwriteMode.ShouldPromptForPath(fileNames[0]) &&
+            _overwritePrompt.ConfirmOverwrite(fileNames[0]) != OverwriteResponse.Yes)
+        {
+            reservations.Dispose();
+            FailedToStart();
+            return false;
+        }
+
         RunAsync(async () =>
         {
             bool result = false;
             try
             {
-                int digits = (int) Math.Floor(Math.Log10(images.Count)) + 1;
                 int i = 0;
                 foreach (var imagesForFile in imagesByFile)
                 {
-                    var currentFileName = placeholders.Substitute(fileName, true, i, singleFile ? 0 : digits);
-                    // TODO: Overwrite prompt non-single file?
-                    Status.StatusText = string.Format(MiscResources.SavingFormat, Path.GetFileName(currentFileName));
-                    InvokeStatusChanged();
-                    if (singleFile && IsFileInUse(currentFileName, out var ex))
+                    if (CancelToken.IsCancellationRequested)
                     {
-                        InvokeError(MiscResources.FileInUse, ex!);
+                        result = false;
                         break;
                     }
+                    var currentFileName = fileNames[i];
+                    Status.StatusText = string.Format(MiscResources.SavingFormat, Path.GetFileName(currentFileName));
+                    InvokeStatusChanged();
 
                     var progress = new ProgressHandler(singleFile ? OnProgress : null, CancelToken);
-                    result = await _pdfExporter.Export(currentFileName, imagesForFile,
-                        new PdfExportParams(pdfSettings.Metadata, pdfSettings.Encryption,
-                            pdfSettings.Compat), ocrParams, progress);
-                    if (!result || CancelToken.IsCancellationRequested)
+                    result = await RunWithRetry(async () =>
+                            await WaitForFileNotInUse(currentFileName) &&
+                            await _pdfExporter.Export(currentFileName, imagesForFile,
+                                new PdfExportParams(pdfSettings.Metadata.Substitute(_nameManager, context.DateTime),
+                                    pdfSettings.Encryption, pdfSettings.Compat), ocrParams, progress),
+                        GetSaveErrorMessage);
+                    if (!result)
                     {
                         break;
                     }
@@ -99,7 +107,7 @@ internal class SavePdfOperation : OperationBase
                     });
                     if (i == 0)
                     {
-                        FirstFileSaved = subFileName;
+                        FirstFileSaved = currentFileName;
                     }
                     i++;
                     if (!singleFile)
@@ -119,29 +127,25 @@ internal class SavePdfOperation : OperationBase
             }
             finally
             {
+                reservations.Dispose();
                 GC.Collect();
             }
 
             if (result && emailMessage != null && _emailProviderFactory != null)
             {
+                if (CancelToken.IsCancellationRequested)
+                {
+                    return false;
+                }
                 Status.StatusText = MiscResources.UploadingEmail;
                 Status.CurrentProgress = 0;
                 Status.MaxProgress = 1;
                 Status.ProgressType = OperationProgressType.MB;
                 InvokeStatusChanged();
 
-                try
-                {
-                    result = await _emailProviderFactory.Default.SendEmail(emailMessage, ProgressHandler);
-                }
-                catch (OperationCanceledException)
-                {
-                }
-                catch (Exception ex)
-                {
-                    Log.ErrorException(MiscResources.ErrorEmailing, ex);
-                    InvokeError(MiscResources.ErrorEmailing, ex);
-                }
+                result = await RunWithRetry(
+                    () => _emailProviderFactory.Default.SendEmail(emailMessage, ProgressHandler),
+                    _ => MiscResources.ErrorEmailing);
             }
 
             return result;
@@ -172,26 +176,5 @@ internal class SavePdfOperation : OperationBase
         }, TaskContinuationOptions.OnlyOnRanToCompletion);
 
         return true;
-    }
-
-    private bool IsFileInUse(string filePath, out Exception? exception)
-    {
-        // TODO: Generalize this for images too
-        exception = null;
-        if (File.Exists(filePath))
-        {
-            try
-            {
-                using (new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
-                {
-                }
-            }
-            catch (IOException ex)
-            {
-                exception = ex;
-                return true;
-            }
-        }
-        return false;
     }
 }

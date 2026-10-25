@@ -119,7 +119,7 @@ public class LoadSaveTests : ContextualTests
     {
         if (platforms is { DoSkip: true }) return;
 
-        var path = Path.Combine(FolderPath, $"image{ext}");
+        var path = P($"image{ext}");
         var expected = LoadImage(GetResource(compare[0]));
 
         if (!ImageContext.SupportsFormat(format))
@@ -179,6 +179,16 @@ public class LoadSaveTests : ContextualTests
         Assert.Single(images);
         Assert.Equal(ImageFileFormat.Jpeg, images[0].OriginalFileFormat);
         ImageAsserts.Similar(ImageResources.dog, images[0]);
+    }
+
+    // Gdi/Gtk/ImageSharp don't currently apply embedded color profiles
+    [PlatformFact(exclude: PlatformFlags.GdiImage | PlatformFlags.ImageSharpImage | PlatformFlags.GtkImage)]
+    public void LoadWithColorProfile()
+    {
+        // The image has an embedded ICC profile with the primaries rotated (i.e. the stored red channel is green, etc.),
+        // so the colors are only correct if the profile is applied.
+        var image = LoadImage(ImageResources.dog_icc);
+        ImageAsserts.Similar(ImageResources.dog, image, ignoreResolution: true);
     }
 
     [Fact]
@@ -303,6 +313,10 @@ public class LoadSaveTests : ContextualTests
         [
             ImageFileFormat.Png, ".png", "dog_gray_png",
             new[] { "dog_gray" }, new[] { ImagePixelFormat.Gray8 }, true
+        ],
+        [
+            ImageFileFormat.Png, ".png", "dog_palette",
+            new[] { "dog_palette_rgb" }, new[] { ImagePixelFormat.RGB24 }, false
         ],
         [
             ImageFileFormat.Png, ".png", "dog_gray_24bit_png",

@@ -16,7 +16,7 @@ import sys
 import tarfile
 import tempfile
 
-VERSION = '8.5.1-es60w.2'
+VERSION = '8.5.1-es60w.3'
 PREFIX = 'NAPS2-ES60W-' + VERSION
 
 
@@ -36,6 +36,7 @@ def main():
     p.add_argument('--source-supplement', type=Path,
         help='Recovered third-party sources matching legal/source-supplement.lock.json')
     p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--patch-base', help='Upstream commit for a replayable integration patch')
     a = p.parse_args()
     here = Path(__file__).resolve().parent
     repo = here.parent
@@ -52,7 +53,26 @@ def main():
     generated = [n for n in tracked if any(x in Path(n).parts for x in ['bin', 'obj', '__pycache__'])]
     if generated:
         p.error('Generated verification outputs must not be tracked in release sources')
+    # Check the committed archive inputs; an ignored licence directory can be
+    # present on the build machine yet absent from git archive/clean clones.
+    licence_manifest = json.loads((here / 'licenses/MANIFEST.json').read_text())
+    tracked_all = set(subprocess.check_output(['git', 'ls-files'], cwd=repo, text=True).splitlines())
+    for name, expected in licence_manifest['files_sha256'].items():
+        file = here / 'licenses' / name
+        if str(file.relative_to(repo)) not in tracked_all or not file.is_file() or sha(file) != expected:
+            p.error('Licence source missing, ignored or changed: ' + name)
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip()
+    base = a.patch_base or json.loads((here / 'SOURCE-STATUS.json').read_text())['application_base']
+    subprocess.run(['git', 'merge-base', '--is-ancestor', base, head], cwd=repo, check=True)
+    tree = subprocess.check_output(['git', 'rev-parse', head + '^{tree}'], cwd=repo, text=True).strip()
+    # A merge preserves published history, while this clean patch commit makes
+    # the final integration replayable on its current upstream base.
+    merges = subprocess.check_output(['git', 'rev-list', '--merges', base + '..' + head], cwd=repo)
+    patch_head = head
+    if merges.strip():
+        patch_head = subprocess.check_output(['git', '-c', 'commit.gpgsign=false', 'commit-tree', tree,
+            '-p', base, '-m', 'Standalone ES60W macOS integration on upstream ' + base[:12]],
+            cwd=repo, text=True).strip()
     out.mkdir(parents=True)
     env = dict(os.environ, COPYFILE_DISABLE='1')
     app = out / 'NAPS2 ES60W.app'
@@ -94,7 +114,7 @@ def main():
         shutil.copytree(inputs, root / 'package-inputs')
         source_files = {str(f.relative_to(checkout)): sha(f) for f in checkout.rglob('*')
                         if f.is_file() and not f.is_symlink()}
-        manifest = {'release': VERSION, 'naps2_base': '3481963789af647a9f9e0a19176a0d2f7f593b5d',
+        manifest = {'release': VERSION, 'naps2_base': base, 'source_tree': tree, 'patch_export_head': patch_head,
             'source_head': head, 'source_files_sha256': source_files,
             'native_source_archives': lock, 'nuget_build_inputs': len(inventory['packages']),
             'preferred_application_and_free_helper_sources_present': True,
@@ -143,7 +163,7 @@ instructions and validation limits. Preserve all source downloads with the DMG.
     mbox = out / (PREFIX + '-changes.mbox')
     with mbox.open('wb') as stream:
         subprocess.run(['git', 'format-patch', '--stdout', '--no-signature',
-            '3481963789af647a9f9e0a19176a0d2f7f593b5d..' + head], cwd=repo, stdout=stream, check=True)
+            base + '..' + patch_head], cwd=repo, stdout=stream, check=True)
     hashes = {f.name: sha(f) for f in [dmg, source_archive, mbox]}
     if supplement_lock.exists():
         supplemental_archive = out / (PREFIX + '-third-party-sources.tar.gz')
@@ -159,7 +179,8 @@ instructions and validation limits. Preserve all source downloads with the DMG.
         hashes[supplemental_archive.name] = sha(supplemental_archive)
     (out / 'SHA256SUMS').write_text(''.join(h + '  ' + n + '\n' for n, h in hashes.items()))
     (out / 'RELEASE-MANIFEST.json').write_text(json.dumps({'version': VERSION,
-        'branch': 'es60w-macos-release', 'source_head': head, 'artifacts_sha256': hashes,
+        'branch': 'es60w-macos-release', 'source_head': head,
+        'upstream_base': base, 'source_tree': tree, 'patch_export_head': patch_head, 'artifacts_sha256': hashes,
         'architecture': 'arm64', 'developer_id_signed': False, 'notarized': False,
         'public_release_cleared': False, 'distribution_channel': 'independent ad-hoc-signed prerelease',
         'source_assessment': 'es60w/legal/release-assessment-2026-10-25.md', 'new_physical_scans': 0,

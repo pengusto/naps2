@@ -4,6 +4,7 @@ using Eto.Drawing;
 using Eto.Forms;
 using Eto.GtkSharp;
 using Eto.GtkSharp.Drawing;
+using NAPS2.EtoForms.Ui;
 using NAPS2.EtoForms.Widgets;
 using NAPS2.Images.Gtk;
 using GTK = Gtk;
@@ -44,8 +45,15 @@ public class GtkEtoPlatform : EtoPlatform
     public override IListView<T> CreateListView<T>(ListViewBehavior<T> behavior) =>
         new GtkListView<T>(behavior);
 
+    public override ISettingsNavigator CreateSettingsNavigator() => new GtkSettingsNavigator();
+
     public override void ConfigureImageButton(Button button, ButtonFlags flags)
     {
+        if (button.ImagePosition == ButtonImagePosition.Overlay)
+        {
+            // Eto's default minimum size is meant for text buttons and makes icon-only buttons much wider than needed
+            button.MinimumSize = Size.Empty;
+        }
         AttachDpiDependency(button, _ => button.ScaleImage());
     }
 
@@ -153,6 +161,39 @@ public class GtkEtoPlatform : EtoPlatform
         widget.Unrealize();
     }
 
+    public override Control CreateScrollContainer()
+    {
+        var scrolledWindow = new GTK.ScrolledWindow { OverlayScrolling = false };
+        // External = no horizontal scrollbar, and the content width doesn't affect the scrolled window's size request
+        scrolledWindow.SetPolicy(GTK.PolicyType.External, GTK.PolicyType.Automatic);
+        var viewport = new GTK.Viewport { ShadowType = GTK.ShadowType.None };
+        var panel = new GTK.Fixed();
+        // Scroll focused controls into view
+        panel.FocusVadjustment = scrolledWindow.Vadjustment;
+        viewport.Add(panel);
+        scrolledWindow.Add(viewport);
+        return scrolledWindow.AsEto();
+    }
+
+    public override Control GetScrollContentContainer(Control scrollContainer)
+    {
+        var scrolledWindow = (GTK.ScrolledWindow) scrollContainer.ToNative();
+        return ((GTK.Viewport) scrolledWindow.Child).Child.AsEto();
+    }
+
+    public override void SetScrollContentSize(Control scrollContainer, Size size)
+    {
+        GetScrollContentContainer(scrollContainer).ToNative().SetSizeRequest(size.Width, size.Height);
+    }
+
+    public override int GetVerticalScrollBarWidth(Control scrollContainer)
+    {
+        var scrolledWindow = (GTK.ScrolledWindow) scrollContainer.ToNative();
+        scrolledWindow.VScrollbar.GetPreferredWidth(out _, out var scrollbarWidth);
+        var spacing = Convert.ToInt32(scrolledWindow.StyleGetProperty("scrollbar-spacing"));
+        return scrollbarWidth + spacing;
+    }
+
     public override void SetContainerSize(Window _window, Control container, Size size, int padding)
     {
         var native = (GTK.Fixed) container.ToNative();
@@ -181,31 +222,56 @@ public class GtkEtoPlatform : EtoPlatform
     public override SizeF GetPreferredSize(Control control, SizeF availableSpace)
     {
         var widget = control.ToNative();
-        // TODO: This is a hack to make overlays work. Gtk Overlay uses the margin to adjust the control position but
-        // then the margin messes with size calculations. If we set the margin to 0 here (which should be fine as we
-        // don't use margin otherwise) then the size calculations normalize, while the overlay has already determined
-        // the position so it doesn't affect that any more. However, there is a chance this will break in some edge
-        // cases.
-        widget.Margin = 0;
         if (control is ImageView && control.Size.Width > 1)
         {
             return control.Size;
         }
-        if (widget.IsRealized && widget is not GTK.DrawingArea)
+        return Measure(widget, () =>
         {
-            widget.GetSizeRequest(out var oldWidth, out var oldHeight);
-            widget.SetSizeRequest(0, 0);
-            try
+            if (widget.IsRealized && widget is not GTK.DrawingArea)
             {
                 return base.GetPreferredSize(control, availableSpace);
             }
-            finally
+            widget.GetPreferredSize(out _, out var naturalSize);
+            return new SizeF(naturalSize.Width, naturalSize.Height);
+        }, clearSizeRequest: widget.IsRealized && widget is not GTK.DrawingArea);
+    }
+
+    public override SizeF GetMinimumSize(Control control)
+    {
+        var widget = control.ToNative();
+        return Measure(widget, () =>
+        {
+            widget.GetPreferredSize(out var minSize, out _);
+            return new SizeF(minSize.Width, minSize.Height);
+        }, clearSizeRequest: true);
+    }
+
+    private static SizeF Measure(GTK.Widget widget, Func<SizeF> measure, bool clearSizeRequest)
+    {
+        // Overlay children are positioned with margins (see SetFrame), which Gtk includes in size requests, so they
+        // need to be cleared while measuring. The size request we set in SetFrame would otherwise act as a minimum.
+        // Both are restored afterwards; the overlay then allocates the widget at the same position as before.
+        var (marginStart, marginTop) = (widget.MarginStart, widget.MarginTop);
+        widget.GetSizeRequest(out var oldWidth, out var oldHeight);
+        widget.MarginStart = widget.MarginTop = 0;
+        if (clearSizeRequest)
+        {
+            widget.SetSizeRequest(0, 0);
+        }
+        try
+        {
+            return measure();
+        }
+        finally
+        {
+            widget.MarginStart = marginStart;
+            widget.MarginTop = marginTop;
+            if (clearSizeRequest)
             {
                 widget.SetSizeRequest(oldWidth, oldHeight);
             }
         }
-        widget.GetPreferredSize(out var minSize, out var naturalSize);
-        return new SizeF(naturalSize.Width, naturalSize.Height);
     }
 
     public override SizeF GetWrappedSize(Control control, int defaultWidth)
@@ -257,14 +323,23 @@ public class GtkEtoPlatform : EtoPlatform
         var size = new Size(w, h);
         if (excludeToolbars && window.ToolBar != null)
         {
-            var toolbar = (GTK.Toolbar) window.ToolBar.ControlObject;
-            var box = (GTK.Box) toolbar.Parent;
-            var heights = box.Children.OfType<GTK.Toolbar>().Select(x =>
+            var toolbars = window is GtkDesktopForm desktopForm
+                ? desktopForm.Toolbars
+                : [(GTK.Toolbar) window.ToolBar.ControlObject];
+            foreach (var toolbar in toolbars)
             {
-                x.GetPreferredHeight(out _, out int naturalHeight);
-                return naturalHeight;
-            });
-            size -= new Size(0, heights.Sum());
+                if (toolbar.Orientation == GTK.Orientation.Vertical)
+                {
+                    // Vertical toolbars are docked on the left or right
+                    toolbar.GetPreferredWidth(out _, out int naturalWidth);
+                    size -= new Size(naturalWidth, 0);
+                }
+                else
+                {
+                    toolbar.GetPreferredHeight(out _, out int naturalHeight);
+                    size -= new Size(0, naturalHeight);
+                }
+            }
         }
         return size;
     }
@@ -293,6 +368,12 @@ public class GtkEtoPlatform : EtoPlatform
         return window.ToNative().ScaleFactor;
     }
 
+    public override void SetImageSize(ImageView imageView, int size)
+    {
+        // Icons are rendered at the display scale, and the image view draws them to fit its logical size
+        imageView.Size = new Size(size, size);
+    }
+
     public override void AttachDpiDependency(Control control, Action<float> callback)
     {
         if (control.Loaded)
@@ -311,11 +392,14 @@ public class GtkEtoPlatform : EtoPlatform
         native.StyleContext.AddClass("donate-button");
     }
 
+    public override void SetAccessibleName(Control control, string name) =>
+        control.ToNative().Accessible.Name = name;
+
     public override void ConfigureZoomButton(Button button, string icon)
     {
         var gtkButton = button.ToNative();
         button.Text = "";
-        button.Image = IconProvider.GetIcon(icon, gtkButton.ScaleFactor);
+        button.Image = IconProvider.GetIcon(icon, IconScenario.Button, gtkButton.ScaleFactor);
         button.ScaleImage();
         button.Size = Size.Empty;
         gtkButton.StyleContext.AddClass("zoom-button");

@@ -1,6 +1,8 @@
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Threading;
 using NAPS2.Tools.Project.Targets;
+using Newtonsoft.Json.Linq;
 using NuGet.Common;
 using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
@@ -135,12 +137,33 @@ public class UploadCommand : ICommand<UploadOptions>
             {
                 Output.Verbose($"Uploading asset {path}");
                 await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-                await client.Repository.Release.UploadAsset(release,
+                var asset = await client.Repository.Release.UploadAsset(release,
                     new ReleaseAssetUpload(Path.GetFileName(path), "application/octet-stream", stream,
                         null));
+                await VerifyGithubChecksum(token, asset.Id, path);
             }
         }
         Output.Info($"Created draft Github release: {release.HtmlUrl}");
+    }
+
+    private async Task VerifyGithubChecksum(string token, long assetId, string path)
+    {
+        // Octokit doesn't expose the asset digest yet, so get it from the API directly
+        using var httpClient = new HttpClient();
+        httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("cyanfish");
+        httpClient.DefaultRequestHeaders.Authorization =
+            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token.Trim());
+        var asset = JObject.Parse(await httpClient.GetStringAsync(
+            $"https://api.github.com/repositories/{GITHUB_REPO_ID}/releases/assets/{assetId}"));
+        await using var stream = File.OpenRead(path);
+        var expected = $"sha256:{Convert.ToHexStringLower(await SHA256.HashDataAsync(stream))}";
+        var actual = asset.Value<string>("digest");
+        if (actual != expected)
+        {
+            throw new Exception(
+                $"Github checksum mismatch for {Path.GetFileName(path)}: expected {expected}, got {actual}");
+        }
+        Output.Verbose($"Verified checksum {actual}");
     }
 
     private async Task UploadToSourceForge(string version)
@@ -223,7 +246,7 @@ public class UploadCommand : ICommand<UploadOptions>
     {
         Cli.Run("ssh", $"user@downloads.naps2.com \"mkdir -p /var/www/html/{version}/\"");
         // Only upload packages that are needed (e.g. for Microsoft store, Apt repo)
-        foreach (var package in TargetsHelper.EnumeratePackageTargets(packageType, null, false)
+        foreach (var package in TargetsHelper.EnumeratePackageTargets(new TargetParams { PackageType = packageType })
                      .Where(x => Path.GetExtension(x.PackagePath(version)) is ".msi" or ".deb"))
         {
             var path = package.PackagePath(version);

@@ -23,7 +23,7 @@ public static class L
     public static LayoutElement OkCancel(LayoutElement ok, LayoutElement cancel)
     {
         bool okFirst;
-        if (EtoPlatform.Current.IsWinForms)
+        if (EtoPlatform.Current.IsWindows)
         {
             okFirst = true;
         }
@@ -46,9 +46,10 @@ public static class L
             : new ExpandLayoutElement(cancel, ok);
     }
 
-    public static LayoutElement GroupBox(string title, LayoutElement content)
+    public static LayoutElement GroupBox(string title, LayoutElement content,
+        GroupBoxHeaderStyle headerStyle = GroupBoxHeaderStyle.Bold)
     {
-        return EtoPlatform.Current.CreateGroupBox(title, content);
+        return EtoPlatform.Current.CreateGroupBox(title, content, headerStyle);
     }
 
     public static LayoutElement Buffer(LayoutElement element, int left, int top, int right, int bottom)
@@ -59,5 +60,10 @@ public static class L
     public static LayoutLeftPanel LeftPanel(LayoutElement left, LayoutElement right)
     {
         return new LayoutLeftPanel(left, right);
+    }
+
+    public static LayoutScrollable Scrollable(LayoutElement content)
+    {
+        return new LayoutScrollable(content);
     }
 }

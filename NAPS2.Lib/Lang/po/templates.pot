@@ -66,6 +66,30 @@ msgstr ""
 msgid "Advanced Profile Settings"
 msgstr ""
 
+#: UiStrings.resx$AlignBottom$Message
+msgid "Align Bottom"
+msgstr ""
+
+#: UiStrings.resx$AlignCenter$Message
+msgid "Align Center"
+msgstr ""
+
+#: UiStrings.resx$AlignLeft$Message
+msgid "Align Left"
+msgstr ""
+
+#: UiStrings.resx$AlignMiddle$Message
+msgid "Align Middle"
+msgstr ""
+
+#: UiStrings.resx$AlignRight$Message
+msgid "Align Right"
+msgstr ""
+
+#: UiStrings.resx$AlignTop$Message
+msgid "Align Top"
+msgstr ""
+
 #: MiscResources.resx$AllCount$Message
 msgid "All ({0})"
 msgstr ""
@@ -131,10 +155,6 @@ msgstr ""
 msgid "Always show preview"
 msgstr ""
 
-#: MiscResources.resx$PdfImportComponentNeeded$Message
-msgid "An additional component is needed to import this PDF file. Would you like to download it now?"
-msgstr ""
-
 #: SdkResources.resx$OcrError$Message
 msgid "An error occurred running OCR."
 msgstr ""
@@ -180,12 +200,12 @@ msgstr ""
 msgid "An update is available."
 msgstr ""
 
-#: MiscResources.resx$OcrUpdateAvailable$Message
-msgid "An update to OCR is available."
-msgstr ""
-
 #: UiStrings.resx$AppleDriver$Message
 msgid "Apple Driver"
+msgstr ""
+
+#: UiStrings.resx$AppleImplLabel$Message
+msgid "Apple Driver Implementation:"
 msgstr ""
 
 #: SettingsResources.resx$EmailProviderType_AppleMail$Message
@@ -222,10 +242,6 @@ msgstr ""
 
 #: MiscResources.resx$ConfirmDeleteItems$Message
 msgid "Are you sure you want to delete {0} item(s)?"
-msgstr ""
-
-#: MiscResources.resx$ConfirmDeleteMultipleProfiles$Message
-msgid "Are you sure you want to delete {0} profiles?"
 msgstr ""
 
 #: UiStrings.resx$ConfirmDeleteSharedDevice$Message
@@ -335,12 +351,20 @@ msgstr ""
 msgid "Blank Pages"
 msgstr ""
 
+#: SettingsResources.resx$DockStyle_Bottom$Message
+msgid "Bottom"
+msgstr ""
+
 #: UiStrings.resx$BrightnessContrast$Message
 msgid "Brightness / Contrast"
 msgstr ""
 
 #: UiStrings.resx$BrightnessLabel$Message
 msgid "Brightness:"
+msgstr ""
+
+#: UiStrings.resx$ButtonsLabel$Message
+msgid "Buttons:"
 msgstr ""
 
 #: SettingsResources.resx$TiffComp_Ccitt4$Message
@@ -437,8 +461,16 @@ msgstr ""
 msgid "Connect"
 msgstr ""
 
+#: UiStrings.resx$Connecting$Message
+msgid "Connecting..."
+msgstr ""
+
 #: UiStrings.resx$ConnectionError$Message
 msgid "Connection error."
+msgstr ""
+
+#: UiStrings.resx$ConnectionTimedOut$Message
+msgid "Connection timed out."
 msgstr ""
 
 #: UiStrings.resx$ContrastLabel$Message
@@ -502,6 +534,10 @@ msgstr ""
 msgid "Custom..."
 msgstr ""
 
+#: UiStrings.resx$CustomizeToolbar$Message
+msgid "Customize Toolbar"
+msgstr ""
+
 #: SettingsResources.resx$Theme_Dark$Message
 msgid "Dark"
 msgstr ""
@@ -510,6 +546,7 @@ msgstr ""
 msgid "Day (01-31)"
 msgstr ""
 
+#: SettingsResources.resx$AppleImpl_Default$Message
 #: SettingsResources.resx$PdfCompat_Default$Message
 #: SettingsResources.resx$Theme_Default$Message
 #: SettingsResources.resx$TwainImpl_Default$Message
@@ -584,10 +621,6 @@ msgstr ""
 msgid "Download Error"
 msgstr ""
 
-#: MiscResources.resx$DownloadNeeded$Message
-msgid "Download Needed"
-msgstr ""
-
 #: UiStrings.resx$DownloadProgressFormTitle$Message
 msgid "Download Progress"
 msgstr ""
@@ -602,14 +635,6 @@ msgstr ""
 
 #: UiStrings.resx$EsclDriver$Message
 msgid "ESCL Driver"
-msgstr ""
-
-#: UiStrings.resx$EsclNetworkDriver$Message
-msgid "ESCL Network Driver"
-msgstr ""
-
-#: UiStrings.resx$EsclUsbDriver$Message
-msgid "ESCL USB Driver"
 msgstr ""
 
 #: UiStrings.resx$Edit$Message
@@ -651,7 +676,6 @@ msgid "Email Selected as PDF"
 msgstr ""
 
 #: UiStrings.resx$EmailSettings$Message
-#: UiStrings.resx$EmailSettingsFormTitle$Message
 msgid "Email Settings"
 msgstr ""
 
@@ -671,10 +695,6 @@ msgstr ""
 msgid "Encryption"
 msgstr ""
 
-#: MiscResources.resx$FileTypeEmf$Message
-msgid "Enhanced Windows MetaFile (*.emf)"
-msgstr ""
-
 #: MiscResources.resx$Error$Message
 #: UiStrings.resx$ErrorFormTitle$Message
 msgid "Error"
@@ -687,10 +707,6 @@ msgstr ""
 #: MiscResources.resx$EstimatedDownloadSize$Message
 #: UiStrings.resx$EstimatedDownloadSize$Message
 msgid "Estimated download size: {0} MB"
-msgstr ""
-
-#: MiscResources.resx$FileTypeExif$Message
-msgid "Exchangeable Image File (*.exif)"
 msgstr ""
 
 #: UiStrings.resx$ExcludeBlankPages$Message
@@ -713,6 +729,10 @@ msgstr ""
 msgid "File Path:"
 msgstr ""
 
+#: SettingsResources.resx$AppleImpl_FileTransfer$Message
+msgid "File Transfer"
+msgstr ""
+
 #: UiStrings.resx$FixWhiteBalanceAndRemoveNoise$Message
 msgid "Fix white balance and remove noise"
 msgstr ""
@@ -733,8 +753,8 @@ msgstr ""
 msgid "For high JPEG qualities (80+), also increase Image Quality in your profile for best results."
 msgstr ""
 
-#: MiscResources.resx$FileTypeGif$Message
-msgid "GIF File (*.gif)"
+#: UiStrings.resx$GeneralSettings$Message
+msgid "General Settings"
 msgstr ""
 
 #: UiStrings.resx$GetMoreLanguages$Message
@@ -751,6 +771,10 @@ msgstr ""
 
 #: SettingsResources.resx$BitDepth_8Grayscale$Message
 msgid "Grayscale"
+msgstr ""
+
+#: UiStrings.resx$Help$Message
+msgid "Help"
 msgstr ""
 
 #: UiStrings.resx$HorizontalAlignLabel$Message
@@ -786,7 +810,6 @@ msgid "Image Quality"
 msgstr ""
 
 #: UiStrings.resx$ImageSettings$Message
-#: UiStrings.resx$ImageSettingsFormTitle$Message
 msgid "Image Settings"
 msgstr ""
 
@@ -812,22 +835,6 @@ msgstr ""
 
 #: MiscResources.resx$Install$Message
 msgid "Install {0}"
-msgstr ""
-
-#: MiscResources.resx$InstallComplete$Message
-msgid "Installation Complete"
-msgstr ""
-
-#: MiscResources.resx$InstallFailedTitle$Message
-msgid "Installation Failed"
-msgstr ""
-
-#: MiscResources.resx$InstallCompletePromptRestart$Message
-msgid "Installation complete. Do you want to restart NAPS2 now?"
-msgstr ""
-
-#: MiscResources.resx$InstallFailed$Message
-msgid "Installation failed."
 msgstr ""
 
 #: UiStrings.resx$Interface$Message
@@ -859,7 +866,6 @@ msgid "Keep images across sessions"
 msgstr ""
 
 #: UiStrings.resx$KeyboardShortcuts$Message
-#: UiStrings.resx$KeyboardShortcutsFormTitle$Message
 msgid "Keyboard Shortcuts"
 msgstr ""
 
@@ -879,6 +885,7 @@ msgstr ""
 msgid "Leave a Review"
 msgstr ""
 
+#: SettingsResources.resx$DockStyle_Left$Message
 #: SettingsResources.resx$HorizontalAlign_Left$Message
 msgid "Left"
 msgstr ""
@@ -921,6 +928,7 @@ msgstr ""
 msgid "Maximum quality (large files)"
 msgstr ""
 
+#: SettingsResources.resx$AppleImpl_MemoryTransfer$Message
 #: SettingsResources.resx$TwainImpl_MemXfer$Message
 msgid "Memory Transfer"
 msgstr ""
@@ -931,6 +939,10 @@ msgstr ""
 
 #: UiStrings.resx$Minute2Digit$Message
 msgid "Minute (00-59)"
+msgstr ""
+
+#: UiStrings.resx$MissingFileExtension$Message
+msgid "Missing file extension (e.g. \".pdf\")"
 msgstr ""
 
 #: UiStrings.resx$Month2Digit$Message
@@ -955,6 +967,10 @@ msgstr ""
 
 #: UiStrings.resx$MoveUp$Message
 msgid "Move Up"
+msgstr ""
+
+#: UiStrings.resx$MoveUpDown$Message
+msgid "Move Up/Down"
 msgstr ""
 
 #: UiStrings.resx$OcrMultiLangFormTitle$Message
@@ -1143,7 +1159,6 @@ msgid "PDF Document (*.pdf)"
 msgstr ""
 
 #: UiStrings.resx$PdfSettings$Message
-#: UiStrings.resx$PdfSettingsFormTitle$Message
 msgid "PDF Settings"
 msgstr ""
 
@@ -1204,6 +1219,10 @@ msgstr ""
 msgid "Port"
 msgstr ""
 
+#: UiStrings.resx$PositionLabel$Message
+msgid "Position:"
+msgstr ""
+
 #: UiStrings.resx$PostProcessing$Message
 msgid "Post-processing"
 msgstr ""
@@ -1245,6 +1264,10 @@ msgstr ""
 #: UiStrings.resx$Profiles$Message
 #: UiStrings.resx$ProfilesFormTitle$Message
 msgid "Profiles"
+msgstr ""
+
+#: UiStrings.resx$ProfilesToolbar$Message
+msgid "Profiles toolbar"
 msgstr ""
 
 #: SettingsResources.resx$SaveButtonDefaultAction_PromptIfSelected$Message
@@ -1315,6 +1338,10 @@ msgstr ""
 msgid "Restore Defaults"
 msgstr ""
 
+#: UiStrings.resx$Retry$Message
+msgid "Retry"
+msgstr ""
+
 #: UiStrings.resx$Reverse$Message
 msgid "Reverse"
 msgstr ""
@@ -1335,6 +1362,7 @@ msgstr ""
 msgid "Revert"
 msgstr ""
 
+#: SettingsResources.resx$DockStyle_Right$Message
 #: SettingsResources.resx$HorizontalAlign_Right$Message
 msgid "Right"
 msgstr ""
@@ -1466,10 +1494,6 @@ msgstr ""
 msgid "Scanner Sharing"
 msgstr ""
 
-#: MiscResources.resx$ScanPageProgress$Message
-msgid "Scanning page {0}"
-msgstr ""
-
 #: MiscResources.resx$BatchStatusScanPage$Message
 msgid "Scanning page {0} (scan {1})..."
 msgstr ""
@@ -1596,6 +1620,14 @@ msgstr ""
 msgid "Split"
 msgstr ""
 
+#: UiStrings.resx$SplitHorizontally$Message
+msgid "Split Horizontally"
+msgstr ""
+
+#: UiStrings.resx$SplitVertically$Message
+msgid "Split Vertically"
+msgstr ""
+
 #: UiStrings.resx$Start$Message
 msgid "Start"
 msgstr ""
@@ -1612,6 +1644,10 @@ msgstr ""
 msgid "Subject:"
 msgstr ""
 
+#: UiStrings.resx$Swap$Message
+msgid "Swap"
+msgstr ""
+
 #: MiscResources.resx$FileTypeTiff$Message
 msgid "TIFF File (*.tiff, *.tif)"
 msgstr ""
@@ -1624,27 +1660,13 @@ msgstr ""
 msgid "Technical Details"
 msgstr ""
 
-#: MiscResources.resx$TesseractNotAvailable$Message
-#: SdkResources.resx$TesseractNotAvailable$Message
-msgid "The OCR engine is not available. Make sure to install the required package:"
-msgstr ""
-
 #: SdkResources.resx$OcrTimeout$Message
 msgid "The OCR operation timed out."
-msgstr ""
-
-#: MiscResources.resx$SaneNotAvailable$Message
-#: SdkResources.resx$SaneNotAvailable$Message
-msgid "The SANE driver is not available. Make sure to install the required packages:"
 msgstr ""
 
 #: MiscResources.resx$ImportErrorCouldNot$Message
 #: SdkResources.resx$ImportErrorCouldNot$Message
 msgid "The file '{0}' could not be imported."
-msgstr ""
-
-#: MiscResources.resx$ImportErrorNAPS2Pdf$Message
-msgid "The file '{0}' could not be imported. Only PDF files generated by NAPS2 can be imported."
 msgstr ""
 
 #: MiscResources.resx$FileInUse$Message
@@ -1736,8 +1758,28 @@ msgstr ""
 msgid "To scan both sides of a multi-page document with your feeder scanner, you can select \"Duplex\" as your paper source if your scanner supports it.\n      \nIf your scanner doesn't support \"Duplex\" scanning, follow these instructions:\n1. Scan the front sides of the document\n2. Flip the document over\n3. Scan the back sides of the document\n4. Click \"Manual Duplex\"\n5. Depending on the physical orientation of your scanner, you may need to check \"Reverse back sides\""
 msgstr ""
 
+#: UiStrings.resx$ToggleOrientation$Message
+msgid "Toggle Orientation"
+msgstr ""
+
+#: UiStrings.resx$ToggleView$Message
+msgid "Toggle View"
+msgstr ""
+
+#: UiStrings.resx$Toolbar$Message
+msgid "Toolbar"
+msgstr ""
+
+#: UiStrings.resx$ToolbarSettings$Message
+msgid "Toolbar Settings"
+msgstr ""
+
 #: UiStrings.resx$Tools$Message
 msgid "Tools"
+msgstr ""
+
+#: SettingsResources.resx$DockStyle_Top$Message
+msgid "Top"
 msgstr ""
 
 #: UiStrings.resx$TwainImplLabel$Message
@@ -1833,6 +1875,10 @@ msgstr ""
 msgid "Waiting for scan {0}..."
 msgstr ""
 
+#: UiStrings.resx$WaitingToConnect$Message
+msgid "Waiting to connect."
+msgstr ""
+
 #: UiStrings.resx$WhiteThreshold$Message
 msgid "White Threshold"
 msgstr ""
@@ -1847,11 +1893,6 @@ msgstr ""
 
 #: UiStrings.resx$Year2Digit$Message
 msgid "Year (00-99)"
-msgstr ""
-
-#: MiscResources.resx$PdfNoPermissionToExtractContent$Message
-#: SdkResources.resx$PdfNoPermissionToExtractContent$Message
-msgid "You do not have permission to copy content from the file '{0}'."
 msgstr ""
 
 #: MiscResources.resx$DontHavePermission$Message
@@ -1888,10 +1929,6 @@ msgstr ""
 
 #: SettingsResources.resx$PageSizeUnit_Millimetre$Message
 msgid "mm"
-msgstr ""
-
-#: MiscResources.resx$OfN$Message
-msgid "of {0}"
 msgstr ""
 
 #: SettingsResources.resx$TwainImpl_X64$Message
