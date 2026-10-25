@@ -457,6 +457,7 @@ internal class DeviceOperator : ICScannerDeviceDelegate
                 BitDepth.Grayscale => ICScannerPixelDataType.Gray,
                 _ => ICScannerPixelDataType.Rgb
             };
+            TryEnableNativeAutoCrop(_unit);
             if (ShouldUseFileTransfer())
             {
                 _logger.LogDebug("ICC: Transfer mode FILE");
@@ -525,6 +526,35 @@ internal class DeviceOperator : ICScannerDeviceDelegate
     {
         // https://github.com/cyanfish/naps2/issues/720
         return _device.Name?.ContainsInvariantIgnoreCase("Samsung") ?? false;
+    }
+
+    private void TryEnableNativeAutoCrop(ICScannerFunctionalUnit unit)
+    {
+        if (!_options.AutoCrop || unit is not ICScannerFunctionalUnitDocumentFeeder)
+        {
+            return;
+        }
+
+        // Epson's ICA driver exposes document-size detection as a public vendor feature.
+        // Value 1 detects both width and height; value 2 detects length only.
+        try
+        {
+            var feature = unit.VendorFeatures?.OfType<ICScannerFeatureEnumeration>()
+                .FirstOrDefault(x => x.InternalName == "VF_AUTOCROP");
+            if (feature?.Values == null || !feature.Values.Any(x => x.Int32Value == 1))
+            {
+                return;
+            }
+
+            using var automaticSize = NSNumber.FromInt32(1);
+            feature.CurrentValue = automaticSize;
+            _logger.LogDebug("ICC: Enabled native document-size detection");
+        }
+        catch (Exception ex)
+        {
+            // Software auto-crop remains available if this optional driver feature fails.
+            _logger.LogWarning(ex, "ICC: Could not enable native document-size detection");
+        }
     }
 
     private ICScannerDocumentType GetDocumentTypeFromPageSize(PageSize? pageSize)
@@ -606,3 +636,5 @@ internal class DeviceOperator : ICScannerDeviceDelegate
     }
 }
 #endif
+
+// Modified by Pengusto on 2026-10-25: ES-60W free-helper release preparation.

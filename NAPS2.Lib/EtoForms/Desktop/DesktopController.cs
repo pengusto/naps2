@@ -78,6 +78,8 @@ public class DesktopController
         _recoveryManager = recoveryManager;
     }
 
+    internal bool HasActiveOperations => _operationProgress.ActiveOperations.Any();
+
     public bool SkipRecoveryCleanup { get; set; }
 
     public void PreInitialize()
@@ -601,3 +603,5 @@ public class DesktopController
         }
     }
 }
+
+// Modified by Pengusto on 2026-10-25: ES-60W free-helper release preparation.

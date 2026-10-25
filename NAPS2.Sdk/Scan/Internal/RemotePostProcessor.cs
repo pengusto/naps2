@@ -175,12 +175,40 @@ internal class RemotePostProcessor : IRemotePostProcessor
         {
             // Detect the page on the image with the transforms so far (e.g. deskewing) applied
             using var transformed = image.Clone().PerformAllTransforms(processedImage.TransformState.Transforms);
-            var op = new EdgeDetectionImageOp();
-            op.Perform(transformed);
-            if (op.Left != 0 || op.Top != 0 || op.Right != 0 || op.Bottom != 0)
+            if (options.Driver == Driver.Sane && options.Device != null &&
+                options.Device.ID.StartsWith("epsonds:libusb:", StringComparison.Ordinal) &&
+                (options.Device.Name == "ES-60W (epsonds)" ||
+                 options.Device.Name.Equals("Epson ES-60W", StringComparison.OrdinalIgnoreCase)) &&
+                options.BitDepth == BitDepth.Color && options.PaperSource != PaperSource.Duplex)
             {
-                processedImage = processedImage.WithTransform(new CropTransform(
-                    op.Left, op.Right, op.Top, op.Bottom, transformed.Width, transformed.Height), true);
+                var pageOp = new DarkBackingPageImageOp();
+                if (!options.AutoDeskew && options.RotateDegrees == 0) pageOp.Perform(transformed);
+                if (pageOp.Frame != null)
+                {
+                    _logger.LogDebug("ES-60W page frame: {Left}..{Right}, slope {Slope}; complete source rows retained",
+                        pageOp.Frame.Left, pageOp.Frame.Right, pageOp.Frame.Slope);
+                    processedImage = processedImage.WithTransform(pageOp.Frame, true);
+                }
+                else
+                {
+                var widthOp = new DarkBackingWidthImageOp();
+                widthOp.Perform(transformed);
+                if (widthOp.Left != 0 || widthOp.Right != 0)
+                {
+                    processedImage = processedImage.WithTransform(new CropTransform(
+                        widthOp.Left, widthOp.Right, 0, 0, transformed.Width, transformed.Height), true);
+                }
+                }
+            }
+            else
+            {
+                var op = new EdgeDetectionImageOp();
+                op.Perform(transformed);
+                if (op.Left != 0 || op.Top != 0 || op.Right != 0 || op.Bottom != 0)
+                {
+                    processedImage = processedImage.WithTransform(new CropTransform(
+                        op.Left, op.Right, op.Top, op.Bottom, transformed.Width, transformed.Height), true);
+                }
             }
         }
 
@@ -222,3 +250,5 @@ internal class RemotePostProcessor : IRemotePostProcessor
         return null;
     }
 }
+
+// Modified by Pengusto on 2026-10-25: ES-60W free-helper release preparation.

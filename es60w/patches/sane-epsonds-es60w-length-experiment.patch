@@ -1,0 +1,39 @@
+--- a/backend/epsonds-jpeg.c
++++ b/backend/epsonds-jpeg.c
+@@ -16,6 +16,8 @@
+ #include "sane/config.h"
+ 
+ #include <math.h>
++#include <stdlib.h>
++#include <string.h>
+ 
+ #include "epsonds.h"
+ #include "epsonds-jpeg.h"
+@@ -210,6 +212,27 @@
+ 			}
+ 		}
+ 
++		/* Private, opt-in prototype: keep transport-reported length for the
++		 * verified ES-60W simplex RGB/JPEG case. Width is unchanged.
++		 * Do not infer page edges from blank image content. */
++		const char *auto_length = getenv("SANE_EPSONDS_ES60W_AUTO_LENGTH");
++		if (auto_length && strcmp(auto_length, "1") == 0 &&
++		    s->hw->model && strcmp(s->hw->model, "ES-60W") == 0 &&
++		    !s->isflatbedScan && !s->isDuplexScan && !isBackSide &&
++		    !needToConvertBW && s->left == 0 && s->top == 0 &&
++		    s->val[OPT_ADF_CRP].w == 0 && s->params.depth == 8 &&
++		    s->params.format == SANE_FRAME_RGB &&
++		    s->width_front == s->params.pixels_per_line &&
++		    jpeg_cinfo.output_width == (JDIMENSION)s->params.pixels_per_line &&
++		    jpeg_cinfo.output_components == 3 &&
++		    bufSize == s->params.bytes_per_line &&
++		    sum > 0 && sum == s->height_front && sum <= s->params.lines &&
++		    (JDIMENSION)sum <= jpeg_cinfo.output_height)
++		{
++			DBG(10, "ES-60W auto length: %d to %d lines\n", s->params.lines, sum);
++			s->params.lines = sum;
++		}
++
+ 		// if not auto crop mode padding to lines
+ 		if (s->val[OPT_ADF_CRP].w == 0)
+ 		{

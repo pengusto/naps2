@@ -1,0 +1,25 @@
+[
+  {
+    "name": "sane",
+    "filename": "sane-backends-1.4.0.tar.gz",
+    "url": "https://gitlab.com/-/project/429008/uploads/843c156420e211859e974f78f64c3ea3/sane-backends-1.4.0.tar.gz",
+    "sha256": "f99205c903dfe2fb8990f0c531232c9a00ec9c2c66ac7cb0ce50b4af9f407a72",
+    "version": "1.4.0"
+  },
+  {
+    "name": "libusb",
+    "filename": "libusb-87a55632db62c9bdc58cd31d3ccfa673f1bb017f.tar.gz",
+    "url": "https://codeload.github.com/libusb/libusb/tar.gz/87a55632db62c9bdc58cd31d3ccfa673f1bb017f",
+    "sha256": "26733c3eee2475c062e14f80a62ece4b33ee3b33fc0c88b2758964412a42b7e0",
+    "version": "1.0.30",
+    "commit": "87a55632db62c9bdc58cd31d3ccfa673f1bb017f"
+  },
+  {
+    "name": "jpeg",
+    "filename": "libjpeg-turbo-c85e6b905bf237038faa936dab160ebfc5da0344.tar.gz",
+    "url": "https://codeload.github.com/libjpeg-turbo/libjpeg-turbo/tar.gz/c85e6b905bf237038faa936dab160ebfc5da0344",
+    "sha256": "45209a3f315ed6156dac8d7fa451b8be62d83f2daa5581cb6b94ee9f3f82cf6f",
+    "version": "3.2.0",
+    "commit": "c85e6b905bf237038faa936dab160ebfc5da0344"
+  }
+]

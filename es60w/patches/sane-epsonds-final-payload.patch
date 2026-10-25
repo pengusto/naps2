@@ -1,0 +1,58 @@
+--- a/backend/epsonds-cmd.c
++++ b/backend/epsonds-cmd.c
+@@ -1117,8 +1117,12 @@
+ 		return SANE_STATUS_IO_ERROR;
+ 	}
+ 
+-	/* handle esci2_parse_block errors */
+-	if (parse_status != SANE_STATUS_GOOD) {
++	/* Private fix, 2026-10-19: an EOF header may carry the final image
++	 * payload. Return both its bytes and EOF, so acquisition appends them
++	 * before ending the page. RAW handling remains unchanged; other parser
++	 * errors must not publish data. */
++	if (parse_status != SANE_STATUS_GOOD &&
++	    !(parse_status == SANE_STATUS_EOF && s->mode_jpeg)) {
+ 		return parse_status;
+ 	}
+ 
+@@ -1130,5 +1134,5 @@
+ 		return SANE_STATUS_CANCELLED;
+ 	}
+ 
+-	return SANE_STATUS_GOOD;
+-}
++	return parse_status;
++}
+--- a/backend/epsonds.c
++++ b/backend/epsonds.c
+@@ -3368,6 +3368,16 @@
+ 	{
+ 		status = esci2_img(s, &read);
+ 		DBG(20, "acquire_jpeg_data read: %d, eof: %d, backside: %d, status: %d\n", read, s->eof, s->backside, status);
++		/* Private fix, 2026-10-19: final payload must fit the allocated
++		 * JPEG buffer, including when data and EOF share a response. */
++		SANE_Int used = s->backside ? s->backJpegBufLen : s->frontJpegBufLen;
++		if (read < 0 || used < 0 || used > jpegBufSize || read > jpegBufSize - used)
++		{
++			free(s->frontJpegBuf);
++			free(s->backJpegBuf);
++			s->frontJpegBuf = s->backJpegBuf = NULL;
++			return SANE_STATUS_IO_ERROR;
++		}
+ 		if (read)
+ 		{
+ 			if (s->backside)
+--- a/backend/epsonds-jpeg.c
++++ b/backend/epsonds-jpeg.c
+@@ -197,6 +197,11 @@
+ 			}
+         }
+ 		DBG(10,"decodded lines = %d\n", sum);
++		/* Private diagnostic, 2026-10-19: distinguish requested/header height
++		 * from page-end height; does not reinterpret or extend image data. */
++		DBG(10, "length evidence: requested=%d pen=%d jpeg=%u copied=%d bytes=%d\n",
++		    s->params.lines, isBackSide ? s->height_back : s->height_front,
++		    (unsigned int)jpeg_cinfo.output_height, sum, size);
+ 
+ 		// abandon unncessary data
+ 		if ((JDIMENSION)sum < jpeg_cinfo.output_height)

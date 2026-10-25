@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ArrayOfScanProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ScanProfile>
+    <Version>2</Version>
+    <Device>
+      <ID>epsonds:libusb:es60w-auto</ID>
+      <Name>Epson ES-60W</Name>
+      <IconUri xsi:nil="true" />
+      <ConnectionUri xsi:nil="true" />
+    </Device>
+    <Caps>
+      <PaperSources>Feeder</PaperSources>
+      <FeederCheck>false</FeederCheck>
+      <Glass />
+      <Feeder>
+        <Resolutions>300</Resolutions>
+      </Feeder>
+      <Duplex />
+    </Caps>
+    <DriverName>sane</DriverName>
+    <DisplayName>ES-60W – PDF nach Scans</DisplayName>
+    <IconID>0</IconID>
+    <MaxQuality>true</MaxQuality>
+    <IsDefault>true</IsDefault>
+    <UseNativeUI>false</UseNativeUI>
+    <AfterScanScale>OneToOne</AfterScanScale>
+    <Brightness>0</Brightness>
+    <Contrast>0</Contrast>
+    <BitDepth>C24Bit</BitDepth>
+    <PageAlign>Right</PageAlign>
+    <PageSize>A4</PageSize>
+    <CustomPageSizeName xsi:nil="true" />
+    <CustomPageSize xsi:nil="true" />
+    <Resolution>Dpi300</Resolution>
+    <PaperSource>Feeder</PaperSource>
+    <EnableAutoSave>true</EnableAutoSave>
+    <AutoSaveSettings><FilePath>%HOME%/Documents/Scans/Scan-$(YYYY)-$(MM)-$(DD)_$(hh)-$(mm)-$(ss)_$(nnnn).pdf</FilePath><PromptForFilePath>false</PromptForFilePath><ClearImagesAfterSaving>false</ClearImagesAfterSaving><Separator>FilePerScan</Separator></AutoSaveSettings><Quality>100</Quality>
+    <AutoDeskew>false</AutoDeskew>
+    <AutoCrop>true</AutoCrop>
+    <DocumentCorrection>false</DocumentCorrection>
+    <RotateDegrees>0</RotateDegrees>
+    <BrightnessContrastAfterScan>false</BrightnessContrastAfterScan>
+    <ForcePageSize>false</ForcePageSize>
+    <ForcePageSizeCrop>false</ForcePageSizeCrop>
+    <TwainImpl>Default</TwainImpl>
+    <TwainProgress>false</TwainProgress>
+    <ExcludeBlankPages>false</ExcludeBlankPages>
+    <BlankPageWhiteThreshold>70</BlankPageWhiteThreshold>
+    <BlankPageCoverageThreshold>15</BlankPageCoverageThreshold>
+    <WiaOffsetWidth>false</WiaOffsetWidth>
+    <WiaRetryOnFailure>false</WiaRetryOnFailure>
+    <WiaDelayBetweenScans>false</WiaDelayBetweenScans>
+    <WiaDelayBetweenScansSeconds>2</WiaDelayBetweenScansSeconds>
+    <WiaVersion>Default</WiaVersion>
+    <FlipDuplexedPages>false</FlipDuplexedPages>
+    <KeyValueOptions xsi:nil="true" />
+  </ScanProfile>
+</ArrayOfScanProfile>

@@ -1,0 +1,29 @@
+--- a/backend/epsonds-ops.c
++++ b/backend/epsonds-ops.c
+@@ -294,17 +294,15 @@
+ 		return SANE_STATUS_INVAL;
+ 	}
+ 
+-	/*
+-	 * If (s->top + s->params.lines) is larger than the max scan area, reset
+-	 * the number of scan lines:
+-	 * XXX: precalculate the maximum scanning area elsewhere (use dev max_y)
+-	 */
+-
+-	if (SANE_UNFIX(s->val[OPT_BR_Y].w) / MM_PER_INCH * dpi <
+-	    (s->params.lines + s->top)) {
+-		s->params.lines =
+-			((int) SANE_UNFIX(s->val[OPT_BR_Y].w) / MM_PER_INCH *
+-			 dpi + 0.5) - s->top;
++	/* Round the bottom edge in pixel space, just like the top edge.
++	 * Truncating millimetres first can remove almost one mm, and comparing
++	 * an unrounded edge with rounded lines spuriously enters this clamp. */
++	{
++		SANE_Int bottom =
++			(SANE_UNFIX(s->val[OPT_BR_Y].w) / MM_PER_INCH * dpi) + 0.5;
++
++		if (s->params.lines > bottom - s->top)
++			s->params.lines = bottom - s->top;
+ 	}
+ 
+ 	if (s->params.lines <= 0) {

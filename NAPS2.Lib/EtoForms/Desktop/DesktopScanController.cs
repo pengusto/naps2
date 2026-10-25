@@ -153,6 +153,9 @@ public class DesktopScanController : IDesktopScanController
         }
     }
 
+    // Use an operation-only profile clone; never change the saved default for a button event.
+    public Task ScanFromButton(ScanProfile profile) => DoScan(profile);
+
     private async Task DoScan(ScanProfile profile)
     {
         var images =
@@ -165,3 +168,5 @@ public class DesktopScanController : IDesktopScanController
         _desktopFormProvider.DesktopForm.BringToFront();
     }
 }
+
+// Modified by Pengusto on 2026-10-25: ES-60W free-helper release preparation.

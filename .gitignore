@@ -6,3 +6,12 @@ packages/
 .vs/
 .idea/
 .nuget/
+# ES60W generated build/download/release artifacts
+es60w/.work/
+es60w/dist/
+es60w/downloads/
+
+# Nested verification project outputs are never release source inputs.
+es60w/**/bin/
+es60w/**/obj/
+es60w/**/__pycache__/

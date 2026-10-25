@@ -72,15 +72,18 @@ internal class ScanPerformer : IScanPerformer
         }
     }
 
-    public IAsyncEnumerable<ScanDevice> GetDevices(ScanProfile scanProfile, CancellationToken cancelToken = default)
+    public async IAsyncEnumerable<ScanDevice> GetDevices(ScanProfile scanProfile,
+        [EnumeratorCancellation] CancellationToken cancelToken = default)
     {
+        using var buttonPause = await ScannerButtonGate.PauseAsync();
         var options = BuildOptions(scanProfile, new ScanParams(), IntPtr.Zero, true);
         var controller = CreateScanController(new ScanParams());
-        return controller.GetDevices(options, cancelToken);
+        await foreach (var device in controller.GetDevices(options, cancelToken)) yield return device;
     }
 
     public async Task<ScanCaps> GetCaps(ScanProfile scanProfile, CancellationToken cancelToken = default)
     {
+        using var buttonPause = await ScannerButtonGate.PauseAsync();
         var options = BuildOptions(scanProfile, new ScanParams(), IntPtr.Zero, false);
         options.Device = scanProfile.Device?.ToScanDevice(options.Driver);
         var controller = CreateScanController(new ScanParams());
@@ -90,6 +93,7 @@ internal class ScanPerformer : IScanPerformer
     public async IAsyncEnumerable<ProcessedImage> PerformScan(ScanProfile scanProfile, ScanParams scanParams,
         IntPtr dialogParent = default, [EnumeratorCancellation] CancellationToken cancelToken = default)
     {
+        using var buttonPause = await ScannerButtonGate.PauseAsync();
         var options = BuildOptions(scanProfile, scanParams, dialogParent, false);
         // Make sure we get a real driver value (not just "Default")
         options = _scanOptionsValidator.ValidateAll(options, _scanningContext, false);
@@ -347,3 +351,5 @@ internal class ScanPerformer : IScanPerformer
         return true;
     }
 }
+
+// Modified by Pengusto on 2026-10-25: ES-60W free-helper release preparation.

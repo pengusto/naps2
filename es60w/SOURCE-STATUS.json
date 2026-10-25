@@ -1,0 +1,28 @@
+{
+  "local_only": true,
+  "public_release_cleared": false,
+  "application_base": "3481963789af647a9f9e0a19176a0d2f7f593b5d",
+  "architecture": "arm64",
+  "minimum_macos_metadata": "14.0",
+  "new_physical_scans": 0,
+  "working_app_replaced": false,
+  "pending_public_distribution": [
+    "Developer ID signing and notarization",
+    "quarantined Finder first-launch test",
+    "final third-party corresponding-source closure and artwork grants",
+    "source-modified LGPL replacement/re-sign validation"
+  ],
+  "third_party_binaries_independently_rebuilt": [
+    "scanimage / epsonds / SANE loader 1.4.0",
+    "libusb 1.0.30",
+    "libjpeg-turbo 3.2.0"
+  ],
+  "not_a_proprietary_epson_driver_clone": true,
+  "source_package_scope": {
+    "full_editable_naps2_app": true,
+    "sane_libusb_jpeg_source_archives": true,
+    "nuget_build_inputs": 89,
+    "declared_third_party_repository_archives": 25,
+    "all_third_party_source_closure_verified": false
+  }
+}

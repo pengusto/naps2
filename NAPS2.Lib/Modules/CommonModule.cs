@@ -40,7 +40,7 @@ public class CommonModule : Module
 
         // Config
         // TODO: Make this a usable path on Mac/Linux
-        var config = new Naps2Config(Path.Combine(Paths.Executable, "appsettings.xml"),
+        var config = new Naps2Config(Path.Combine(Paths.FreeScannerResources ?? Paths.Executable, "appsettings.xml"),
             Path.Combine(Paths.AppData, "config.xml"));
         builder.RegisterInstance(config);
         builder.RegisterBuildCallback(ctx =>
@@ -101,7 +101,7 @@ public class CommonModule : Module
             return new ProfileManager(
                 Path.Combine(Paths.AppData, "profiles.xml"),
                 // TODO: Make this a usable path on Mac/Linux
-                Path.Combine(AssemblyHelper.EntryFolder, "profiles.xml"),
+                Path.Combine(Paths.FreeScannerResources ?? AssemblyHelper.EntryFolder, "profiles.xml"),
                 config.Get(c => c.LockSystemProfiles),
                 config.Get(c => c.LockUnspecifiedDevices),
                 config.Get(c => c.NoUserProfiles));
@@ -126,3 +126,5 @@ public class CommonModule : Module
         }).SingleInstance();
     }
 }
+
+// Modified by Pengusto on 2026-10-25: ES-60W free-helper release preparation.

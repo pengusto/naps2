@@ -11,7 +11,7 @@
     <key>CFBundleShortVersionString</key>
     <string>8.5.1</string>
     <key>LSMinimumSystemVersion</key>
-    <string>12.0</string>
+    <string>14.0</string>
     <key>CFBundleDevelopmentRegion</key>
     <string>en</string>
     <key>NSHumanReadableCopyright</key>
@@ -93,3 +93,4 @@
 
   </dict>
 </plist>
+<!-- Modified by Pengusto on 2026-10-25 for the ES-60W release. -->

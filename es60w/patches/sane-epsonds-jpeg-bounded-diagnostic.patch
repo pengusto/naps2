@@ -1,0 +1,224 @@
+--- a/backend/epsonds-jpeg.c
++++ b/backend/epsonds-jpeg.c
+@@ -18,6 +18,10 @@
+ #include <math.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <errno.h>
++#include <limits.h>
++#include <sys/stat.h>
++#include <unistd.h>
+ 
+ #include "epsonds.h"
+ #include "epsonds-jpeg.h"
+@@ -38,7 +42,8 @@
+ 	char buffer[JMSG_LENGTH_MAX];
+ 	(*cinfo->err->format_message) (cinfo, buffer);
+ 
+-	DBG(10,"Jpeg decode error [%s]", buffer);
++	DBG(10,"Jpeg decode error [%s]\n", buffer);
++	longjmp(((my_error_ptr)cinfo->err)->setjmp_buffer, 1);
+ }
+ 
+ LOCAL(struct jpeg_error_mgr *) jpeg_custom_error (struct my_error_mgr * err)
+@@ -50,83 +55,58 @@
+ 	return pRet;
+ }
+ 
+-typedef struct
+-{
+-	struct jpeg_source_mgr pub;
+-	JOCTET *buffer;
+-	int length;
+-}
+-epsonds_src_mgr;
+-
+-METHODDEF(void)
+-jpeg_init_source(j_decompress_ptr __sane_unused__ cinfo)
+-{
+-}
+-
+-METHODDEF(void)
+-jpeg_term_source(j_decompress_ptr __sane_unused__ cinfo)
+-{
+-}
+-
+-METHODDEF(boolean)
+-jpeg_fill_input_buffer(j_decompress_ptr cinfo)
+-{
+-	epsonds_src_mgr *src = (epsonds_src_mgr *)cinfo->src;
+-	/* read from scanner if no data? */
+-
+-	src->pub.next_input_byte = src->buffer;
+-	src->pub.bytes_in_buffer = src->length;
+-	DBG(18, "reading from ring buffer, %d left\n",  src->length);
+-
+-	return TRUE;
+-}
+-
+-METHODDEF (void)
+-jpeg_skip_input_data(j_decompress_ptr cinfo, long num_bytes)
+-{
+-	epsonds_src_mgr *src = (epsonds_src_mgr *)cinfo->src;
+-
+-	if (num_bytes > 0) {
+-
+-		while (num_bytes > (long)src->pub.bytes_in_buffer) {
+-			num_bytes -= (long)src->pub.bytes_in_buffer;
+-			jpeg_fill_input_buffer(cinfo);
+-		}
+-
+-		src->pub.next_input_byte += (size_t) num_bytes;
+-		src->pub.bytes_in_buffer -= (size_t) num_bytes;
+-	}
+-}
+-
+-
+-void eds_decode_jpeg(epsonds_scanner*s, SANE_Byte *data, SANE_Int size, ring_buffer* ringBuffer, SANE_Int isBackSide, SANE_Int needToConvertBW)
++/* Private diagnostic: preserve the exact compressed input before any decoder
++ * drops rows. Opt-in, ES-60W only, private directory, fresh mode-0600 file.
++ * Never changes acquisition parameters or the selected page length. */
++static void
++eds_capture_es60w_jpeg(epsonds_scanner *s, const SANE_Byte *data, SANE_Int size,
++                       SANE_Int isBackSide)
++{
++    const char *dir = getenv("NAPS2_TEST_ES60W_CAPTURE_DIR");
++    struct stat info;
++    char path[PATH_MAX];
++    if (!dir || !*dir) return;
++    if (!s->hw->model || strcmp(s->hw->model, "ES-60W") != 0 ||
++        isBackSide || !data || size <= 0) return;
++    if (dir[0] != '/' || lstat(dir, &info) || !S_ISDIR(info.st_mode) ||
++        info.st_uid != getuid() || (info.st_mode & 077)) {
++        DBG(0, "ES-60W JPEG capture rejected: require owned private directory\n");
++        return;
++    }
++    int length = snprintf(path, sizeof path, "%s/es60w-input-XXXXXX", dir);
++    if (length < 0 || (size_t)length >= sizeof path) return;
++    int fd = mkstemp(path);
++    if (fd < 0) return;
++    size_t offset = 0;
++    while (offset < (size_t)size) {
++        ssize_t count = write(fd, data + offset, (size_t)size - offset);
++        if (count < 0 && errno == EINTR) continue;
++        if (count <= 0) break;
++        offset += (size_t)count;
++    }
++    int closed = close(fd);
++    if (offset != (size_t)size || closed) { unlink(path); return; }
++    DBG(10, "ES-60W compressed input saved: %s bytes=%d\n", path, size);
++}
++
++
++SANE_Status eds_decode_jpeg(epsonds_scanner*s, SANE_Byte *data, SANE_Int size, ring_buffer* ringBuffer, SANE_Int isBackSide, SANE_Int needToConvertBW)
+ {
+     struct jpeg_decompress_struct jpeg_cinfo;
+    	struct my_error_mgr jpeg_err;
+ 
+-    {
+-        epsonds_src_mgr *src;
+-
+-        jpeg_cinfo.err = jpeg_custom_error(&jpeg_err);
+-
+-        jpeg_create_decompress(&jpeg_cinfo);
+-
+-        jpeg_cinfo.src = (struct jpeg_source_mgr *)(*jpeg_cinfo.mem->alloc_small)((j_common_ptr)&jpeg_cinfo,
+-                            JPOOL_PERMANENT, sizeof(epsonds_src_mgr));
+-
+-        memset(jpeg_cinfo.src, 0x00, sizeof(epsonds_src_mgr));
+-;
+-    	src = (epsonds_src_mgr *)jpeg_cinfo.src;
+-        src->pub.init_source = jpeg_init_source;
+-        src->pub.fill_input_buffer = jpeg_fill_input_buffer;
+-        src->pub.skip_input_data = jpeg_skip_input_data;
+-        src->pub.resync_to_restart = jpeg_resync_to_restart;
+-        src->pub.term_source = jpeg_term_source;
+-        src->pub.bytes_in_buffer = 0;
+-        src->pub.next_input_byte = NULL;
+-		src->buffer = (JOCTET*)data;
+-		src->length = size;
+-    }
++    if (!data || size <= 0) return SANE_STATUS_IO_ERROR;
++    eds_capture_es60w_jpeg(s, data, size, isBackSide);
++    memset(&jpeg_cinfo, 0, sizeof jpeg_cinfo);
++    jpeg_cinfo.err = jpeg_custom_error(&jpeg_err);
++    if (setjmp(jpeg_err.setjmp_buffer)) {
++        jpeg_destroy_decompress(&jpeg_cinfo);
++        return SANE_STATUS_IO_ERROR;
++    }
++    jpeg_create_decompress(&jpeg_cinfo);
++    /* libjpeg-turbo's finite memory source injects EOI on exhaustion instead
++     * of replaying this buffer from its beginning. */
++    jpeg_mem_src(&jpeg_cinfo, data, (unsigned long)size);
+     {
+ 	    if (jpeg_read_header(&jpeg_cinfo, TRUE)) {
+ 
+@@ -203,19 +183,25 @@
+ 		    s->params.lines, isBackSide ? s->height_back : s->height_front,
+ 		    (unsigned int)jpeg_cinfo.output_height, sum, size);
+ 
++		int discarded = 0;
++		long warnings_before_tail = jpeg_cinfo.err->num_warnings;
+ 		// abandon unncessary data
+ 		if ((JDIMENSION)sum < jpeg_cinfo.output_height)
+ 		{
+ 			// unncessary data
+-			while(1)
++			while(jpeg_cinfo.output_scanline < jpeg_cinfo.output_height)
+ 			{
+ 				int l = jpeg_read_scanlines(&jpeg_cinfo, scanlines, 1);
++				discarded += l;
+ 				if (l == 0)
+ 				{
+ 					break;
+ 				}
+ 			}
+ 		}
++
++		DBG(10, "jpeg tail evidence: kept=%d discarded=%d warnings_before=%ld warnings_after=%ld\n",
++		    sum, discarded, warnings_before_tail, jpeg_cinfo.err->num_warnings);
+ 
+ 		/* Private, opt-in prototype: keep transport-reported length for the
+ 		 * verified ES-60W simplex RGB/JPEG case. Width is unchanged.
+@@ -258,5 +244,5 @@
+         jpeg_finish_decompress(&jpeg_cinfo);
+         jpeg_destroy_decompress(&jpeg_cinfo);
+     }
+-    return;
+-}
++    return SANE_STATUS_GOOD;
++}
+--- a/backend/epsonds-jpeg.h
++++ b/backend/epsonds-jpeg.h
+@@ -10,4 +10,4 @@
+  * modify it under the terms of the GNU General Public License as
+  * published by the Free Software Foundation, version 2.
+  */
+-void eds_decode_jpeg(epsonds_scanner*s, SANE_Byte *data, SANE_Int size, ring_buffer* ringBuffer, SANE_Int isBackSide, SANE_Int needToConvertBW);
++SANE_Status eds_decode_jpeg(epsonds_scanner*s, SANE_Byte *data, SANE_Int size, ring_buffer* ringBuffer, SANE_Int isBackSide, SANE_Int needToConvertBW);
+--- a/backend/epsonds.c
++++ b/backend/epsonds.c
+@@ -3575,19 +3575,20 @@
+ 			// process front page
+ 			if (s->frontJpegBufLen > 0)
+ 			{
+-				eds_decode_jpeg(s, s->frontJpegBuf, s->frontJpegBufLen,  &s->front,0, s->needToConvertBW);
++				status = eds_decode_jpeg(s, s->frontJpegBuf, s->frontJpegBufLen,  &s->front,0, s->needToConvertBW);
+ 				free(s->frontJpegBuf);
+ 				s->frontJpegBuf = NULL;
+ 			}
+ 			// process back page
+ 			if (s->backJpegBufLen > 0)
+ 			{
+-				eds_decode_jpeg(s, s->backJpegBuf, s->backJpegBufLen,  &s->back, 1,  s->needToConvertBW);
++				if (status == SANE_STATUS_GOOD)
++					status = eds_decode_jpeg(s, s->backJpegBuf, s->backJpegBufLen,  &s->back, 1,  s->needToConvertBW);
+ 				free(s->backJpegBuf);
+ 				s->backJpegBuf = NULL;
+ 			}
+ 
+-			if (s->isDuplexScan)
++			if (status == SANE_STATUS_GOOD && s->isDuplexScan)
+ 			{
+ 				upside_down_backside_image(s);
+ 			}

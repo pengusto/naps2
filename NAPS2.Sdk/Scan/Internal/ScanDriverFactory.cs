@@ -31,6 +31,9 @@ internal class ScanDriverFactory : IScanDriverFactory
                 return new Twain.TwainScanDriver(_scanningContext);
 #endif
             case Driver.Sane:
+                var helperRoot = External.ExternalSaneScanDriver.FindOptInHelper();
+                if (helperRoot != null)
+                    return new External.ExternalSaneScanDriver(_scanningContext, helperRoot);
                 return new Sane.SaneScanDriver(_scanningContext);
             case Driver.Escl:
                 return new Escl.EsclScanDriver(_scanningContext);
@@ -41,3 +44,5 @@ internal class ScanDriverFactory : IScanDriverFactory
         }
     }
 }
+
+// Modified by Pengusto on 2026-10-25: ES-60W free-helper release preparation.

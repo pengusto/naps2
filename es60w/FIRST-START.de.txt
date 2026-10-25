@@ -1,0 +1,21 @@
+NAPS2 ES60W — lokaler Release-Entwurf für Apple Silicon
+
+1. DMG öffnen und NAPS2 ES60W.app nach Programme ziehen.
+   Eine vorhandene App nicht überschreiben.
+2. App öffnen. Dieses lokale Paket ist noch nicht Apple-notarisiert.
+   Falls macOS es blockiert: Systemeinstellungen > Datenschutz & Sicherheit >
+   Dennoch öffnen. Gatekeeper nicht deaktivieren.
+   https://support.apple.com/de-de/102445
+3. Für die spätere Nutzung: ES-60W per USB verbinden und in der App Scannen wählen.
+   300 dpi/Farbe/automatischer Zuschnitt sind voreingestellt. Neue PDFs liegen in
+   Dokumente/Scans des jeweiligen Benutzers. Keine Paperless-Verbindung eingerichtet.
+
+Alle benötigten Laufzeit- und freien Scannerbibliotheken sind im App-Paket.
+Kein separater Epson-, .NET- oder Homebrew-Download für den Nutzer vorgesehen.
+Optional die Scannertaste im Scan-Menü pro Sitzung aktivieren; die App muss laufen.
+
+Apple Silicon (arm64), USB, ein ES-60W. Kein Intel-/WLAN-Versprechen.
+macOS-Mindestziel laut Metadaten 14, Softwaretests nur auf 26.6.2.
+Dieser neue Build ist softwaregeprüft, nicht erneut physisch gescannt.
+Quellen, Komponentenhinweise und genauer Freigabestatus liegen beim lokalen Paket.
+Keine Epson-Programme, Zugangsdaten oder privaten Scans enthalten.

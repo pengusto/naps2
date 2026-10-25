@@ -9,6 +9,18 @@ public static class Paths
     private static readonly string RecoveryPath;
     private static readonly string ComponentsPath;
 
+    // A packaging marker opts this experimental Mac bundle into independent data.
+    // Existing NAPS2 installations have no marker and retain their normal paths.
+    public static string? FreeScannerResources { get; } = FindFreeScannerResources();
+
+    private static string? FindFreeScannerResources()
+    {
+        if (!OperatingSystem.IsMacOS() || Environment.ProcessPath == null) return null;
+        var resources = Path.GetFullPath(Path.Combine(
+            Path.GetDirectoryName(Environment.ProcessPath)!, "..", "Resources"));
+        return File.Exists(Path.Combine(resources, "free-es60w.marker")) ? resources : null;
+    }
+
     static Paths()
     {
 #if ZIP
@@ -33,6 +45,9 @@ public static class Paths
 #else
         var subfolder = "NAPS2";
 #endif
+        if (FreeScannerResources != null)
+            subfolder = File.Exists(Path.Combine(FreeScannerResources, "external-scanimage.marker"))
+                ? "naps2-free-es60w-helper" : "naps2-free-es60w";
         AppDataPath = Path.Combine(userAppData, subfolder);
 #endif
         var dataPathFromEnv = Environment.GetEnvironmentVariable("NAPS2_TEST_DATA");
@@ -121,3 +136,5 @@ public static class Paths
         return folderPath;
     }
 }
+
+// Modified by Pengusto on 2026-10-25: ES-60W free-helper release preparation.

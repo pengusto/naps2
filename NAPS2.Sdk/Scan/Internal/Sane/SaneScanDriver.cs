@@ -454,6 +454,10 @@ internal class SaneScanDriver : IScanDriver
             }
         }
 
+        // Optional capability exposed only by our ES-60W backend. The native guard
+        // preserves unsupported modes and devices; no process-global environment flag.
+        controller.TrySet("es60w-auto-length", options.AutoCrop && optionData.IsFeeder &&
+            options.PaperSource != PaperSource.Duplex && options.BitDepth == BitDepth.Color);
         return optionData;
     }
 
@@ -643,3 +647,5 @@ internal class SaneScanDriver : IScanDriver
     //         ChooseNumericOption("--threshold", (-options.Brightness + 1000) / 20m);
     //     }
 }
+
+// Modified by Pengusto on 2026-10-25: ES-60W free-helper release preparation.

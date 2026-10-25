@@ -29,6 +29,7 @@ public abstract class DesktopForm : EtoFormBase
     private readonly ImageTransfer _imageTransfer = new();
     private readonly Lazy<DesktopCommands> _commands;
     private readonly Sidebar _sidebar;
+    private readonly ScannerButtonController? _scannerButton;
     protected readonly IIconProvider _iconProvider;
 
     protected readonly ListProvider<Command> _scanMenuCommands = new();
@@ -79,6 +80,8 @@ public abstract class DesktopForm : EtoFormBase
         _sidebar = sidebar;
         _iconProvider = iconProvider;
         _commands = commands;
+        _scannerButton = ScannerButtonController.Create(this, profileManager, desktopScanController,
+            () => desktopController.HasActiveOperations);
 
         _desktopFormProvider.DesktopForm = this;
         _keyboardShortcuts.Assign(Commands);
@@ -255,6 +258,7 @@ public abstract class DesktopForm : EtoFormBase
 
     protected override void OnClosed(EventArgs e)
     {
+        _scannerButton?.Stop();
         base.OnClosed(e);
         _desktopController.Cleanup();
 
@@ -571,6 +575,7 @@ public abstract class DesktopForm : EtoFormBase
         {
             _keyboardShortcuts.AssignProfileShortcut(i + 1, commandList[i]);
         }
+        if (_scannerButton != null) commandList = commandList.Add(_scannerButton.Command);
         _scanMenuCommands.Value = commandList;
     }
 
@@ -663,3 +668,5 @@ public abstract class DesktopForm : EtoFormBase
         _sidebar.ToggleVisibility();
     }
 }
+
+// Modified by Pengusto on 2026-10-25: ES-60W free-helper release preparation.

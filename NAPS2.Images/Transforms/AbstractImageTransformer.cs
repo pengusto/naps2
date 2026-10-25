@@ -34,6 +34,8 @@ internal abstract class AbstractImageTransformer<TImage> where TImage : IMemoryI
                 return PerformTransform(image, rotationTransform);
             case CropTransform cropTransform:
                 return PerformTransform(image, cropTransform);
+            case PaperFrameTransform paperFrameTransform:
+                return PerformTransform(image, paperFrameTransform);
             case ScaleTransform scaleTransform:
                 return PerformTransform(image, scaleTransform);
             case ResizeTransform resizeTransform:
@@ -163,6 +165,17 @@ internal abstract class AbstractImageTransformer<TImage> where TImage : IMemoryI
 
     protected abstract TImage PerformTransform(TImage image, RotationTransform transform);
 
+    private TImage PerformTransform(TImage image, PaperFrameTransform transform)
+    {
+        var geometry = transform.Geometry(image.Width, image.Height);
+        var result = ImageContext.Create(geometry.width, geometry.height, image.PixelFormat);
+        result.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+        result.OriginalFileFormat = image.OriginalFileFormat;
+        new PaperFrameImageOp(transform).Perform(image, result);
+        image.Dispose();
+        return (TImage)result;
+    }
+
     protected virtual TImage PerformTransform(TImage image, CropTransform transform)
     {
         double xScale = image.Width / (double) (transform.OriginalWidth ?? image.Width),
@@ -289,3 +302,5 @@ internal abstract class AbstractImageTransformer<TImage> where TImage : IMemoryI
         }
     }
 }
+
+// Modified by Pengusto on 2026-10-25: ES-60W free-helper release preparation.

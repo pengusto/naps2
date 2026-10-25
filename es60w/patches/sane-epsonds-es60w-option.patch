@@ -1,0 +1,56 @@
+--- a/backend/epsonds.h
++++ b/backend/epsonds.h
+@@ -87,6 +87,7 @@
+ 	OPT_LOAD,
+ 	OPT_ADF_SKEW,
+ 	OPT_ADF_CRP,
++	OPT_ES60W_AUTO_LENGTH,
+ 	NUM_OPTIONS
+ };
+ 
+--- a/backend/epsonds.c
++++ b/backend/epsonds.c
+@@ -2072,6 +2072,15 @@
+ 	s->opt[OPT_ADF_CRP].type = SANE_TYPE_BOOL;
+ 	s->val[OPT_ADF_CRP].w = 0;
+ 
++	/* Driver-side transport length, independent of unsupported hardware CRP. */
++	s->opt[OPT_ES60W_AUTO_LENGTH].name = "es60w-auto-length";
++	s->opt[OPT_ES60W_AUTO_LENGTH].title = SANE_I18N("ES-60W automatic length");
++	s->opt[OPT_ES60W_AUTO_LENGTH].desc = SANE_I18N("Use reported transport length for simplex RGB JPEG scans.");
++	s->opt[OPT_ES60W_AUTO_LENGTH].type = SANE_TYPE_BOOL;
++	s->val[OPT_ES60W_AUTO_LENGTH].w = 0;
++	if (!s->hw->model || strcmp(s->hw->model, "ES-60W") != 0)
++		s->opt[OPT_ES60W_AUTO_LENGTH].cap |= SANE_CAP_INACTIVE;
++
+ 
+ 	if (!s->hw->adf_has_skew)
+ 	{
+@@ -2269,6 +2278,7 @@
+ 	case OPT_DEPTH:
+ 	case OPT_ADF_SKEW:
+ 	case OPT_ADF_CRP:
++	case OPT_ES60W_AUTO_LENGTH:
+ 		*((SANE_Word *) value) = sval->w;
+ 		break;
+ 
+@@ -2325,6 +2335,7 @@
+ 	case OPT_ADF_SKEW:
+ 	case OPT_RESOLUTION:
+ 	case OPT_ADF_CRP:
++	case OPT_ES60W_AUTO_LENGTH:
+ 		sval->w = *((SANE_Word *) value);
+ 		reload = SANE_TRUE;
+ 		break;
+--- a/backend/epsonds-jpeg.c
++++ b/backend/epsonds-jpeg.c
+@@ -215,8 +215,7 @@
+ 		/* Private, opt-in prototype: keep transport-reported length for the
+ 		 * verified ES-60W simplex RGB/JPEG case. Width is unchanged.
+ 		 * Do not infer page edges from blank image content. */
+-		const char *auto_length = getenv("SANE_EPSONDS_ES60W_AUTO_LENGTH");
+-		if (auto_length && strcmp(auto_length, "1") == 0 &&
++		if (s->val[OPT_ES60W_AUTO_LENGTH].w &&
+ 		    s->hw->model && strcmp(s->hw->model, "ES-60W") == 0 &&
+ 		    !s->isflatbedScan && !s->isDuplexScan && !isBackSide &&
+ 		    !needToConvertBW && s->left == 0 && s->top == 0 &&

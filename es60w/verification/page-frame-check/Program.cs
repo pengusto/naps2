@@ -1,0 +1,219 @@
+using NAPS2.Images;
+using NAPS2.Images.Bitwise;
+using NAPS2.Images.Transforms;
+using System.Text.Json;
+
+if (args.Length == 4)
+{
+    int w = int.Parse(args[1]), h = int.Parse(args[2]);
+    byte[] source = File.ReadAllBytes(args[0]);
+    if (source.LongLength != (long)w * h * 3) throw new Exception("RGB length mismatch");
+    var op = new DarkBackingPageImageOp();
+    op.Perform(source, new PixelInfo(w, h, SubPixelType.Rgb));
+    object result;
+    if (op.Frame is { } frame)
+    {
+        var g = frame.Geometry(w, h);
+        var destination = new byte[g.width * g.height * 3];
+        new PaperFrameImageOp(frame).Perform(source, new PixelInfo(w, h, SubPixelType.Rgb),
+            destination, new PixelInfo(g.width, g.height, SubPixelType.Rgb));
+        File.WriteAllBytes(args[3], destination);
+        result = new { mode = "paper-frame", width = g.width, height = g.height,
+            frame.Left, frame.Right, frame.Slope, u = g.u, v = g.v, c = g.c, s = g.s };
+    }
+    else
+    {
+        var width = new DarkBackingWidthImageOp(); width.Perform(source, new PixelInfo(w, h, SubPixelType.Rgb));
+        int ow = w - width.Left - width.Right;
+        var destination = new byte[ow * h * 3];
+        for (int y = 0; y < h; y++) Array.Copy(source, (y * w + width.Left) * 3, destination, y * ow * 3, ow * 3);
+        File.WriteAllBytes(args[3], destination);
+        result = new { mode = "conservative-width-fallback", width = ow, height = h,
+            left = width.Left, right = width.Right };
+    }
+    Console.WriteLine(JsonSerializer.Serialize(result));
+    return;
+}
+int passed = 0;
+void Assert(bool condition, string message) { if (!condition) throw new Exception(message); }
+
+foreach (var format in new[] { SubPixelType.Rgb, SubPixelType.Bgr, SubPixelType.Rgba, SubPixelType.Bgra, SubPixelType.Rgbn })
+foreach (bool invertY in new[] { false, true })
+foreach (double slope in new[] { -.015, 0, .015 })
+{
+    const int w = 1000, h = 700;
+    var info = new PixelInfo(w, h, format, strideAlign: 16) { InvertY = invertY };
+    var source = new byte[info.Length];
+    // A blank sheet reaches the first and last input rows: losing either is a regression.
+    for (int y = 0; y < h; y++)
+    for (int x = 0; x < w; x++)
+    {
+        byte value = x >= 200 + slope * y && x < 800 + slope * y ? (byte)240 : (byte)30;
+        int at = (invertY ? h - 1 - y : y) * info.Stride + x * format.BytesPerPixel;
+        for (int k = 0; k < format.BytesPerPixel; k++) source[at + k] = value;
+    }
+    byte[] before = (byte[])source.Clone();
+    var op = new DarkBackingPageImageOp(); op.Perform(source, info);
+    Assert(op.Frame != null, $"missing frame {format} {invertY} {slope}");
+    var frame = op.Frame!; var g = frame.Geometry(w, h);
+    Assert(Math.Abs(frame.Slope - slope) < .001, "incorrect skew");
+    Assert(g.width >= 600 && g.width < 625 && g.height >= h, "unexpected bounds");
+    for (int y = 0; y < h; y++)
+    foreach (double x in new[] { Math.Ceiling(200 + slope * y), Math.Ceiling(800 + slope * y) - 1 })
+    {
+        double u = g.c * x - g.s * y - g.u, v = g.s * x + g.c * y - g.v;
+        Assert(u >= 0 && u <= g.width - 1 && v >= 0 && v <= g.height - 1, "source paper edge excluded");
+    }
+    var dstInfo = new PixelInfo(g.width, g.height, format, strideAlign: 16) { InvertY = !invertY };
+    byte[] dst = new byte[dstInfo.Length];
+    new PaperFrameImageOp(frame).Perform(source, info, dst, dstInfo);
+    Assert(source.SequenceEqual(before), "source changed");
+    int middle = (dstInfo.InvertY ? g.height - 1 - g.height / 2 : g.height / 2) * dstInfo.Stride + g.width / 2 * format.BytesPerPixel;
+    Assert(dst[middle] == 240, "pixel format/inverted row regression");
+    if (slope == 0)
+    {
+        Assert(g.height == h, "unskewed height changed");
+        // Unskewed framing is an exact copy, including top and bottom rows.
+        for (int y = 0; y < h; y++)
+        for (int x = 0; x < g.width; x++)
+        for (int k = 0; k < (format.HasAlpha ? 4 : 3); k++)
+        {
+            int si = (invertY ? h - 1 - y : y) * info.Stride + ((int)frame.Left + x) * format.BytesPerPixel + k;
+            int di = (dstInfo.InvertY ? h - 1 - y : y) * dstInfo.Stride + x * format.BytesPerPixel + k;
+            Assert(source[si] == dst[di], "unskewed RGB/alpha changed");
+        }
+    }
+    passed++;
+}
+
+foreach (string kind in new[] { "full-width", "dark-paper", "light-backing", "tiny", "nonparallel", "colored-outside" })
+{
+    var info = new PixelInfo(1000, 700, SubPixelType.Rgb);
+    var bytes = new byte[info.Length];
+    for (int y = 0; y < info.Height; y++)
+    for (int x = 0; x < info.Width; x++)
+    {
+        double left = kind == "tiny" ? 450 : 200, right = kind == "tiny" ? 490 : 800;
+        if (kind == "nonparallel") right += y * .015;
+        bool paper = kind == "full-width" || x >= left && x < right;
+        byte value = paper ? (kind == "dark-paper" ? (byte)100 : (byte)240) :
+            kind == "light-backing" ? (byte)125 : (byte)30;
+        int p = (y * info.Width + x) * 3;
+        bytes[p] = bytes[p + 1] = bytes[p + 2] = value;
+        if (kind == "colored-outside" && x < 100) { bytes[p] = 130; bytes[p + 1] = bytes[p + 2] = 5; }
+    }
+    var op = new DarkBackingPageImageOp(); op.Perform(bytes, info);
+    Assert(op.Frame == null, "ambiguous image cropped: " + kind);
+    passed++;
+}
+// Near-full-width backing was the old early-return bug.
+{
+    var info = new PixelInfo(1000, 700, SubPixelType.Rgb); var bytes = new byte[info.Length];
+    for (int y = 0; y < 700; y++) for (int x = 0; x < 1000; x++)
+        for (int c = 0; c < 3; c++) bytes[(y * 1000 + x) * 3 + c] = (byte)(x >= 15 && x < 985 ? 240 : 30);
+    var op = new DarkBackingPageImageOp(); op.Perform(bytes, info);
+    Assert(op.Frame != null && op.Frame.Geometry(1000, 700).width < 1000, "thin backing not removed"); passed++;
+}
+// A small top-edge protrusion is invisible to a central-90%-height margin metric.
+// The all-row envelope must retain it even when most paper edges fit a straight line.
+{
+    const int w = 1000, h = 700;
+    var info = new PixelInfo(w, h, SubPixelType.Rgbn); var source = new byte[info.Length];
+    for (int y = 0; y < h; y++) for (int x = 0; x < w; x++)
+    {
+        int left = y < 20 ? 190 : 200;
+        byte value = x >= left && x < 800 ? (byte)240 : (byte)30;
+        for (int c = 0; c < 3; c++) source[y * info.Stride + x * 4 + c] = value;
+    }
+    byte[] before = (byte[])source.Clone();
+    var op = new DarkBackingPageImageOp(); op.Perform(source, info);
+    Assert(op.Frame != null, "curved edge unexpectedly rejected");
+    var g = op.Frame!.Geometry(w, h);
+    double protrusion = g.c * 190 - g.s * 10 - g.u;
+    Assert(protrusion >= 0 && protrusion < 7, "top edge envelope or counterexample lost");
+    Assert(source.SequenceEqual(before), "curved-edge source changed");
+    passed++;
+}
+{
+    var serializer = new NAPS2.Serialization.XmlSerializer<List<Transform>>();
+    var original = new PaperFrameTransform(12.25, 2489.5, .008, 2544, 3438);
+    var copy = serializer.DeserializeFromXDocument(serializer.SerializeToXDocument(new List<Transform> { original }));
+    Assert(copy.Count == 1 && copy[0] is PaperFrameTransform restored && restored == original,
+        "paper frame cannot be restored from undo/recovery XML");
+    passed++;
+}
+// Photo fallback: textured dark print must not depend on white pixel coverage.
+foreach (var format in new[] { SubPixelType.Rgb, SubPixelType.Bgr, SubPixelType.Rgba, SubPixelType.Bgra, SubPixelType.Rgbn })
+foreach (bool inverted in new[] { false, true })
+foreach (string kind in new[] { "right", "left", "full", "uniform-dark", "corner-mark", "thin-mark", "dark-mark", "protrusion" })
+{
+    const int w=1000,h=700;
+    var info=new PixelInfo(w,h,format,strideAlign:16){InvertY=inverted};
+    var bytes=new byte[info.Length];
+    for(int y=0;y<h;y++) for(int x=0;x<w;x++)
+    {
+        bool paper=kind=="left" ? x>=500 : x<500;
+        if(kind=="full") paper=true;
+        if(kind=="protrusion" && y<20 && x<540) paper=true;
+        int at=(inverted?h-1-y:y)*info.Stride+x*format.BytesPerPixel;
+        byte v=(byte)(paper ? (kind=="uniform-dark"?100:70+(x*17+y*7)%91) : 30);
+        bytes[at+format.RedOffset]=v;
+        bytes[at+format.GreenOffset]=(byte)(paper?v:34);
+        bytes[at+format.BlueOffset]=(byte)(paper?v:40);
+        if(format.BytesPerPixel==4) bytes[at+3]=211;
+        if((kind=="corner-mark" && x>=850 && x<853 && y>=2 && y<5) ||
+           (kind=="thin-mark" && x==850 && y>=2 && y<14))
+            for(int k=0;k<3;k++) bytes[at+k]=240;
+        if(kind=="dark-mark" && x==850 && y>=2 && y<14)
+            for(int k=0;k<3;k++) bytes[at+k]=85;
+    }
+    var before=(byte[])bytes.Clone();
+    var op=new DarkBackingWidthImageOp();op.Perform(bytes,info);
+    if(kind=="right") Assert(op.Left==0 && op.Right>470 && op.Right<500,"photo right width");
+    else if(kind=="left") Assert(op.Right==0 && op.Left>470 && op.Left<500,"photo left width");
+    else Assert(op.Left==0 && op.Right==0,"ambiguous/outside mark cropped: "+kind);
+    Assert(bytes.SequenceEqual(before),"photo source mutated");
+    passed++;
+}
+// Extra margin may shrink only beside a visible pale lip. Tiny visible marks,
+// dark coherent strokes, colored points and first/last-row protrusions retain
+// the original guard. Test both byte orders, padded stride and inverted rows.
+foreach (var format in new[] { SubPixelType.Rgb, SubPixelType.Bgr, SubPixelType.Rgba, SubPixelType.Bgra, SubPixelType.Rgbn })
+foreach (bool inverted in new[] { false, true })
+foreach (string kind in new[] { "clean", "mirrored", "sparse-lip", "short-lip", "no-lip", "white-point", "color-point", "dark-stroke", "top-protrusion", "bottom-protrusion", "dark-block" })
+{
+    const int w=1000,h=700;
+    var info=new PixelInfo(w,h,format,strideAlign:16){InvertY=inverted};
+    var bytes=new byte[info.Length];
+    for(int y=0;y<h;y++) for(int x=0;x<w;x++)
+    {
+        int logical=kind=="mirrored" ? w-1-x : x;
+        bool paper=logical<500;
+        byte v=(byte)(paper ? 70+(logical*17+y*7)%91 : 30);
+        int at=(inverted?h-1-y:y)*info.Stride+x*format.BytesPerPixel;
+        bytes[at+format.RedOffset]=v;
+        bytes[at+format.GreenOffset]=(byte)(paper?v:34);
+        bytes[at+format.BlueOffset]=(byte)(paper?v:40);
+        if(format.BytesPerPixel==4) bytes[at+3]=211;
+        if(kind!="no-lip" && (kind!="short-lip" || y<70) && (kind!="sparse-lip" || y%10==0) && logical>=496 && logical<500)
+            bytes[at+format.RedOffset]=bytes[at+format.GreenOffset]=bytes[at+format.BlueOffset]=225;
+        bool bright=(kind=="white-point" && logical==506 && y==0) ||
+            (kind=="top-protrusion" && logical>=500 && logical<507 && y<3) ||
+            (kind=="bottom-protrusion" && logical>=500 && logical<507 && y>=h-3);
+        if(bright) bytes[at+format.RedOffset]=bytes[at+format.GreenOffset]=bytes[at+format.BlueOffset]=240;
+        if(kind=="color-point" && logical==506 && y==h-1)
+        {bytes[at+format.RedOffset]=110;bytes[at+format.GreenOffset]=20;bytes[at+format.BlueOffset]=20;}
+        if((kind=="dark-stroke" && logical==506 && y<7) ||
+            (kind=="dark-block" && logical>=505 && logical<507 && y>=100 && y<102))
+            bytes[at+format.RedOffset]=bytes[at+format.GreenOffset]=bytes[at+format.BlueOffset]=85;
+    }
+    var before=(byte[])bytes.Clone();
+    var op=new DarkBackingWidthImageOp();op.Perform(bytes,info);
+    int end=w-op.Right-op.Left;
+    if(kind is "clean" or "mirrored" or "sparse-lip") Assert(end>=500 && end<=504,"excess photo safety margin: "+kind+" "+end);
+    else if(kind is "no-lip" or "short-lip") Assert(end==508,"ambiguous edge tightened");
+    else Assert(end>=507 && end<=508,"margin guard lost visible/ambiguous pixels: "+kind+" "+end);
+    Assert(bytes.SequenceEqual(before),"refinement mutated source");
+    passed++;
+}
+Console.WriteLine($"PASS {passed} synthetic paper-frame/serialization cases; no hardware scans");

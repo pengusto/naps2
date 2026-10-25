@@ -8,4 +8,7 @@ public interface IDesktopScanController
     Task ScanDefault();
     Task ScanWithNewProfile();
     Task ScanWithProfile(ScanProfile profile);
+    Task ScanFromButton(ScanProfile profile);
 }
+
+// Modified by Pengusto on 2026-10-25: ES-60W free-helper release preparation.
