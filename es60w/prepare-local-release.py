@@ -38,6 +38,9 @@ def main():
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--patch-base', help='Upstream commit for a replayable integration patch')
     a = p.parse_args()
+    if (a.app.resolve() / 'Contents/Resources/es60w-updates.marker').exists():
+        p.error('Updater preview requires a new release version and matching Sparkle source inputs; '
+                'the ES60W-3 exporter must not package it')
     here = Path(__file__).resolve().parent
     repo = here.parent
     out = a.output.resolve()

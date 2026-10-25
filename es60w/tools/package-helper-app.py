@@ -21,7 +21,11 @@ def main():
     p.add_argument('--entitlements', type=Path, required=True)
     p.add_argument('--report', type=Path, required=True, help='NEW JSON report outside the app')
     p.add_argument("--scanner-button-header", type=Path, help="Pinned libusb.h for own receiver")
+    p.add_argument('--sparkle-distribution', type=Path)
+    p.add_argument('--updates-config', type=Path)
     a = p.parse_args()
+    if bool(a.sparkle_distribution) != bool(a.updates_config):
+        p.error('Supply both Sparkle distribution and update configuration')
     source, dest = a.source_app.resolve(), a.destination.resolve()
     if dest.exists() or dest.suffix != '.app' or a.report.exists():
         p.error('Destination app and report must be new')
@@ -110,9 +114,15 @@ def main():
         data.pop('CFBundleDocumentTypes', None)
         data.pop('CFBundleURLTypes', None)
         info.write_bytes(plistlib.dumps(data))
+        if a.sparkle_distribution:
+            subprocess.run([sys.executable, str(scripts.parent / 'updates/stage-updater.py'),
+                '--app', str(stage), '--sparkle-distribution', str(a.sparkle_distribution.resolve()),
+                '--configuration', str(a.updates_config.resolve())], check=True)
+        # Preserve Sparkle code, XPC services and symlinks before host signing.
+        sparkle = stage / 'Contents/Frameworks/Sparkle.framework'
         # Debug paths are not runtime inputs; keep exported symbols, remove DWARF.
         for path in stage.rglob('*'):
-            if path.is_symlink() or not path.is_file():
+            if path.is_symlink() or not path.is_file() or sparkle in path.parents:
                 continue
             with path.open('rb') as stream:
                 head = stream.read(4)

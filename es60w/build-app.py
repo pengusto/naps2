@@ -20,9 +20,17 @@ def main():
     p.add_argument('--dotnet', type=Path, required=True)
     p.add_argument('--nuget-source', type=Path, help='Optional local NuGet feed from the source kit')
     p.add_argument('--nuget-packages', type=Path, help='Optional separate package cache for an offline rebuild')
+    p.add_argument('--sparkle-distribution', type=Path, help='Optional pinned Sparkle archive for complete-app updates')
+    p.add_argument('--updates-config', type=Path, help='Channel JSON; requires --sparkle-distribution')
     a = p.parse_args()
+    if bool(a.sparkle_distribution) != bool(a.updates_config):
+        p.error('Supply both --sparkle-distribution and --updates-config')
     here = Path(__file__).resolve().parent
     source_repo = here.parent
+    if a.sparkle_distribution:
+        subprocess.run([sys.executable, str(here / 'updates/stage-updater.py'),
+            '--check-inputs-only', '--sparkle-distribution', str(a.sparkle_distribution.resolve(strict=True)),
+            '--configuration', str(a.updates_config.resolve(strict=True))], check=True)
     out = a.output.resolve()
     if out.exists() or source_repo == out or source_repo in out.parents:
         p.error('Use a new output directory outside the checkout')
@@ -103,12 +111,17 @@ def main():
     (resources / 'external-scanimage.marker').write_text('Separate bundled free scanimage helper.\n')
     app = out / 'NAPS2 ES60W.app'
     built = repo / 'NAPS2.App.Mac/bin/Release/net10.0-macos/osx-arm64/NAPS2.app'
-    subprocess.run([sys.executable, str(here / 'tools/package-helper-app.py'),
+    package_command = [sys.executable, str(here / 'tools/package-helper-app.py'),
         '--source-app', str(built), '--overlay', str(overlay), '--destination', str(app),
         '--entitlements', str(repo / 'NAPS2.App.Mac/Entitlements.plist'),
         '--scanner-button-header', str(native / 'prefix/include/libusb-1.0/libusb.h'),
-        '--report', str(out / 'package.json')], check=True)
-    result = {'architecture': 'arm64', 'release_version': '8.5.1-es60w.3',
+        '--report', str(out / 'package.json')]
+    if a.sparkle_distribution:
+        package_command += ['--sparkle-distribution', str(a.sparkle_distribution.resolve(strict=True)),
+                            '--updates-config', str(a.updates_config.resolve(strict=True))]
+    subprocess.run(package_command, check=True)
+    result = {'architecture': 'arm64', 'release_version': '8.5.1-es60w.4-local' if a.updates_config else '8.5.1-es60w.3',
+              'complete_app_updates_embedded': bool(a.updates_config),
               'full_app_and_static_registrar_rebuilt': True,
               'helper_libusb_jpeg_built_from_pinned_sources': True,
               'build_log_sha256': hashlib.sha256(log.read_bytes()).hexdigest(),

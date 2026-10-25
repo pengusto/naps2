@@ -1,0 +1,158 @@
+{
+  "date": "2026-10-25",
+  "status": "local unpublished update-channel preparation",
+  "source_base": "edb4bc3487aa27fc3c035332a95ab505255d15d6",
+  "preview_build_number": "851004",
+  "preview_label": "8.5.1-es60w.4-local",
+  "updater": "Sparkle 2.10.1",
+  "signed_feed": true,
+  "signed_whole_app_archive": true,
+  "update_cases": [
+    {
+      "case": "good",
+      "passed": true,
+      "app_changed": true,
+      "probe_sandboxed": false
+    },
+    {
+      "case": "postpone",
+      "passed": true,
+      "app_changed": true,
+      "probe_sandboxed": false
+    },
+    {
+      "case": "bad-archive",
+      "passed": true,
+      "app_changed": false,
+      "probe_sandboxed": false
+    },
+    {
+      "case": "bad-feed",
+      "passed": true,
+      "app_changed": false,
+      "probe_sandboxed": true
+    },
+    {
+      "case": "old-version",
+      "passed": true,
+      "app_changed": false,
+      "probe_sandboxed": true
+    },
+    {
+      "case": "cancel",
+      "passed": true,
+      "app_changed": false,
+      "probe_sandboxed": true
+    },
+    {
+      "case": "cancel-ready",
+      "passed": true,
+      "app_changed": false,
+      "probe_sandboxed": false
+    },
+    {
+      "case": "busy",
+      "passed": true,
+      "app_changed": false,
+      "probe_sandboxed": true
+    },
+    {
+      "case": "missing-archive",
+      "passed": true,
+      "app_changed": false,
+      "probe_sandboxed": true
+    }
+  ],
+  "channel_input_tests_passed": 10,
+  "actual_gui_update_menu_seen": true,
+  "actual_gui_manual_check_returned_expected_network_block_error": true,
+  "full_app_and_static_registrar_build": true,
+  "start": {
+    "gui_alive_after_6s": true,
+    "worker_ready": true,
+    "fresh_user_config_created": true,
+    "fresh_user_profile_created": false,
+    "runtime_data_override_used": false,
+    "helper_execution_denied": true,
+    "iokit_and_outbound_ip_denied": true,
+    "normal_settings_paths_denied": true,
+    "physical_scans": 0,
+    "finder_gatekeeper_first_start_tested": false,
+    "created_processes_stopped": true
+  },
+  "pdf": {
+    "scan_requests": 0,
+    "synthetic_input_pixels": [
+      600,
+      300
+    ],
+    "input_dpi": 300,
+    "pdf_header_valid": true,
+    "pdf_bytes": 3674,
+    "network_denied": true,
+    "epson_and_daily_paths_denied": true,
+    "path_without_dotnet": true,
+    "hardware_scan": false
+  },
+  "after_fixture_update_start": {
+    "gui_alive_after_6s": true,
+    "worker_ready": true,
+    "fresh_user_config_created": true,
+    "fresh_user_profile_created": false,
+    "runtime_data_override_used": false,
+    "helper_execution_denied": true,
+    "iokit_and_outbound_ip_denied": true,
+    "normal_settings_paths_denied": true,
+    "physical_scans": 0,
+    "finder_gatekeeper_first_start_tested": false,
+    "created_processes_stopped": true
+  },
+  "after_fixture_update_pdf": {
+    "scan_requests": 0,
+    "synthetic_input_pixels": [
+      600,
+      300
+    ],
+    "input_dpi": 300,
+    "pdf_header_valid": true,
+    "pdf_bytes": 3674,
+    "network_denied": true,
+    "epson_and_daily_paths_denied": true,
+    "path_without_dotnet": true,
+    "hardware_scan": false
+  },
+  "package": {
+    "sane_runtime_bytes_equal_es60w_3": {
+      "MacOS/scanimage-real": true,
+      "MacOS/scanimage": true,
+      "Frameworks/libsane.1.dylib": true,
+      "Frameworks/sane/libsane-epsonds.1.so": true,
+      "Frameworks/libusb-1.0.0.dylib": true,
+      "Frameworks/libjpeg.62.dylib": true
+    },
+    "license_files_verified": 115,
+    "sparkle_xpc_entitlements_preserved": true,
+    "automated_test_driver_absent": true,
+    "physical_scans": 0
+  },
+  "originals_preserved": {
+    "protected_trees": 7,
+    "all_files_hash_equal": true
+  },
+  "automatic_checks_default": false,
+  "production_feed_published": false,
+  "release_key_location": "macOS login Keychain; separate disposable keys used for tests",
+  "developer_id_signed": false,
+  "notarized": false,
+  "new_physical_scans": 0,
+  "paperless_uploads": 0,
+  "installed_apps_modified": false,
+  "git_pushes": 0,
+  "limits": [
+    "Full-install probes use fixture main executables; actual real-app/worker/PDF checks are separate.",
+    "Full-install and archive-signature probes cannot inherit the sandbox-exec wrapper; they execute no scanner code.",
+    "No quarantined Finder first launch on a clean Mac was tested.",
+    "ES60W-3 exporter blocks the new preview until release version and Sparkle source inputs are integrated.",
+    "Production signing-tool Keychain access and public feed activation remain release-time steps."
+  ]
+}

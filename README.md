@@ -33,3 +33,5 @@ This is maintained separately while focused upstream changes are reviewed: [NAPS
 NAPS2 and Epson are their respective owners' names. This fork is not an official release or an endorsement by either project or Epson. Original copyright and component notices remain. Main application code is distributed under GPLv3 using upstream's GPL-2.0-or-later option; the separate SANE helper retains its own licence.
 
 For the original cross-platform application, see [NAPS2](https://github.com/cyanfish/naps2) and the [upstream README](es60w/UPSTREAM-README.md).
+
+[Local update-channel preparation](es60w/updates/README.md): unpublished complete-app updates, including the pinned SANE helper. Existing public downloads are unchanged.

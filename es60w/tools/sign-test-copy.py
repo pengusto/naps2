@@ -15,10 +15,13 @@ if dest.exists() or source == dest or not (source / 'Contents/MacOS/NAPS2').is_f
 if dest.suffix != '.app' or not a.entitlements.is_file():
     p.error('A .app destination and upstream Entitlements.plist are required')
 subprocess.run(['ditto', str(source), str(dest)], check=True)
+if (dest / 'Contents/Frameworks/Sparkle.framework').is_dir():
+    subprocess.run(['python3', str(Path(__file__).resolve().parent.parent / 'updates/sign-sparkle.py'),
+                    '--app', str(dest)], check=True)
 # --deep alone does not reliably sign MonoBundle libraries: sign native files explicitly.
 native = []
 for f in sorted(dest.rglob('*')):
-    if f.is_symlink() or not f.is_file():
+    if f.is_symlink() or not f.is_file() or dest / 'Contents/Frameworks/Sparkle.framework' in f.parents:
         continue
     with f.open('rb') as stream:
         magic = stream.read(4)

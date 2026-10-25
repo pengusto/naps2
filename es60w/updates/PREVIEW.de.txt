@@ -1,0 +1,23 @@
+NAPS2 ES60W – lokaler Updatekanal-Testbuild
+
+Diese Vorschau ist nicht veröffentlicht und wird nicht automatisch installiert.
+Bitte die bestehende Alltags-App behalten und diese Kopie nicht darüberziehen.
+App und freier SANE-Scanhelfer befinden sich zusammen im Paket.
+
+Neu im App-Menü: „Nach ES60W-Updates suchen…“ und die abschaltbare automatische
+Prüfung. Der öffentliche Feed ist noch nicht freigeschaltet; eine manuelle
+Abfrage kann deshalb aktuell eine Fehlermeldung anzeigen. Automatische Prüfungen
+sind in dieser lokalen Vorschau ausgeschaltet.
+
+Die Updatefunktion wurde mit separaten signierten Paketen lokal geprüft:
+vollständiger App-/Helferaustausch, verschobener Neustart, falsche Signaturen,
+ältere Version, Abbruch, laufender Vorgang und fehlender Download. Der eigentliche
+Scanhelfer ist bytegleich zum Stand der öffentlichen ES60W-3-DMG. Für diesen
+Build wurde kein echter Scan ausgeführt und nichts an Paperless übertragen.
+
+Für den späteren öffentlichen Start sind noch das echte Release samt passenden
+Quellen und der signierte Updatefeed zu veröffentlichen. Bestehende DMGs ohne
+Updater brauchen einmalig eine manuelle Aktualisierung.
+
+Ad-hoc-signiert, ohne Apple Developer ID/Notarisierung. Die Update-Signaturen
+ersetzen Apples normale Bestätigung beim ersten Start nicht.

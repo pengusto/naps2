@@ -114,6 +114,7 @@
     "source-evidence/tesseract-ocr--tesseract/AUTHORS": "720862b7253993b348fe15f37ed6e0d4feb0fc8df8324284d75975d54dd29923",
     "source-evidence/tesseract-ocr--tesseract/LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
     "source-evidence/unosquare--embedio/LICENSE": "528d9fedc044f2a1f6fe3407ed1eb5a377dbafce206e06a5b8787bbc777e4660",
-    "source-evidence/unosquare--swan/LICENSE": "6c4523c1a88eb8c84e0734437b19e1a8098ce147a6dbf860c2578e725fa7fb26"
+    "source-evidence/unosquare--swan/LICENSE": "6c4523c1a88eb8c84e0734437b19e1a8098ce147a6dbf860c2578e725fa7fb26",
+    "packages/Sparkle-2.10.1/LICENSE": "389a4e4e9a32f059775b13a06e25a591445ba229d2838d26dd3e7c0c45127cfe"
   }
 }

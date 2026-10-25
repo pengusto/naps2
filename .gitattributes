@@ -1,1 +1,3 @@
 NAPS2.Setup/config/windows/inno-lang/** linguist-vendored
+# Preserve the exact upstream Sparkle notice, including its existing trailing space.
+es60w/licenses/packages/Sparkle-2.10.1/LICENSE whitespace=-blank-at-eol

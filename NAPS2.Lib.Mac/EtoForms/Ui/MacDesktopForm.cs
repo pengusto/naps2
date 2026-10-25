@@ -6,12 +6,14 @@ using NAPS2.EtoForms.Mac;
 using NAPS2.EtoForms.Notifications;
 using NAPS2.EtoForms.Widgets;
 using NAPS2.Scan;
+using NAPS2.Update;
 
 namespace NAPS2.EtoForms.Ui;
 
 public class MacDesktopForm : DesktopForm
 {
     private readonly Sidebar _sidebar;
+    private ForkUpdateController? _forkUpdater;
     private NSSlider? _zoomSlider;
     // The native sidebar (see EtoPlatform.AttachWindowSidebar) has its own layout
     private LayoutController? _sidebarLayout;
@@ -42,6 +44,8 @@ public class MacDesktopForm : DesktopForm
             editWithController)
     {
         _sidebar = sidebar;
+        Shown += (_, _) => _forkUpdater?.Start();
+        Closed += (_, _) => _forkUpdater?.Stop();
     }
 
     protected override LayoutElement BuildSidebarLayout(LayoutElement mainContent)
@@ -115,6 +119,10 @@ public class MacDesktopForm : DesktopForm
     {
         Commands.MoveDown.ToolBarText = "";
         Commands.MoveUp.ToolBarText = "";
+
+        _forkUpdater ??= ForkUpdateController.Create(this,
+            () => _desktopController.HasActiveOperations ||
+                  (ImageList.Images.Any() && ImageList.HasUnsavedChanges));
 
         Menu = new MenuBar
         {
@@ -222,6 +230,13 @@ public class MacDesktopForm : DesktopForm
                 }
             }
         };
+        if (_forkUpdater != null)
+        {
+            Menu.ApplicationItems.Add(new SeparatorMenuItem());
+            Menu.ApplicationItems.Add(_forkUpdater.Check);
+            Menu.ApplicationItems.Add(_forkUpdater.AutomaticChecks);
+        }
+
 
         // TODO: If we ever make significant changes to the toolbar layout, maybe add ".v2" so it resets saved config
         var toolbar = new NSToolbar("naps2.desktop.toolbar");

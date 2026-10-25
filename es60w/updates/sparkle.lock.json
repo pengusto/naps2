@@ -1,0 +1,9 @@
+{
+  "version": "2.10.1",
+  "distribution_url": "https://github.com/sparkle-project/Sparkle/releases/download/2.10.1/Sparkle-2.10.1.tar.xz",
+  "distribution_sha256": "1a856d2a9edb8e628de88121d7be04cf0e2167f8641650b78fca00b14244cf27",
+  "source_url": "https://github.com/sparkle-project/Sparkle/archive/refs/tags/2.10.1.tar.gz",
+  "license": "MIT and bundled third-party notices in LICENSE",
+  "documentation": "https://sparkle-project.org/documentation/",
+  "source_sha256": "cd6f47568af791c2d2bb49da6a55519b1726ecaad7dad032c9f86590953ff3a9"
+}
