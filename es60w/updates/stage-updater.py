@@ -65,12 +65,13 @@ def stage(app, distribution, configuration):
             '-o', str(framework_dir / 'libES60WUpdater.dylib')], check=True)
     info_file = contents / 'Info.plist'
     info = plistlib.loads(info_file.read_bytes())
+    release = json.loads((here.parent / 'release.json').read_text())
     info.update(SUFeedURL=data['feed_url'], SUPublicEDKey=data['public_ed_key'],
         SURequireSignedFeed=True, SUVerifyUpdateBeforeExtraction=True,
         SUEnableAutomaticChecks=bool(data.get('automatic_checks')),
         SUAutomaticallyUpdate=False, SUAllowsAutomaticUpdates=False,
         SUShowReleaseNotes=False, SUSendProfileInfo=False,
-        CFBundleVersion='851004', ES60WReleaseVersion='8.5.1-es60w.4-local',
+        CFBundleVersion=release['bundle_version'], ES60WReleaseVersion=release['version'],
         ES60WLocalUpdateTest=local, ES60WUpdateChannelPublished=bool(data.get('published')))
     if local:
         info['NSAppTransportSecurity'] = {'NSAllowsLocalNetworking': True}

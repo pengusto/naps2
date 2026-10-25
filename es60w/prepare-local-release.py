@@ -10,13 +10,15 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import plistlib
 import shutil
 import subprocess
 import sys
 import tarfile
 import tempfile
 
-VERSION = '8.5.1-es60w.3'
+RELEASE = json.loads((Path(__file__).resolve().parent / 'release.json').read_text())
+VERSION = RELEASE['version']
 PREFIX = 'NAPS2-ES60W-' + VERSION
 
 
@@ -28,6 +30,22 @@ def sha(f):
     return h.hexdigest()
 
 
+def verified_sparkle_inputs(here, directory):
+    if directory is None:
+        raise ValueError('Updater-enabled export requires --sparkle-inputs with distribution and preferred sources')
+    root = directory.resolve(strict=True)
+    lock = json.loads((here / 'updates/sparkle.lock.json').read_text())
+    result = []
+    for role, filename, digest in [
+        ('build-distribution', lock['distribution_filename'], lock['distribution_sha256']),
+        ('preferred-sources', lock['source_filename'], lock['source_sha256'])]:
+        file = root / filename
+        if not file.is_file() or not file.resolve().is_relative_to(root) or sha(file) != digest:
+            raise ValueError('Missing or changed Sparkle input: ' + filename)
+        result.append({'role': role, 'filename': filename, 'sha256': digest})
+    return result
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--app', type=Path, required=True)
@@ -37,11 +55,23 @@ def main():
         help='Recovered third-party sources matching legal/source-supplement.lock.json')
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--patch-base', help='Upstream commit for a replayable integration patch')
+    p.add_argument('--sparkle-inputs', type=Path, help='Pinned Sparkle distribution and preferred source archives')
     a = p.parse_args()
-    if (a.app.resolve() / 'Contents/Resources/es60w-updates.marker').exists():
-        p.error('Updater preview requires a new release version and matching Sparkle source inputs; '
-                'the ES60W-3 exporter must not package it')
     here = Path(__file__).resolve().parent
+    updates = (a.app.resolve() / 'Contents/Resources/es60w-updates.marker').exists()
+    sparkle_inputs = []
+    if updates:
+        try:
+            sparkle_inputs = verified_sparkle_inputs(here, a.sparkle_inputs)
+        except (ValueError, OSError) as error:
+            p.error(str(error))
+    if RELEASE['complete_app_updates'] and not updates:
+        p.error('This release requires the complete updater-enabled application')
+    info = plistlib.loads((a.app.resolve() / 'Contents/Info.plist').read_bytes())
+    if info.get('ES60WLocalUpdateTest') or info.get('CFBundleVersion') != RELEASE['bundle_version']:
+        p.error('Application test flag or bundle version does not match release.json')
+    if json.loads((a.app.resolve() / 'Contents/Resources/es60w-release.json').read_text()) != RELEASE:
+        p.error('Application release metadata does not match preferred source')
     repo = here.parent
     out = a.output.resolve()
     if out.exists() or repo == out or repo in out.parents:
@@ -64,6 +94,9 @@ def main():
         file = here / 'licenses' / name
         if str(file.relative_to(repo)) not in tracked_all or not file.is_file() or sha(file) != expected:
             p.error('Licence source missing, ignored or changed: ' + name)
+        embedded = a.app.resolve() / 'Contents/Resources/LicenseReview' / name
+        if not embedded.is_file() or sha(embedded) != expected:
+            p.error('Embedded licence differs from source: ' + name)
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip()
     base = a.patch_base or json.loads((here / 'SOURCE-STATUS.json').read_text())['application_base']
     subprocess.run(['git', 'merge-base', '--is-ancestor', base, head], cwd=repo, check=True)
@@ -103,6 +136,8 @@ def main():
             if sha(f) != e['sha256']:
                 raise RuntimeError('Source archive changed: ' + e['name'])
             shutil.copy2(f, dependencies / f.name)
+        for e in sparkle_inputs:
+            shutil.copy2(a.sparkle_inputs.resolve() / e['filename'], dependencies / e['filename'])
         inputs = a.package_inputs.resolve()
         inventory = json.loads((inputs / 'MANIFEST.json').read_text())
         for e in inventory['packages']:
@@ -119,7 +154,8 @@ def main():
                         if f.is_file() and not f.is_symlink()}
         manifest = {'release': VERSION, 'naps2_base': base, 'source_tree': tree, 'patch_export_head': patch_head,
             'source_head': head, 'source_files_sha256': source_files,
-            'native_source_archives': lock, 'nuget_build_inputs': len(inventory['packages']),
+            'native_source_archives': lock, 'sparkle_update_inputs': sparkle_inputs,
+            'nuget_build_inputs': len(inventory['packages']),
             'preferred_application_and_free_helper_sources_present': True,
             'third_party_source_closure_verified': False, 'private_history_included': False,
             'source_assessment': 'naps2/es60w/legal/release-assessment-2026-10-25.md',
@@ -147,11 +183,17 @@ prerequisites. Native build installs only to its own new output prefix.
 cd naps2
 python3 es60w/build-native.py --downloads ../dependencies --output /NEW/native-build
 python3 es60w/build-app.py --native-build /NEW/native-build \\
-  --output /NEW/app-build --dotnet /path/to/dotnet
+  --output /NEW/app-build --dotnet /path/to/dotnet \\
+  --sparkle-distribution ../dependencies/Sparkle-2.10.1.tar.xz \\
+  --updates-config es60w/updates/channel.json
 ```
 
 For an isolated rebuild, pass `--nuget-source ../package-inputs/nuget-feed` and
 `--nuget-packages /NEW/package-cache` to build-app.py.
+The source kit also includes the original, hash-pinned Sparkle distribution
+build input and the corresponding preferred source archive in `dependencies/`.
+The framework is embedded/re-signed for this app; independent reconstruction of
+Sparkle's upstream release binary is not asserted.
 
 The complete preferred sources of this application and helper are present.
 The separately delivered third-party-sources archive is part of this source set.
@@ -183,6 +225,8 @@ instructions and validation limits. Preserve all source downloads with the DMG.
     (out / 'SHA256SUMS').write_text(''.join(h + '  ' + n + '\n' for n, h in hashes.items()))
     (out / 'RELEASE-MANIFEST.json').write_text(json.dumps({'version': VERSION,
         'branch': 'es60w-macos-release', 'source_head': head,
+        'bundle_version': RELEASE['bundle_version'], 'complete_app_updates': updates,
+        'sparkle_update_inputs': sparkle_inputs,
         'upstream_base': base, 'source_tree': tree, 'patch_export_head': patch_head, 'artifacts_sha256': hashes,
         'architecture': 'arm64', 'developer_id_signed': False, 'notarized': False,
         'public_release_cleared': False, 'distribution_channel': 'independent ad-hoc-signed prerelease',

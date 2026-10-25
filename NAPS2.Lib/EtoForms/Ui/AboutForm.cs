@@ -4,6 +4,7 @@ using NAPS2.EtoForms.Layout;
 using NAPS2.EtoForms.Widgets;
 using NAPS2.Scan;
 using NAPS2.Update;
+using Newtonsoft.Json.Linq;
 
 namespace NAPS2.EtoForms.Ui;
 
@@ -54,7 +55,7 @@ public class AboutForm : EtoDialogBase
                 C.NoWrap(AssemblyHelper.Product),
                 L.Row(
                     L.Column(
-                        C.NoWrap(string.Format(MiscResources.Version, AssemblyHelper.Version)),
+                        C.NoWrap(string.Format(MiscResources.Version, DisplayVersion())),
                         C.UrlLink(NAPS2_HOMEPAGE)
                     ),
                     Config.Get(c => c.HiddenButtons).HasFlag(ToolbarButtons.Donate)
@@ -87,6 +88,22 @@ public class AboutForm : EtoDialogBase
                 )
             )
         );
+    }
+
+    private static string DisplayVersion()
+    {
+        try
+        {
+            if (Paths.FreeScannerResources is { } resources &&
+                File.Exists(Path.Combine(resources, "es60w-release.json")))
+                return JObject.Parse(File.ReadAllText(Path.Combine(resources, "es60w-release.json")))
+                    .Value<string>("version") ?? AssemblyHelper.Version.ToString();
+        }
+        catch (Exception error)
+        {
+            Log.ErrorException("Could not read ES60W release metadata", error);
+        }
+        return AssemblyHelper.Version.ToString();
     }
 
     private LayoutElement GetUpdateWidget()

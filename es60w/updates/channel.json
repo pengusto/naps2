@@ -3,7 +3,7 @@
   "feed_url": "https://github.com/pengusto/naps2/releases/download/es60w-updates/appcast.xml",
   "public_ed_key": "ShMXA/Go9tnIvfyqq9uUfWDphAjk2h7RqHnrqm+2/eQ=",
   "keychain_account": "de.pengusto.naps2.es60w.updates",
-  "automatic_checks": false,
+  "automatic_checks": true,
   "local_testing": false,
-  "published": false
+  "published": true
 }

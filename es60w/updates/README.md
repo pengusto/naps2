@@ -1,4 +1,4 @@
-# Complete-app update channel (local preparation)
+# Complete-app update channel
 
 The ES60W fork updates the whole application, including its pinned, patched
 SANE/epsonds helper. It does not install system-wide drivers or download an
@@ -6,13 +6,15 @@ arbitrary new backend into an older app. This preserves the tested interface,
 framing and button integration. A newer SANE version must be integrated and
 validated before shipping it in a new app bundle. The SANE MR is independent.
 
-This branch is **local and unpublished**. The channel URL in channel.json is
-reserved for a future release asset and is not live. Automatic checks default
-off; users can enable them in the application menu. Installation always needs
-confirmation. Appcast and complete update archives require Ed25519 signatures;
-archives are verified before extraction. No telemetry/system profile is sent.
-The normal NAPS2 Windows updater is not used. Existing releases through ES60W 3
-have no updater: users must install an updater-enabled DMG once to bootstrap.
+ES60W 4 ships this channel with automatic checks enabled. Users can disable
+checks in the application menu or check manually. Installation always needs
+confirmation. The fixed feed is an asset of the dedicated `es60w-updates`
+prerelease in the own fork; it refers to immutable, versioned update downloads.
+Appcast and complete update archives require Ed25519 signatures; archives are
+verified before extraction. No telemetry/system profile is sent. The normal
+NAPS2 Windows updater is not used. Existing releases through ES60W 3 have no
+updater: users install the new DMG once to bootstrap. There is one installer
+DMG with SANE; the ZIP asset is the updater's complete-app payload.
 
 ## Implementation
 
@@ -46,9 +48,10 @@ Use the standard es60w/build-app.py prerequisites and serial build. Add:
 --updates-config es60w/updates/channel.json
 ```
 
-Both flags are optional together; omitting them preserves the existing package
-path. Invalid channel configuration/archive hashes fail before the .NET build.
-This preview has build number 851004 and release label 8.5.1-es60w.4-local. It is
+Custom developer builds may omit both flags; the release exporter requires
+the complete updater-enabled app. Invalid channel/archive inputs fail before
+the .NET build. es60w/release.json defines the release label and increasing
+bundle build number. The app is
 not installed by the build scripts. App/worker and PDF checks use the existing
 software-only scripts in es60w/tools.
 
@@ -100,15 +103,14 @@ python3 es60w/updates/prepare-update.py \
   --download-url-prefix https://github.com/pengusto/naps2/releases/download/NEW-RELEASE/
 ```
 
-Before publication, choose the real release version/build number, update the
-matching source-release/About links, export the full matching source kit with
-the Sparkle archive/source pins and notices, and check the complete app and
-DMG. The existing ES60W-3 source exporter deliberately rejects this preview;
-extend its version/source-input handling before preparing the real new release.
-Publish that complete release first. Then publish the signed appcast.xml
+For a new release, increment es60w/release.json, update the matching source
+links and rebuild. Export with es60w/prepare-local-release.py, including
+`--sparkle-inputs /build-inputs` (both pinned archive filenames from the lock),
+`--source-supplement`, and the usual package/native inputs. Export rejects
+missing Sparkle preferred sources, a mismatched app build number or mismatched
+embedded licence texts. Publish the complete release source set and binaries. Then publish the signed appcast.xml
 as an asset of the dedicated `es60w-updates` prerelease, retaining the permanent
-feed URL. Test downloaded URLs and signatures before enabling automatic checks
-by default. Do not modify a signed appcast after signing it. No publishing or
+feed URL. Test downloaded URLs and signatures before making the new download available. Do not modify a signed appcast after signing it. No publishing or
 automatic background release job is added by this branch.
 
 Ed25519 update signing does not replace Apple Developer ID/notarization. This

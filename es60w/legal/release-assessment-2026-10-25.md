@@ -64,3 +64,16 @@ untested. macOS minimum metadata 14.0, software host 26.6.2, arm64 USB ES-60W on
 The release dependency/package rebuild gets no new physical scan. Conservative
 framing can retain a thin border; exact millimetres/Epson parity are not claimed.
 The working installed app/configs and private REA history remain separate.
+
+## ES60W 4 update framework
+
+Sparkle 2.10.1 is embedded from its exact pinned upstream distribution; matching
+preferred source and complete upstream MIT/third-party notices are included in
+the main source kit/application. The original framework signature is verified
+before embedding; nested peers are re-signed for the ad-hoc host, preserving
+XPC entitlements. Independent reconstruction of Sparkle's upstream binary is not
+claimed. The Ed25519 private release key stays in the publisher's Keychain; only
+its public key is shipped. Update archives contain the complete application and
+helper, and the same version's complete source set remains beside the binary.
+The SANE/libusb/JPEG runtime is unchanged from ES60W 3. This adds no physical
+scan result or Apple notarization claim.

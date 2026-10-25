@@ -15,9 +15,11 @@ global.json pins the SDK. Build serially in new output directories outside Git.
 ```sh
 python3 es60w/build-native.py --downloads /path/to/downloads --output /NEW/native-build
 python3 es60w/build-app.py --native-build /NEW/native-build \
-  --output /NEW/app-build --dotnet /path/to/dotnet
+  --output /NEW/app-build --dotnet /path/to/dotnet \
+  --sparkle-distribution /path/to/Sparkle-2.10.1.tar.xz \
+  --updates-config es60w/updates/channel.json
 python3 es60w/tools/make-private-dmg.py --app '/NEW/app-build/NAPS2 ES60W.app' \
-  --destination '/NEW/dist/NAPS2-ES60W-8.5.1-es60w.3-arm64.dmg' \
+  --destination '/NEW/dist/NAPS2-ES60W-8.5.1-es60w.4-arm64.dmg' \
   --readme es60w/FIRST-START.de.txt --volume-name 'NAPS2 ES60W'
 ```
 
@@ -85,3 +87,5 @@ The native scan helper, automatic width/length logic and button receiver remain
 from the previous ES60W integration. App/worker, PDF/AutoSave replay, framing
 and button simulations are checked without a real device. No new physical
 scan validation or notarization is claimed.
+
+ES60W 4 adds signed complete-app updates, including the same SANE runtime as ES60W 3. See [update build/signing/source instructions](updates/README.md). The source kit includes both Sparkle archives from updates/sparkle.lock.json. No new physical scan was performed.

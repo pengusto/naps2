@@ -33,3 +33,10 @@ Matching source and build instructions are required; byte-identical binary
 reproduction is a different claim. The release provides the matching source downloads alongside its binary; retain
 all parts of that download set when redistributing this package.
 https://www.gnu.org/licenses/gpl-faq.en.html#MustSourceBuildToMatchExactHashOfBinary
+
+Sparkle 2.10.1 retains its MIT and bundled third-party notices in
+`packages/Sparkle-2.10.1/LICENSE`. The matching pinned preferred source archive
+and original distribution build input are included in the main source kit.
+The embedded framework is re-signed for this ad-hoc host; independent source
+reproduction of Sparkle's upstream binary is not claimed. Update signing uses
+a separate Ed25519 key; its private part is not part of the source download.

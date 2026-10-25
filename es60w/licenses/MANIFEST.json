@@ -2,11 +2,11 @@
   "scope": "Component licence and attribution texts delivered with the independent prerelease; source evidence levels in legal/release-assessment-2026-10-25.md",
   "files_sha256": {
     "ARTWORK-NOTICES.md": "d9367c290719a6892cc993fb43d7b4a5d808754699cca399def5c1e0d7467536",
-    "DISTRIBUTION-LICENSE.md": "638be13a86568cda01c20a76643cc84718357cfa3b54ef04fdfdbc2bbc5f67ac",
+    "DISTRIBUTION-LICENSE.md": "12648085c9ecc63abfbadd6d3084fc804138ef53b3c814c3f7f0351828acc7da",
     "GPL-3.0.txt": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
     "artwork/FatCow/CC-BY-3.0-US.html": "f4d77c7b7e4564d4e8691409d3a656047dae972377c106e5640434fb1418306f",
     "artwork/FatCow/readme-fatcow.txt": "c81c10c29ef9f7ddbf39bfae9d77f7d6e76dd37ded12938d68808ca8257beca6",
-    "index.html": "b8d3a0dabb4a1082c90558abeb54fb978bb8642452f1d0fa4bc9b405926564fb",
+    "index.html": "cf970a9c1d34299d7452bb77b7df7b605c01b868827538d27b242c56597478cb",
     "native/JPEG-libjpeg-turbo/LICENSE.md": "60c756742db3ad1913304e8b13f0e86e22e51adb50cc0b3333c163f7e45ceec1",
     "native/PDFium-152.0.7947.0/licenses/abseil.txt": "c79a7fea0e3cac04cd43f20e7b648e5a0ff8fa5344e644b0ee09ca1162b62747",
     "native/PDFium-152.0.7947.0/licenses/agg23.txt": "c110d3ea2ad77467ce0dcff7d3337e6c8be8049a5103f4b9bd5fd911a77972e5",

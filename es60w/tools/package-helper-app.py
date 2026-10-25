@@ -105,11 +105,14 @@ def main():
             element.text = value
             element.set('mode', 'default')
         config.write(resources / 'appsettings.xml', encoding='utf-8', xml_declaration=True)
+        release = json.loads((scripts.parent / 'release.json').read_text())
+        (resources / 'es60w-release.json').write_text(json.dumps(release, indent=2) + '\n')
         info = stage / 'Contents/Info.plist'
         data = plistlib.loads(info.read_bytes())
         data.update(CFBundleIdentifier='de.pengusto.naps2.es60w',
                     CFBundleName='NAPS2 ES60W', CFBundleDisplayName='NAPS2 ES60W',
-                    CFBundleVersion='851003', CFBundleShortVersionString='8.5.1')
+                    CFBundleVersion=release['bundle_version'], CFBundleShortVersionString=release['short_version'],
+                    ES60WReleaseVersion=release['version'])
         data.pop('LSEnvironment', None)
         data.pop('CFBundleDocumentTypes', None)
         data.pop('CFBundleURLTypes', None)

@@ -54,5 +54,16 @@
   ],
   "upstream_snapshot_kind": "master after official NAPS2 8.5.1; independent prerelease",
   "upstream_commits_integrated": 153,
-  "prior_release_preserved": "es60w-v8.5.1-2"
+  "prior_release_preserved": "es60w-v8.5.1-2",
+  "release_version": "8.5.1-es60w.4",
+  "complete_app_update_channel": {
+    "framework": "Sparkle 2.10.1",
+    "feed": "https://github.com/pengusto/naps2/releases/download/es60w-updates/appcast.xml",
+    "signed_feed_and_archive": true,
+    "automatic_checks_default": true,
+    "installation_requires_confirmation": true,
+    "source_lock": "updates/sparkle.lock.json",
+    "backend_runtime_changed": false,
+    "private_signing_key_shipped": false
+  }
 }

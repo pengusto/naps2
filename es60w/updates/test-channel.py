@@ -46,7 +46,7 @@ class ChannelTests(unittest.TestCase):
 
     def test_no_automatic_query_of_unpublished_feed(self):
         with self.assertRaises(ValueError):
-            stage.validate_config(dict(self.valid, automatic_checks=True))
+            stage.validate_config(dict(self.valid, automatic_checks=True, published=False))
 
     def test_flags_are_not_strings_or_numbers(self):
         for flag in ['automatic_checks', 'local_testing', 'published']:
@@ -65,7 +65,7 @@ class ChannelTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'hash mismatch'):
                 stage.stage(Path(folder) / 'absent.app', archive, here / 'channel.json')
 
-    def test_legacy_exporter_rejects_mislabelled_updater_preview(self):
+    def test_updater_export_requires_matching_sparkle_sources(self):
         with tempfile.TemporaryDirectory() as folder:
             app = Path(folder) / 'stub.app'
             marker = app / 'Contents/Resources/es60w-updates.marker'
@@ -74,7 +74,7 @@ class ChannelTests(unittest.TestCase):
                 '--app', str(app), '--downloads', folder, '--package-inputs', folder,
                 '--output', str(Path(folder) / 'out')], capture_output=True, text=True)
             self.assertEqual(result.returncode, 2)
-            self.assertIn('ES60W-3 exporter must not package it', result.stderr)
+            self.assertIn('requires --sparkle-inputs', result.stderr)
             self.assertFalse((Path(folder) / 'out').exists())
 
 

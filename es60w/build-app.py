@@ -27,6 +27,7 @@ def main():
         p.error('Supply both --sparkle-distribution and --updates-config')
     here = Path(__file__).resolve().parent
     source_repo = here.parent
+    release = json.loads((here / 'release.json').read_text())
     if a.sparkle_distribution:
         subprocess.run([sys.executable, str(here / 'updates/stage-updater.py'),
             '--check-inputs-only', '--sparkle-distribution', str(a.sparkle_distribution.resolve(strict=True)),
@@ -120,7 +121,7 @@ def main():
         package_command += ['--sparkle-distribution', str(a.sparkle_distribution.resolve(strict=True)),
                             '--updates-config', str(a.updates_config.resolve(strict=True))]
     subprocess.run(package_command, check=True)
-    result = {'architecture': 'arm64', 'release_version': '8.5.1-es60w.4-local' if a.updates_config else '8.5.1-es60w.3',
+    result = {'architecture': 'arm64', 'release_version': release['version'],
               'complete_app_updates_embedded': bool(a.updates_config),
               'full_app_and_static_registrar_rebuilt': True,
               'helper_libusb_jpeg_built_from_pinned_sources': True,
