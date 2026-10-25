@@ -65,3 +65,20 @@ to `build-app.py`. The feed contains the resolved project packages plus the
 runtime/targeting downloads pinned in `framework-downloads.lock.json`. SDK and
 Xcode/workload prerequisites still need to be installed on a build machine.
 The root `global.json` pins the SDK; it is not an end-user runtime installer.
+
+## Third-party and artwork evidence (local review, 25 October 2026)
+
+`legal/third-party-rights-review-2026-10-25.md` records the shipped-component
+inventory and source matching strengths. `legal/source-supplement.lock.json`
+pins the additionally recovered sources; `legal/fetch-source-supplement.py`
+retrieves them without executing code. The local release exporter now requires
+`--source-supplement` when this lock exists and emits a separate third-party
+source archive, so the new material cannot silently be omitted from a release.
+No legal clearance is inferred from an archive checksum.
+
+The Mac application no longer references the unused GPL-2.0-only
+`NAPS2.Sane.Binaries` placeholder. The separate scanimage/epsonds helper remains.
+The About dialog has a local licences/source link in the ES60W bundle. Identified
+FatCow artwork now has its original CC BY 3.0 US readme, attribution and change
+notice. Unmatched images, provider marks and historical source attribution are
+listed individually; the existing DMG is still a local draft.

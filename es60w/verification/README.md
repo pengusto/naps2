@@ -33,3 +33,7 @@ separate from these software checks. Passing a synthetic test does not establish
 new physical dimensions, Epson equivalence or target-Mac USB behavior.
 
 The Apple trimmer was observed retaining CodeView PDB paths despite symbol-removal properties. The build therefore copies sources to a neutral `/private/tmp/naps2-es60w-build-*` directory. It removes external native RPATHs during packaging and fails if the builder's home path remains in any output file. Managed assemblies are not binary-patched. Generated build roots are recorded outside the app and may be removed after verification.
+
+The legal-input check rejects the obsolete direct-SANE placeholder, verifies every notice against the packaged file, and checks every supplemental source archive. Build scripts whose names contain `deps` must not be classified as licence texts: only notice/licence content belongs under `licenses/`; original build scripts stay in the source archives.
+
+Preserved vendor notices may use CRLF. Replay the exported mbox with `git am --keep-cr`: Git's default mail parser otherwise normalizes an original notice and breaks the exact source-tree/hash proof. Keep the notice bytes unchanged; prefer the full source archive as the primary source payload.

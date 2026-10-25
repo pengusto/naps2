@@ -1,0 +1,2247 @@
+[
+  {
+    "file": "Microsoft.CSharp.dll",
+    "name": "Microsoft.CSharp",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Linq.Expressions",
+      "System.Collections.Concurrent",
+      "System.Linq"
+    ]
+  },
+  {
+    "file": "System.Net.Security.dll",
+    "name": "System.Net.Security",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Net.Primitives",
+      "System.Security.Cryptography",
+      "System.Memory",
+      "System.Formats.Asn1",
+      "System.Collections.NonGeneric",
+      "System.Diagnostics.DiagnosticSource",
+      "System.Collections.Concurrent"
+    ]
+  },
+  {
+    "file": "System.Xml.Linq.dll",
+    "name": "System.Xml.Linq",
+    "version": "4.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Private.Xml.Linq"
+    ]
+  },
+  {
+    "file": "Makaretu.Dns.dll",
+    "name": "Makaretu.Dns",
+    "version": "2.0.1.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Richard Schneider",
+      "AssemblyCopyrightAttribute": "\u00A9 2018-2019 Richard Schneider",
+      "AssemblyFileVersionAttribute": "2.0.1",
+      "AssemblyInformationalVersionAttribute": "2.0.1\u002B701463d2091e6d98d4cc4490abb0e0ead8ae2985",
+      "AssemblyProductAttribute": "Makaretu.Dns"
+    },
+    "references": [
+      "netstandard",
+      "SimpleBase"
+    ]
+  },
+  {
+    "file": "NAPS2.Images.dll",
+    "name": "NAPS2.Images",
+    "version": "8.5.1.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "NAPS2 Software",
+      "AssemblyCopyrightAttribute": "Copyright 2009-2026 NAPS2 Contributors",
+      "AssemblyFileVersionAttribute": "8.5.1.0",
+      "AssemblyInformationalVersionAttribute": "8.5.1",
+      "AssemblyProductAttribute": "NAPS2.Images"
+    },
+    "references": [
+      "System.Runtime",
+      "System.Collections.Concurrent",
+      "System.Collections.Immutable",
+      "NAPS2.Internals",
+      "System.Drawing.Primitives",
+      "System.Numerics.Vectors",
+      "System.Collections",
+      "System.Memory",
+      "System.Runtime.InteropServices",
+      "System.Security.Cryptography",
+      "System.IO.Compression",
+      "System.Linq",
+      "System.Diagnostics.Process",
+      "System.Console",
+      "System.Threading",
+      "System.Text.RegularExpressions",
+      "System.Threading.Tasks.Parallel",
+      "System.ComponentModel.Primitives"
+    ]
+  },
+  {
+    "file": "System.Runtime.Serialization.Xml.dll",
+    "name": "System.Runtime.Serialization.Xml",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Private.DataContractSerialization"
+    ]
+  },
+  {
+    "file": "System.Threading.ThreadPool.dll",
+    "name": "System.Threading.ThreadPool",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Reflection.Metadata.dll",
+    "name": "System.Reflection.Metadata",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Collections.Immutable",
+      "System.IO.Compression",
+      "System.IO.MemoryMappedFiles"
+    ]
+  },
+  {
+    "file": "NAPS2.Pdfium.Binaries.dll",
+    "name": "NAPS2.Pdfium.Binaries",
+    "version": "1.0.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Ben Olden-Cooligan",
+      "AssemblyCopyrightAttribute": "Copyright 2023 Ben Olden-Cooligan (note: pdfium has separate copyrights)",
+      "AssemblyFileVersionAttribute": "1.0.0.0",
+      "AssemblyInformationalVersionAttribute": "1.3.0\u002B2b189e0edae6c0b4f9bdd97681bde8eea8b44661",
+      "AssemblyProductAttribute": "NAPS2.Pdfium.Binaries"
+    },
+    "references": [
+      "System.Runtime"
+    ]
+  },
+  {
+    "file": "NAPS2.Lib.dll",
+    "name": "NAPS2.Lib",
+    "version": "8.5.1.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "NAPS2.Lib",
+      "AssemblyCopyrightAttribute": "Copyright 2009-2026 NAPS2 Contributors",
+      "AssemblyFileVersionAttribute": "8.5.1.0",
+      "AssemblyInformationalVersionAttribute": "8.5.1",
+      "AssemblyProductAttribute": "NAPS2 - Not Another PDF Scanner"
+    },
+    "references": [
+      "System.Runtime",
+      "Autofac",
+      "System.Runtime.InteropServices",
+      "NAPS2.Sdk",
+      "System.Linq.Expressions",
+      "Microsoft.Extensions.Logging.Abstractions",
+      "NLog",
+      "System.Diagnostics.Process",
+      "System.Collections",
+      "Newtonsoft.Json",
+      "System.Net.Http",
+      "System.Threading",
+      "System.Net.WebClient",
+      "System.ComponentModel.EventBasedAsync",
+      "System.Security.Cryptography",
+      "NAPS2.Internals",
+      "System.Xml.XDocument",
+      "Eto",
+      "NAPS2.Images",
+      "System.ComponentModel.Primitives",
+      "System.Xml.ReaderWriter",
+      "GrpcDotNetNamedPipes",
+      "Google.Protobuf",
+      "Grpc.Core.Api",
+      "System.Collections.Immutable",
+      "Microsoft.Win32.Registry",
+      "MimeKitLite",
+      "System.Collections.Specialized",
+      "System.Net.Primitives",
+      "System.Net.HttpListener",
+      "System.IO.FileSystem.Watcher",
+      "System.ComponentModel",
+      "NAPS2.Escl",
+      "CommandLine",
+      "System.Console",
+      "System.IO.Compression",
+      "System.Xml.XmlSerializer",
+      "NLog.Extensions.Logging",
+      "System.Linq",
+      "System.IO.Compression.ZipFile",
+      "System.Memory",
+      "System.Security.Cryptography.ProtectedData",
+      "System.Text.RegularExpressions",
+      "NAPS2.Escl.Server",
+      "System.Diagnostics.TraceSource",
+      "System.Net.Sockets",
+      "System.Net.WebHeaderCollection",
+      "System.Threading.Thread",
+      "System.ObjectModel",
+      "System.Diagnostics.TextWriterTraceListener",
+      "Ben.Demystifier"
+    ]
+  },
+  {
+    "file": "System.ComponentModel.EventBasedAsync.dll",
+    "name": "System.ComponentModel.EventBasedAsync",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Diagnostics.DiagnosticSource.dll",
+    "name": "System.Diagnostics.DiagnosticSource",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Threading.dll",
+    "name": "System.Threading",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "GrpcDotNetNamedPipes.dll",
+    "name": "GrpcDotNetNamedPipes",
+    "version": "2.0.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Google",
+      "AssemblyCopyrightAttribute": "Copyright 2020 Google LLC",
+      "AssemblyFileVersionAttribute": "2.0.0.0",
+      "AssemblyInformationalVersionAttribute": "3.1.0\u002Bda307b551a9d56b62f5780e91a2d95a699f32430",
+      "AssemblyProductAttribute": "GrpcDotNetNamedPipes"
+    },
+    "references": [
+      "System.Runtime",
+      "Grpc.Core.Api",
+      "System.IO.Pipes",
+      "System.Collections",
+      "System.IO.Pipes.AccessControl",
+      "Google.Protobuf",
+      "System.Memory",
+      "System.Threading",
+      "System.Threading.Thread",
+      "System.Linq",
+      "System.Runtime.InteropServices"
+    ]
+  },
+  {
+    "file": "netstandard.dll",
+    "name": "netstandard",
+    "version": "2.1.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Memory",
+      "System.Collections.NonGeneric",
+      "System.Collections.Concurrent",
+      "System.Collections",
+      "System.Collections.Specialized",
+      "System.ComponentModel",
+      "System.ComponentModel.Primitives",
+      "System.ComponentModel.TypeConverter",
+      "System.ObjectModel",
+      "System.Console",
+      "System.Diagnostics.TraceSource",
+      "System.Diagnostics.Process",
+      "System.Linq.Expressions",
+      "System.IO.Compression",
+      "System.IO.FileSystem.Watcher",
+      "System.Linq",
+      "System.Net.Primitives",
+      "System.Net.NameResolution",
+      "System.Net.Http",
+      "System.Net.HttpListener",
+      "System.Net.Requests",
+      "System.Net.Mail",
+      "System.Net.NetworkInformation",
+      "System.Net.Security",
+      "System.Net.Sockets",
+      "System.Net.WebHeaderCollection",
+      "System.Net.WebProxy",
+      "System.Net.WebSockets",
+      "System.Security.Cryptography",
+      "System.Security.Claims",
+      "System.Text.RegularExpressions",
+      "System.Threading",
+      "System.Private.Uri",
+      "System.Web.HttpUtility",
+      "System.Private.Xml"
+    ]
+  },
+  {
+    "file": "Microsoft.Extensions.Logging.dll",
+    "name": "Microsoft.Extensions.Logging",
+    "version": "8.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "8.0.23.53103",
+      "AssemblyInformationalVersionAttribute": "8.0.0\u002B5535e31a712343a63f5d7d796cd874e563e5ac14"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "Microsoft.Extensions.DependencyInjection.Abstractions",
+      "Microsoft.Extensions.Logging.Abstractions",
+      "Microsoft.Extensions.Options",
+      "System.Collections.Concurrent"
+    ]
+  },
+  {
+    "file": "Google.Protobuf.dll",
+    "name": "Google.Protobuf",
+    "version": "3.29.3.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "3.29.3.0",
+      "AssemblyInformationalVersionAttribute": "3.29.3\u002Bb407e8416e3893036aee5af9a12bd9b6a0e2b2e6"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Linq",
+      "System.Collections.Concurrent",
+      "System.Memory",
+      "System.Collections"
+    ]
+  },
+  {
+    "file": "System.Console.dll",
+    "name": "System.Console",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Collections"
+    ]
+  },
+  {
+    "file": "System.Net.Sockets.dll",
+    "name": "System.Net.Sockets",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Net.Primitives",
+      "System.Diagnostics.DiagnosticSource",
+      "System.Net.NameResolution"
+    ]
+  },
+  {
+    "file": "System.Net.Http.dll",
+    "name": "System.Net.Http",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Private.Uri",
+      "System.Net.Primitives",
+      "System.Net.Security",
+      "System.Security.Cryptography",
+      "System.Collections.NonGeneric",
+      "System.Diagnostics.DiagnosticSource",
+      "System.Collections.Concurrent",
+      "System.Net.Sockets",
+      "System.Net.NameResolution",
+      "System.IO.Compression",
+      "System.IO.Compression.Brotli",
+      "System.Threading.Channels",
+      "System.Net.NetworkInformation"
+    ]
+  },
+  {
+    "file": "System.Web.HttpUtility.dll",
+    "name": "System.Web.HttpUtility",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Text.Encoding.Extensions.dll",
+    "name": "System.Text.Encoding.Extensions",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Net.NetworkInformation.dll",
+    "name": "System.Net.NetworkInformation",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Net.Primitives"
+    ]
+  },
+  {
+    "file": "NLog.Extensions.Logging.dll",
+    "name": "NLog.Extensions.Logging",
+    "version": "5.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "5.5.0.656",
+      "AssemblyInformationalVersionAttribute": "5.5.0\u002B5caec9dd9186024b333b5ea4d1c37388ef9c309a"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "NLog",
+      "Microsoft.Extensions.Configuration.Abstractions",
+      "System.Linq",
+      "Microsoft.Extensions.Primitives",
+      "Microsoft.Extensions.Logging.Abstractions",
+      "Microsoft.Extensions.Logging",
+      "System.ComponentModel",
+      "Microsoft.Extensions.DependencyInjection.Abstractions",
+      "System.Diagnostics.DiagnosticSource",
+      "System.Collections.Concurrent",
+      "System.Linq.Expressions"
+    ]
+  },
+  {
+    "file": "System.Security.Principal.Windows.dll",
+    "name": "System.Security.Principal.Windows",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Security.Claims"
+    ]
+  },
+  {
+    "file": "Microsoft.Extensions.Logging.Abstractions.dll",
+    "name": "Microsoft.Extensions.Logging.Abstractions",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1026.32716",
+      "AssemblyInformationalVersionAttribute": "10.0.10\u002Bf7d90799ce4ef09a0bb257852a57248d2a8fb8dd"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Collections.Concurrent",
+      "Microsoft.Extensions.DependencyInjection.Abstractions"
+    ]
+  },
+  {
+    "file": "System.Security.Claims.dll",
+    "name": "System.Security.Claims",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.ComponentModel.Primitives.dll",
+    "name": "System.ComponentModel.Primitives",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Collections.NonGeneric",
+      "System.ObjectModel",
+      "System.ComponentModel"
+    ]
+  },
+  {
+    "file": "System.IO.Compression.Brotli.dll",
+    "name": "System.IO.Compression.Brotli",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.IO.Compression"
+    ]
+  },
+  {
+    "file": "System.IO.Pipes.AccessControl.dll",
+    "name": "System.IO.Pipes.AccessControl",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.IO.Pipes",
+      "System.Security.AccessControl"
+    ]
+  },
+  {
+    "file": "System.Reflection.Primitives.dll",
+    "name": "System.Reflection.Primitives",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Runtime.Numerics.dll",
+    "name": "System.Runtime.Numerics",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.IO.FileSystem.Watcher.dll",
+    "name": "System.IO.FileSystem.Watcher",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.ComponentModel.Primitives"
+    ]
+  },
+  {
+    "file": "System.Diagnostics.TraceSource.dll",
+    "name": "System.Diagnostics.TraceSource",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Collections.NonGeneric",
+      "System.Collections.Specialized"
+    ]
+  },
+  {
+    "file": "System.Reflection.Emit.Lightweight.dll",
+    "name": "System.Reflection.Emit.Lightweight",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Linq.Expressions.dll",
+    "name": "System.Linq.Expressions",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Collections",
+      "System.Linq",
+      "System.ObjectModel"
+    ]
+  },
+  {
+    "file": "System.Runtime.InteropServices.dll",
+    "name": "System.Runtime.InteropServices",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.IO.Pipes.dll",
+    "name": "System.IO.Pipes",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Net.Sockets",
+      "System.Net.Primitives"
+    ]
+  },
+  {
+    "file": "System.Net.HttpListener.dll",
+    "name": "System.Net.HttpListener",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Net.Security",
+      "System.Private.Uri",
+      "System.Net.Primitives",
+      "System.Net.NameResolution",
+      "System.Net.WebHeaderCollection",
+      "System.Collections.Specialized",
+      "System.Security.Cryptography",
+      "System.Security.Claims",
+      "System.Net.Requests",
+      "System.Net.Sockets",
+      "System.Net.WebSockets",
+      "System.Security.Principal.Windows"
+    ]
+  },
+  {
+    "file": "Eto.macOS.dll",
+    "name": "Eto.macOS",
+    "version": "2.11.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Picoe Software Solutions",
+      "AssemblyCopyrightAttribute": "(c) 2010-2025 by Curtis Wensley, 2012-2014 by Vivek Jhaveri and contributors",
+      "AssemblyInformationalVersionAttribute": "2.11.0\u002B73e42ec0b24e9e82162fb12a88b752a0a55fe5b8.73e42ec0b24e9e82162fb12a88b752a0a55fe5b8",
+      "AssemblyProductAttribute": "Eto.macOS",
+      "AssemblyFileVersionAttribute": "2.11.9557.38131"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "Microsoft.macOS",
+      "Eto",
+      "System.Linq",
+      "System.ComponentModel.TypeConverter",
+      "System.ComponentModel",
+      "System.Diagnostics.Process",
+      "System.Private.Uri",
+      "System.Text.RegularExpressions",
+      "System.Collections"
+    ]
+  },
+  {
+    "file": "SimpleBase.dll",
+    "name": "SimpleBase",
+    "version": "1.3.1.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "",
+      "AssemblyProductAttribute": "SimpleBase",
+      "AssemblyCopyrightAttribute": "Copyright \u00A9 2014-2016 Sedat Kapanoglu",
+      "AssemblyFileVersionAttribute": "1.3.1"
+    },
+    "references": [
+      "System.Runtime",
+      "System.Runtime.InteropServices",
+      "System.Runtime.Numerics",
+      "System.Collections",
+      "System.Linq"
+    ]
+  },
+  {
+    "file": "System.Text.RegularExpressions.dll",
+    "name": "System.Text.RegularExpressions",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Collections.Concurrent",
+      "System.Collections"
+    ]
+  },
+  {
+    "file": "NAPS2.dll",
+    "name": "NAPS2",
+    "version": "8.5.1.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "NAPS2",
+      "AssemblyCopyrightAttribute": "Copyright 2009-2026 NAPS2 Contributors",
+      "AssemblyFileVersionAttribute": "8.5.1.0",
+      "AssemblyInformationalVersionAttribute": "8.5.1",
+      "AssemblyProductAttribute": "NAPS2 - Not Another PDF Scanner"
+    },
+    "references": [
+      "System.Runtime",
+      "System.Runtime.InteropServices",
+      "NAPS2.Lib",
+      "NAPS2.Lib.Mac"
+    ]
+  },
+  {
+    "file": "System.IO.Compression.dll",
+    "name": "System.IO.Compression",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Threading.Tasks.Parallel.dll",
+    "name": "System.Threading.Tasks.Parallel",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Private.Xml.dll",
+    "name": "System.Private.Xml",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12-servicing.26422.108\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Diagnostics.TraceSource",
+      "System.Text.RegularExpressions",
+      "System.Private.Uri",
+      "System.Net.Primitives",
+      "System.Net.Http",
+      "System.Collections",
+      "System.Collections.NonGeneric",
+      "System.Security.Cryptography",
+      "System.Linq.Expressions"
+    ]
+  },
+  {
+    "file": "System.Collections.NonGeneric.dll",
+    "name": "System.Collections.NonGeneric",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Collections.Concurrent.dll",
+    "name": "System.Collections.Concurrent",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Net.WebProxy.dll",
+    "name": "System.Net.WebProxy",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Net.Primitives",
+      "System.Text.RegularExpressions",
+      "System.Private.Uri",
+      "System.Net.NameResolution",
+      "System.Net.NetworkInformation"
+    ]
+  },
+  {
+    "file": "Microsoft.Extensions.Primitives.dll",
+    "name": "Microsoft.Extensions.Primitives",
+    "version": "8.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "8.0.23.53103",
+      "AssemblyInformationalVersionAttribute": "8.0.0\u002B5535e31a712343a63f5d7d796cd874e563e5ac14"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.ObjectModel.dll",
+    "name": "System.ObjectModel",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "NLog.dll",
+    "name": "NLog",
+    "version": "5.0.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "NLog",
+      "AssemblyCopyrightAttribute": "Copyright (c) 2004-2025 NLog Project - https://nlog-project.org/ ",
+      "AssemblyFileVersionAttribute": "5.5.1.4315",
+      "AssemblyInformationalVersionAttribute": "5.5.1\u002Bafa9a2046639736a54530be3ee34c32e8bc94ea6",
+      "AssemblyProductAttribute": "NLog v5.5.1"
+    },
+    "references": [
+      "netstandard"
+    ]
+  },
+  {
+    "file": "System.Private.CoreLib.dll",
+    "name": "System.Private.CoreLib",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12-servicing.26422.108\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": []
+  },
+  {
+    "file": "System.Net.WebHeaderCollection.dll",
+    "name": "System.Net.WebHeaderCollection",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Collections.Specialized"
+    ]
+  },
+  {
+    "file": "System.Runtime.InteropServices.RuntimeInformation.dll",
+    "name": "System.Runtime.InteropServices.RuntimeInformation",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.ComponentModel.TypeConverter.dll",
+    "name": "System.ComponentModel.TypeConverter",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Private.Uri",
+      "System.Drawing.Primitives",
+      "System.Linq",
+      "System.ComponentModel.Primitives",
+      "System.ComponentModel",
+      "System.Collections.Concurrent",
+      "System.ObjectModel",
+      "System.Collections.Specialized",
+      "System.Collections.NonGeneric",
+      "System.Private.Xml.Linq"
+    ]
+  },
+  {
+    "file": "zxing.dll",
+    "name": "zxing",
+    "version": "0.16.11.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "ZXing.Net Development",
+      "AssemblyProductAttribute": "ZXing.Net",
+      "AssemblyCopyrightAttribute": "Copyright \u00A9 2012",
+      "AssemblyFileVersionAttribute": "0.16.11.0",
+      "AssemblyInformationalVersionAttribute": "0.16.11\u002Ba334de0239ee1cbd2aadef3396929fa031d2292b"
+    },
+    "references": [
+      "System.Runtime",
+      "System.Runtime.InteropServices",
+      "System.Collections",
+      "System.Runtime.Numerics",
+      "System.Text.RegularExpressions",
+      "System.ComponentModel.Primitives",
+      "System.Threading"
+    ]
+  },
+  {
+    "file": "System.Net.Mail.dll",
+    "name": "System.Net.Mail",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Collections.Specialized",
+      "System.Private.Uri",
+      "System.ComponentModel.EventBasedAsync",
+      "System.Net.Requests",
+      "System.Net.Primitives",
+      "System.Net.NetworkInformation",
+      "System.Net.Security",
+      "System.Net.Sockets",
+      "System.Security.Cryptography",
+      "System.Memory"
+    ]
+  },
+  {
+    "file": "Makaretu.Dns.Multicast.New.dll",
+    "name": "Makaretu.Dns.Multicast.New",
+    "version": "1.0.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Ben Olden-Cooligan",
+      "AssemblyFileVersionAttribute": "1.0.0.0",
+      "AssemblyInformationalVersionAttribute": "1.0.0\u002B9a1b989ff57738849ceda165de49cc76364e8ace",
+      "AssemblyProductAttribute": "Makaretu.Dns.Multicast.New"
+    },
+    "references": [
+      "System.Runtime",
+      "Makaretu.Dns",
+      "System.Net.Sockets",
+      "System.Net.Primitives",
+      "System.Collections",
+      "System.Collections.Concurrent",
+      "System.Net.NetworkInformation",
+      "System.Security.Cryptography.Primitives",
+      "System.Threading",
+      "System.Linq",
+      "System.Security.Cryptography.Algorithms",
+      "System.Threading.Thread"
+    ]
+  },
+  {
+    "file": "System.Xml.XDocument.dll",
+    "name": "System.Xml.XDocument",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Private.Xml.Linq"
+    ]
+  },
+  {
+    "file": "System.ComponentModel.Annotations.dll",
+    "name": "System.ComponentModel.Annotations",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Private.DataContractSerialization.dll",
+    "name": "System.Private.DataContractSerialization",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12-servicing.26422.108\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Text.RegularExpressions",
+      "System.Private.Xml",
+      "System.Collections",
+      "System.Runtime.Serialization.Primitives",
+      "System.Private.Uri",
+      "System.Runtime.Serialization.Formatters",
+      "System.Collections.NonGeneric",
+      "System.Collections.Concurrent",
+      "System.Linq",
+      "System.Private.Xml.Linq"
+    ]
+  },
+  {
+    "file": "Microsoft.Extensions.Configuration.Abstractions.dll",
+    "name": "Microsoft.Extensions.Configuration.Abstractions",
+    "version": "8.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "8.0.23.53103",
+      "AssemblyInformationalVersionAttribute": "8.0.0\u002B5535e31a712343a63f5d7d796cd874e563e5ac14"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "Microsoft.Extensions.Primitives"
+    ]
+  },
+  {
+    "file": "ICSharpCode.SharpZipLib.dll",
+    "name": "ICSharpCode.SharpZipLib",
+    "version": "1.4.2.13",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "1.4.2.13",
+      "AssemblyInformationalVersionAttribute": "1.4.2\u002B33f64eb0f28cdd2b084cb822fcc224c7c5aba553"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Security.Cryptography"
+    ]
+  },
+  {
+    "file": "Swan.Lite.dll",
+    "name": "Swan.Lite",
+    "version": "3.1.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Unosquare",
+      "AssemblyCopyrightAttribute": "Copyright (c) 2016-2020 - Unosquare",
+      "AssemblyFileVersionAttribute": "3.1.0.0",
+      "AssemblyInformationalVersionAttribute": "3.1.0",
+      "AssemblyProductAttribute": "Swan.Lite"
+    },
+    "references": [
+      "netstandard"
+    ]
+  },
+  {
+    "file": "System.Security.Cryptography.Primitives.dll",
+    "name": "System.Security.Cryptography.Primitives",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Security.Cryptography"
+    ]
+  },
+  {
+    "file": "System.IO.Compression.ZipFile.dll",
+    "name": "System.IO.Compression.ZipFile",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.IO.Compression"
+    ]
+  },
+  {
+    "file": "System.Resources.ResourceManager.dll",
+    "name": "System.Resources.ResourceManager",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "Microsoft.Extensions.Options.dll",
+    "name": "Microsoft.Extensions.Options",
+    "version": "8.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "8.0.23.53103",
+      "AssemblyInformationalVersionAttribute": "8.0.0\u002B5535e31a712343a63f5d7d796cd874e563e5ac14"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "Microsoft.Extensions.DependencyInjection.Abstractions",
+      "Microsoft.Extensions.Primitives",
+      "System.Collections.Concurrent"
+    ]
+  },
+  {
+    "file": "System.Collections.dll",
+    "name": "System.Collections",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Reflection.Emit.ILGeneration.dll",
+    "name": "System.Reflection.Emit.ILGeneration",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "Autofac.dll",
+    "name": "Autofac",
+    "version": "9.3.1.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "9.3.1.0",
+      "AssemblyInformationalVersionAttribute": "9.3.1\u002B7f0d04b7722f2230901ffe1bec68f25ce61f8d76"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Collections.Concurrent",
+      "System.Linq",
+      "System.Linq.Expressions",
+      "System.Diagnostics.DiagnosticSource",
+      "System.ComponentModel",
+      "System.Collections",
+      "System.Diagnostics.TraceSource"
+    ]
+  },
+  {
+    "file": "NAPS2.Images.Mac.dll",
+    "name": "NAPS2.Images.Mac",
+    "version": "8.5.1.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "NAPS2 Software",
+      "AssemblyCopyrightAttribute": "Copyright 2009-2026 NAPS2 Contributors",
+      "AssemblyFileVersionAttribute": "8.5.1.0",
+      "AssemblyInformationalVersionAttribute": "8.5.1",
+      "AssemblyProductAttribute": "NAPS2.Images.Mac"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "Microsoft.macOS",
+      "NAPS2.Images",
+      "NAPS2.Internals"
+    ]
+  },
+  {
+    "file": "System.Data.Common.dll",
+    "name": "System.Data.Common",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Private.Xml",
+      "System.Collections",
+      "System.Runtime.Numerics",
+      "System.ComponentModel.TypeConverter",
+      "System.ComponentModel.Primitives",
+      "System.Private.Uri",
+      "System.Collections.NonGeneric",
+      "System.ObjectModel",
+      "System.ComponentModel",
+      "System.Runtime.Serialization.Formatters",
+      "System.Linq",
+      "System.Drawing.Primitives",
+      "System.Collections.Concurrent",
+      "System.Linq.Expressions"
+    ]
+  },
+  {
+    "file": "System.Net.NameResolution.dll",
+    "name": "System.Net.NameResolution",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Net.Primitives",
+      "System.Diagnostics.DiagnosticSource"
+    ]
+  },
+  {
+    "file": "NAPS2.Internals.dll",
+    "name": "NAPS2.Internals",
+    "version": "8.5.1.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "NAPS2 Software",
+      "AssemblyCopyrightAttribute": "Copyright 2009-2026 NAPS2 Contributors",
+      "AssemblyFileVersionAttribute": "8.5.1.0",
+      "AssemblyInformationalVersionAttribute": "8.5.1",
+      "AssemblyProductAttribute": "NAPS2.Internals"
+    },
+    "references": [
+      "System.Runtime",
+      "System.Collections",
+      "System.Diagnostics.Process",
+      "System.Threading.ThreadPool",
+      "System.Threading",
+      "System.Collections.Immutable",
+      "System.Xml.XDocument",
+      "System.Xml.XmlSerializer",
+      "System.Xml.ReaderWriter",
+      "System.Memory",
+      "System.Runtime.InteropServices",
+      "System.Security.Cryptography",
+      "System.IO.Compression",
+      "System.Linq",
+      "System.Console",
+      "System.Collections.Concurrent",
+      "System.Text.RegularExpressions",
+      "System.Text.Encoding.Extensions",
+      "System.ComponentModel.Primitives"
+    ]
+  },
+  {
+    "file": "System.ComponentModel.dll",
+    "name": "System.ComponentModel",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Private.Uri.dll",
+    "name": "System.Private.Uri",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12-servicing.26422.108\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "PdfSharpCore.dll",
+    "name": "PdfSharpCore",
+    "version": "1.0.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "NAPS2 Software",
+      "AssemblyFileVersionAttribute": "1.0.0.0",
+      "AssemblyInformationalVersionAttribute": "1.0.0\u002B8d30f069e6cef9ee9b001372a94432de7f6a3146",
+      "AssemblyProductAttribute": "NAPS2.PdfSharp"
+    },
+    "references": [
+      "System.Runtime",
+      "SixLabors.Fonts",
+      "System.Collections",
+      "System.Linq",
+      "System.Text.RegularExpressions",
+      "System.Security.Cryptography.Algorithms",
+      "ICSharpCode.SharpZipLib",
+      "System.Collections.Concurrent",
+      "System.ComponentModel.Primitives",
+      "System.Runtime.InteropServices.RuntimeInformation",
+      "System.Console",
+      "System.Runtime.InteropServices",
+      "System.Security.Cryptography.Primitives",
+      "System.Threading"
+    ]
+  },
+  {
+    "file": "Eto.dll",
+    "name": "Eto",
+    "version": "2.11.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Picoe Software Solutions",
+      "AssemblyCopyrightAttribute": "(c) 2010-2025 by Curtis Wensley, 2012-2014 by Vivek Jhaveri and contributors",
+      "AssemblyInformationalVersionAttribute": "2.11.0\u002B73e42ec0b24e9e82162fb12a88b752a0a55fe5b8.73e42ec0b24e9e82162fb12a88b752a0a55fe5b8",
+      "AssemblyProductAttribute": "Eto",
+      "AssemblyFileVersionAttribute": "2.11.9557.38163"
+    },
+    "references": [
+      "System.Runtime",
+      "System.Runtime.Loader",
+      "System.ObjectModel",
+      "System.Collections",
+      "System.ComponentModel.TypeConverter",
+      "System.ComponentModel.Primitives",
+      "System.ComponentModel.Annotations",
+      "System.Linq.Expressions",
+      "System.IO.FileSystem.Watcher",
+      "System.ComponentModel",
+      "System.Threading",
+      "System.Linq",
+      "System.Runtime.Serialization.Primitives",
+      "System.Diagnostics.TraceSource",
+      "System.Threading.Thread",
+      "System.Runtime.Serialization.Xml",
+      "System.Runtime.Serialization.Formatters"
+    ]
+  },
+  {
+    "file": "System.Runtime.Loader.dll",
+    "name": "System.Runtime.Loader",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "MimeKitLite.dll",
+    "name": "MimeKitLite",
+    "version": "4.17.0.0",
+    "attributes": {
+      "AssemblyInformationalVersionAttribute": "4.17.0.0",
+      "AssemblyFileVersionAttribute": "4.17.0.0"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Private.Uri",
+      "System.ObjectModel",
+      "System.ComponentModel.TypeConverter",
+      "System.Net.Mail",
+      "System.Collections.Specialized",
+      "System.Security.Cryptography",
+      "System.Linq",
+      "System.Net.NetworkInformation"
+    ]
+  },
+  {
+    "file": "System.Xml.ReaderWriter.dll",
+    "name": "System.Xml.ReaderWriter",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Private.Xml"
+    ]
+  },
+  {
+    "file": "System.Buffers.dll",
+    "name": "System.Buffers",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "Grpc.Core.Api.dll",
+    "name": "Grpc.Core.Api",
+    "version": "2.0.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Grpc.Core.Api",
+      "AssemblyCopyrightAttribute": "Copyright 2019 The gRPC Authors",
+      "AssemblyFileVersionAttribute": "2.67.0.0",
+      "AssemblyInformationalVersionAttribute": "2.67.0\u002B7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2",
+      "AssemblyProductAttribute": "Grpc.Core.Api"
+    },
+    "references": [
+      "netstandard"
+    ]
+  },
+  {
+    "file": "System.Diagnostics.TextWriterTraceListener.dll",
+    "name": "System.Diagnostics.TextWriterTraceListener",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Console",
+      "System.Diagnostics.TraceSource"
+    ]
+  },
+  {
+    "file": "NAPS2.Escl.dll",
+    "name": "NAPS2.Escl",
+    "version": "1.0.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "NAPS2 Software",
+      "AssemblyFileVersionAttribute": "1.0.0.0",
+      "AssemblyInformationalVersionAttribute": "1.0.0",
+      "AssemblyProductAttribute": "NAPS2.Escl"
+    },
+    "references": [
+      "System.Runtime",
+      "System.Collections",
+      "System.Xml.XDocument",
+      "System.Security.Cryptography",
+      "Microsoft.Extensions.Logging.Abstractions",
+      "System.Net.Http",
+      "System.Net.Primitives",
+      "Makaretu.Dns.Multicast.New",
+      "Makaretu.Dns",
+      "System.Memory",
+      "System.Runtime.InteropServices",
+      "System.IO.Compression",
+      "System.Linq",
+      "System.Diagnostics.Process",
+      "System.Console",
+      "System.Threading",
+      "System.Collections.Concurrent",
+      "System.Text.RegularExpressions",
+      "StandardSocketsHttpHandler",
+      "System.Net.Security",
+      "System.ComponentModel.Primitives"
+    ]
+  },
+  {
+    "file": "System.Security.Cryptography.dll",
+    "name": "System.Security.Cryptography",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Formats.Asn1",
+      "System.Runtime.Numerics",
+      "System.Collections.Concurrent",
+      "System.IO.MemoryMappedFiles",
+      "System.Collections.NonGeneric",
+      "System.Net.Primitives",
+      "System.Private.Uri",
+      "System.Collections"
+    ]
+  },
+  {
+    "file": "NAPS2.Jpeg.Binaries.dll",
+    "name": "NAPS2.Jpeg.Binaries",
+    "version": "1.0.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Ben Olden-Cooligan",
+      "AssemblyCopyrightAttribute": "Copyright 2026 Ben Olden-Cooligan (note: jpegli and highway have separate copyrights)",
+      "AssemblyFileVersionAttribute": "1.0.0.0",
+      "AssemblyInformationalVersionAttribute": "1.0.0",
+      "AssemblyProductAttribute": "NAPS2.Jpeg.Binaries"
+    },
+    "references": [
+      "System.Runtime"
+    ]
+  },
+  {
+    "file": "System.Threading.Tasks.Dataflow.dll",
+    "name": "System.Threading.Tasks.Dataflow",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Linq"
+    ]
+  },
+  {
+    "file": "Newtonsoft.Json.dll",
+    "name": "Newtonsoft.Json",
+    "version": "13.0.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Newtonsoft",
+      "AssemblyCopyrightAttribute": "Copyright \u00A9 James Newton-King 2008",
+      "AssemblyFileVersionAttribute": "13.0.4.30916",
+      "AssemblyInformationalVersionAttribute": "13.0.4\u002B4e13299d4b0ec96bd4df9954ef646bd2d1b5bf2a",
+      "AssemblyProductAttribute": "Json.NET"
+    },
+    "references": [
+      "System.Runtime",
+      "System.Runtime.InteropServices",
+      "System.Runtime.Numerics",
+      "System.Xml.ReaderWriter",
+      "System.Xml.XDocument",
+      "System.Collections",
+      "System.Runtime.Serialization.Formatters",
+      "System.ComponentModel.TypeConverter",
+      "System.Linq.Expressions",
+      "System.Reflection.Emit.Lightweight",
+      "System.Reflection.Emit.ILGeneration",
+      "System.Reflection.Primitives",
+      "System.Runtime.Serialization.Primitives",
+      "System.Text.RegularExpressions",
+      "System.Linq",
+      "System.Collections.Concurrent",
+      "System.Diagnostics.TraceSource",
+      "System.ObjectModel",
+      "System.Data.Common",
+      "System.Threading",
+      "System.ComponentModel.Primitives",
+      "System.Text.Encoding.Extensions"
+    ]
+  },
+  {
+    "file": "System.IO.MemoryMappedFiles.dll",
+    "name": "System.IO.MemoryMappedFiles",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Runtime.CompilerServices.Unsafe.dll",
+    "name": "System.Runtime.CompilerServices.Unsafe",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "Microsoft.Win32.Registry.dll",
+    "name": "Microsoft.Win32.Registry",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Collections.Specialized.dll",
+    "name": "System.Collections.Specialized",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.ComponentModel.Primitives"
+    ]
+  },
+  {
+    "file": "System.Security.Cryptography.ProtectedData.dll",
+    "name": "System.Security.Cryptography.ProtectedData",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1026.32716",
+      "AssemblyInformationalVersionAttribute": "10.0.10\u002Bf7d90799ce4ef09a0bb257852a57248d2a8fb8dd"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Runtime.dll",
+    "name": "System.Runtime",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Private.Uri"
+    ]
+  },
+  {
+    "file": "System.Xml.XmlSerializer.dll",
+    "name": "System.Xml.XmlSerializer",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Private.Xml"
+    ]
+  },
+  {
+    "file": "NAPS2.Escl.Server.dll",
+    "name": "NAPS2.Escl.Server",
+    "version": "1.0.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "NAPS2 Software",
+      "AssemblyFileVersionAttribute": "1.0.0.0",
+      "AssemblyInformationalVersionAttribute": "1.0.0",
+      "AssemblyProductAttribute": "NAPS2.Escl.Server"
+    },
+    "references": [
+      "System.Runtime",
+      "System.Security.Cryptography",
+      "Microsoft.Extensions.Logging.Abstractions",
+      "EmbedIO",
+      "System.Xml.XDocument",
+      "NAPS2.Escl",
+      "System.Collections",
+      "Makaretu.Dns.Multicast.New",
+      "Makaretu.Dns",
+      "System.Net.WebHeaderCollection",
+      "System.Collections.Specialized",
+      "Swan.Lite",
+      "System.Linq",
+      "System.Threading",
+      "System.Net.Primitives",
+      "System.Runtime.InteropServices",
+      "System.Collections.Concurrent"
+    ]
+  },
+  {
+    "file": "System.Runtime.Extensions.dll",
+    "name": "System.Runtime.Extensions",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.dll",
+    "name": "System",
+    "version": "4.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.ComponentModel.TypeConverter"
+    ]
+  },
+  {
+    "file": "NAPS2.Tesseract.Binaries.dll",
+    "name": "NAPS2.Tesseract.Binaries",
+    "version": "1.0.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Ben Olden-Cooligan",
+      "AssemblyCopyrightAttribute": "Copyright 2022-2025 Ben Olden-Cooligan (note: tesseract has separate copyrights)",
+      "AssemblyFileVersionAttribute": "1.0.0.0",
+      "AssemblyInformationalVersionAttribute": "1.4.0\u002B95d99470446d1b87610d20dab8b9ab277b39e5dc",
+      "AssemblyProductAttribute": "NAPS2.Tesseract.Binaries"
+    },
+    "references": [
+      "System.Runtime"
+    ]
+  },
+  {
+    "file": "NAPS2.Sdk.dll",
+    "name": "NAPS2.Sdk",
+    "version": "8.5.1.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "NAPS2 Software",
+      "AssemblyCopyrightAttribute": "Copyright 2009-2026 NAPS2 Contributors",
+      "AssemblyFileVersionAttribute": "8.5.1.0",
+      "AssemblyInformationalVersionAttribute": "8.5.1",
+      "AssemblyProductAttribute": "NAPS2.Sdk"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "Microsoft.macOS",
+      "System.Net.WebClient",
+      "System.Private.Uri",
+      "NAPS2.Internals",
+      "System.ComponentModel.EventBasedAsync",
+      "System.Threading.Tasks.Dataflow",
+      "NAPS2.Images",
+      "System.Collections.Immutable",
+      "Google.Protobuf",
+      "zxing",
+      "NAPS2.Escl",
+      "System.Private.Xml.Linq",
+      "System.Linq",
+      "Microsoft.Extensions.Logging.Abstractions",
+      "System.Collections.Concurrent",
+      "System.Net.NetworkInformation",
+      "System.Net.Primitives",
+      "System.Diagnostics.Process",
+      "System.Net.Http",
+      "NAPS2.Images.Mac",
+      "Grpc.Core.Api",
+      "System.Collections.Specialized",
+      "GrpcDotNetNamedPipes",
+      "System.Console",
+      "System.Memory",
+      "System.Security.Cryptography",
+      "System.Runtime.InteropServices",
+      "PdfSharpCore",
+      "System.Private.Xml",
+      "System.IO.Compression",
+      "System.IO.Compression.ZipFile",
+      "System.Text.RegularExpressions",
+      "Microsoft.Win32.Registry"
+    ]
+  },
+  {
+    "file": "System.Security.AccessControl.dll",
+    "name": "System.Security.AccessControl",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Net.Requests.dll",
+    "name": "System.Net.Requests",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Net.WebHeaderCollection",
+      "System.Private.Uri",
+      "System.Net.Primitives",
+      "System.Collections.Specialized",
+      "System.Net.Http",
+      "System.Security.Cryptography",
+      "System.Net.Security",
+      "System.Net.Sockets",
+      "System.Net.NameResolution",
+      "System.Collections",
+      "System.Collections.Concurrent"
+    ]
+  },
+  {
+    "file": "System.Net.WebSockets.dll",
+    "name": "System.Net.WebSockets",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Security.Cryptography"
+    ]
+  },
+  {
+    "file": "System.IO.FileSystem.dll",
+    "name": "System.IO.FileSystem",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Security.Cryptography.Algorithms.dll",
+    "name": "System.Security.Cryptography.Algorithms",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Security.Cryptography"
+    ]
+  },
+  {
+    "file": "Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+    "name": "Microsoft.Extensions.DependencyInjection.Abstractions",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1026.32716",
+      "AssemblyInformationalVersionAttribute": "10.0.10\u002Bf7d90799ce4ef09a0bb257852a57248d2a8fb8dd"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.ComponentModel"
+    ]
+  },
+  {
+    "file": "System.Threading.Thread.dll",
+    "name": "System.Threading.Thread",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Numerics.Vectors.dll",
+    "name": "System.Numerics.Vectors",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "NAPS2.Lib.Mac.dll",
+    "name": "NAPS2.Lib.Mac",
+    "version": "8.5.1.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "NAPS2.Lib.Mac",
+      "AssemblyCopyrightAttribute": "Copyright 2009-2026 NAPS2 Contributors",
+      "AssemblyFileVersionAttribute": "8.5.1.0",
+      "AssemblyInformationalVersionAttribute": "8.5.1",
+      "AssemblyProductAttribute": "NAPS2 - Not Another PDF Scanner"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "Microsoft.macOS",
+      "NAPS2.Lib",
+      "System.Linq",
+      "System.Diagnostics.Process",
+      "NAPS2.Images",
+      "NAPS2.Images.Mac",
+      "Autofac",
+      "NAPS2.Sdk",
+      "NAPS2.Internals",
+      "Eto",
+      "Eto.macOS",
+      "System.Collections.Immutable"
+    ]
+  },
+  {
+    "file": "System.Linq.dll",
+    "name": "System.Linq",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Diagnostics.Process.dll",
+    "name": "System.Diagnostics.Process",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.ComponentModel.Primitives",
+      "System.Collections.NonGeneric",
+      "System.IO.Pipes",
+      "System.Private.Uri",
+      "System.Collections.Specialized"
+    ]
+  },
+  {
+    "file": "Ben.Demystifier.dll",
+    "name": "Ben.Demystifier",
+    "version": "0.4.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "0.4.0.2",
+      "AssemblyInformationalVersionAttribute": "0.4.0\u002Ba88c671bde",
+      "AssemblyCompanyAttribute": "Ben Adams",
+      "AssemblyProductAttribute": "Ben Core"
+    },
+    "references": [
+      "netstandard",
+      "System.Reflection.Metadata",
+      "System.Collections.Immutable"
+    ]
+  },
+  {
+    "file": "System.Diagnostics.Tools.dll",
+    "name": "System.Diagnostics.Tools",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Collections.Immutable.dll",
+    "name": "System.Collections.Immutable",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Collections",
+      "System.Linq"
+    ]
+  },
+  {
+    "file": "System.Diagnostics.Debug.dll",
+    "name": "System.Diagnostics.Debug",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "StandardSocketsHttpHandler.dll",
+    "name": "StandardSocketsHttpHandler",
+    "version": "2.2.0.10",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Tal Aloni",
+      "AssemblyFileVersionAttribute": "2.2.0.10",
+      "AssemblyInformationalVersionAttribute": "2.2.0.10",
+      "AssemblyProductAttribute": "StandardSocketsHttpHandler"
+    },
+    "references": [
+      "netstandard"
+    ]
+  },
+  {
+    "file": "System.Runtime.Serialization.Primitives.dll",
+    "name": "System.Runtime.Serialization.Primitives",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Drawing.Primitives.dll",
+    "name": "System.Drawing.Primitives",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.ObjectModel",
+      "System.ComponentModel.Primitives"
+    ]
+  },
+  {
+    "file": "System.Drawing.dll",
+    "name": "System.Drawing",
+    "version": "4.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.ComponentModel.TypeConverter"
+    ]
+  },
+  {
+    "file": "System.Runtime.Serialization.Formatters.dll",
+    "name": "System.Runtime.Serialization.Formatters",
+    "version": "8.1.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Collections.Concurrent"
+    ]
+  },
+  {
+    "file": "EmbedIO.dll",
+    "name": "EmbedIO",
+    "version": "3.5.2.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Unosquare",
+      "AssemblyCopyrightAttribute": "Copyright (C) Unosquare 2013-2022",
+      "AssemblyFileVersionAttribute": "3.5.2.0",
+      "AssemblyInformationalVersionAttribute": "3.5.2",
+      "AssemblyProductAttribute": "EmbedIO"
+    },
+    "references": [
+      "netstandard",
+      "Swan.Lite"
+    ]
+  },
+  {
+    "file": "Microsoft.macOS.dll",
+    "name": "Microsoft.macOS",
+    "version": "27.0.0.0",
+    "attributes": {
+      "AssemblyInformationalVersionAttribute": "27.0.10722; git-rev-head:d813e2baef17cd3a2bb5adc1e37610258d01cda3; git-branch:release/10.0.1xx"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Drawing.Primitives",
+      "System.Private.Uri"
+    ]
+  },
+  {
+    "file": "System.Diagnostics.StackTrace.dll",
+    "name": "System.Diagnostics.StackTrace",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Reflection.Metadata",
+      "System.Collections.Immutable"
+    ]
+  },
+  {
+    "file": "System.Net.WebClient.dll",
+    "name": "System.Net.WebClient",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.ComponentModel.Primitives",
+      "System.Private.Uri",
+      "System.Net.Primitives",
+      "System.Net.WebHeaderCollection",
+      "System.Collections.Specialized",
+      "System.Net.Requests",
+      "System.ComponentModel.EventBasedAsync",
+      "System.Web.HttpUtility"
+    ]
+  },
+  {
+    "file": "System.Formats.Asn1.dll",
+    "name": "System.Formats.Asn1",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Collections",
+      "System.Runtime.Numerics"
+    ]
+  },
+  {
+    "file": "System.Private.Xml.Linq.dll",
+    "name": "System.Private.Xml.Linq",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12-servicing.26422.108\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.ObjectModel",
+      "System.Private.Xml"
+    ]
+  },
+  {
+    "file": "System.Memory.dll",
+    "name": "System.Memory",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "System.Net.Primitives.dll",
+    "name": "System.Net.Primitives",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib",
+      "System.Private.Uri",
+      "System.Collections.NonGeneric"
+    ]
+  },
+  {
+    "file": "SixLabors.Fonts.dll",
+    "name": "SixLabors.Fonts",
+    "version": "1.0.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Six Labors",
+      "AssemblyCopyrightAttribute": "Copyright \u00A9 Six Labors",
+      "AssemblyFileVersionAttribute": "1.0.1.0",
+      "AssemblyInformationalVersionAttribute": "1.0.1\u002Bbe8883caf13f364292508274d68c39c2455ec3e2",
+      "AssemblyProductAttribute": "SixLabors.Fonts"
+    },
+    "references": [
+      "System.Runtime",
+      "System.Resources.ResourceManager",
+      "System.Runtime.Extensions",
+      "System.Collections",
+      "System.Diagnostics.Debug",
+      "System.Numerics.Vectors",
+      "System.Runtime.InteropServices",
+      "System.IO.Compression.Brotli",
+      "System.Collections.Concurrent",
+      "System.Threading",
+      "System.ObjectModel",
+      "System.Linq",
+      "System.Buffers",
+      "System.IO.Compression",
+      "System.Diagnostics.Tools",
+      "System.Memory",
+      "System.Runtime.CompilerServices.Unsafe",
+      "System.IO.FileSystem",
+      "System.Runtime.InteropServices.RuntimeInformation"
+    ]
+  },
+  {
+    "file": "CommandLine.dll",
+    "name": "CommandLine",
+    "version": "2.9.1.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "gsscoder;nemec;ericnewton76;moh-hassan",
+      "AssemblyCopyrightAttribute": "Copyright (c) 2005 - 2020 Giacomo Stelluti Scala \u0026 Contributors",
+      "AssemblyFileVersionAttribute": "2.9.1.0",
+      "AssemblyInformationalVersionAttribute": "2.9.1",
+      "AssemblyProductAttribute": "CommandLine"
+    },
+    "references": [
+      "netstandard"
+    ]
+  },
+  {
+    "file": "System.Threading.Channels.dll",
+    "name": "System.Threading.Channels",
+    "version": "10.0.0.0",
+    "attributes": {
+      "AssemblyFileVersionAttribute": "10.0.1226.42308",
+      "AssemblyInformationalVersionAttribute": "10.0.12\u002B95017c711e6afc1085133d440e42b4bd78155701"
+    },
+    "references": [
+      "System.Private.CoreLib"
+    ]
+  },
+  {
+    "file": "NAPS2.Sane.Binaries.dll",
+    "name": "NAPS2.Sane.Binaries",
+    "version": "1.0.0.0",
+    "attributes": {
+      "AssemblyCompanyAttribute": "Ben Olden-Cooligan",
+      "AssemblyCopyrightAttribute": "Copyright 2022-2026 Ben Olden-Cooligan (note: binaries have separate copyrights)",
+      "AssemblyFileVersionAttribute": "1.0.0.0",
+      "AssemblyInformationalVersionAttribute": "1.2.3\u002Be620b173d5ac9efdadfa723b5c80ac4aa16fe086",
+      "AssemblyProductAttribute": "NAPS2.Sane.Binaries"
+    },
+    "references": [
+      "System.Runtime"
+    ]
+  }
+]

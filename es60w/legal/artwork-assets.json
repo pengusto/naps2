@@ -1,0 +1,953 @@
+{
+  "scope": "188 embedded files in original local app; no asset has been replaced",
+  "classes": {
+    "F": "118 original FatCow byte matches",
+    "R": "11 visible pixel matches",
+    "H": "18 upstream documented upscales",
+    "O": "15 not individually attributed",
+    "B": "16 NAPS2 branding files",
+    "M": "10 provider logos"
+  },
+  "assets": [
+    {
+      "sha256": "9a2683eafac245dfa848cbc6267542f141b098aca7343cd977a266b095b6741c",
+      "path": "NAPS2.Lib/Icons/accept-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "88e3ac53e6b15dbbbb8bb9a8766d5c795e6294d0cf67ccbea961877581655faa",
+      "path": "NAPS2.Lib/Icons/accept.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "da87e981344895c580f2be444fb506da0cb20df4b5bd4f9d4880d7bfac7caf19",
+      "path": "NAPS2.Lib/Icons/add-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "3ba6618db957c1b2e64392897324ca48880d63cc2985fe7ec14750439a96f575",
+      "path": "NAPS2.Lib/Icons/add.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "f587437249345be131f90049bb97c0d0a1bac681ef91077cd844572ebe6fd7bd",
+      "path": "NAPS2.Lib/Icons/apple_mail-hires.png",
+      "evidence_class": "M"
+    },
+    {
+      "sha256": "1f48f76e879afd2a93e0307e95e5fb2677a149e07643a088a731a26448a6fae4",
+      "path": "NAPS2.Lib/Icons/apple_mail.png",
+      "evidence_class": "M"
+    },
+    {
+      "sha256": "7e066fc66d1259389d01a127471eb75a5eb98c270507723228859eaef374589d",
+      "path": "NAPS2.Lib/Icons/application_cascade-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "088639852ad0d6ed9ed17796b6524c57756ca2fa7ad920aa155fe85530a19530",
+      "path": "NAPS2.Lib/Icons/application_cascade.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "b2c9649d10d19b661f403a335672330daba40e5bd6f75c6500ff3e462e089e6e",
+      "path": "NAPS2.Lib/Icons/application_side_list-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "b7418635c909940033d70b68a7a50885c191748b6028220544da6289efc173c4",
+      "path": "NAPS2.Lib/Icons/application_side_list.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "7a5b04256294ead2e42ccf8f98aecd39b530c1af69ac586eb72f73578cd7a88a",
+      "path": "NAPS2.Lib/Icons/arrow_down-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "bca4eb158c9d630e714bf72cc920f4b572d5e23b920a85f26f5e7119caf81714",
+      "path": "NAPS2.Lib/Icons/arrow_down.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "ebae26728bf4054c4cd2bc8b2d6c364076d3b0dcdbaba49ad3b6d3fbc4ab9b0d",
+      "path": "NAPS2.Lib/Icons/arrow_left-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "ced6b2267fddce021063eb774e78387c6872ba990bb41516ec6e63ef1124c831",
+      "path": "NAPS2.Lib/Icons/arrow_left.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "465a98f6b5d6564bc54cc82d2f43fc54e25639d461a418660614f5bae935a4aa",
+      "path": "NAPS2.Lib/Icons/arrow_out-small.png",
+      "evidence_class": "R"
+    },
+    {
+      "sha256": "0fcb12c3218fa8d818f24a2b230d847adf02bb6f5b286d5bb60ba76dadf39750",
+      "path": "NAPS2.Lib/Icons/arrow_out.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "1b52289bf0eb3c60bb2810e1426320ab3a5c3939947d57b50bb4d11421fbd565",
+      "path": "NAPS2.Lib/Icons/arrow_refresh-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "d0460e44ff1b6e4823cb6593ec540df9345febd446492baec4c0189b00d6a625",
+      "path": "NAPS2.Lib/Icons/arrow_refresh.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "ff8d3907ca7259adca51cb47b2da3131b94d6c6fcab161064222010adf6e836e",
+      "path": "NAPS2.Lib/Icons/arrow_right-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "9629c2513a1d3d99841daec3f68eb51b9105d03a23a01e09420b1c1d24f10bbf",
+      "path": "NAPS2.Lib/Icons/arrow_right.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "ce5b93622ceaa7d4f81f0c47d1f3769d9719a3da71da22f488c865817efde932",
+      "path": "NAPS2.Lib/Icons/arrow_rotate_anticlockwise-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "9fc2fda7106b1778b3b0706cdbbf4530defb2108a431ee470d95b9556d7509ee",
+      "path": "NAPS2.Lib/Icons/arrow_rotate_anticlockwise-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "1080c268f5c32564b8b2484e8ec36637505dcae8427b85fe642a2e09ea573515",
+      "path": "NAPS2.Lib/Icons/arrow_rotate_anticlockwise.png",
+      "evidence_class": "R"
+    },
+    {
+      "sha256": "47685ce2c57aa05792af3c11f37eedab96d719d5dd1f9ffd1dd57ee3824f0ec4",
+      "path": "NAPS2.Lib/Icons/arrow_rotate_clockwise-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "bdd8aff71a4a939e75f8df094f8e26d3141a8fb8c8a99be1a66ddb7227345fd9",
+      "path": "NAPS2.Lib/Icons/arrow_rotate_clockwise.png",
+      "evidence_class": "R"
+    },
+    {
+      "sha256": "e2bc06d82f25011a44fa7a843dc383da3257bfc5d3a30c5cab28093e387c92ce",
+      "path": "NAPS2.Lib/Icons/arrow_switch-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "27ab4b7b05cb1b43cac2c3358e217bd0ac9424b30149840dad8b8ac8231295d5",
+      "path": "NAPS2.Lib/Icons/arrow_switch.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "40568abfb4dd17342fc587be4a846ea745ad74d4890f3fef505414e7b51903d7",
+      "path": "NAPS2.Lib/Icons/arrow_up-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "a254b73f2cda68d943892bb1fb8edff12a355e1771408849c61b182751fa97ff",
+      "path": "NAPS2.Lib/Icons/arrow_up.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "4172a9ace1547fa9c49418f8ab137bbdf09d6cbf0702fd13ca1abd032f812890",
+      "path": "NAPS2.Lib/Icons/ask-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "dadc9c4470e4cd5ee157bd499e0726beae41e2fb4408b791972943a991c0959a",
+      "path": "NAPS2.Lib/Icons/ask.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "c73bf1ea65b424b7956ab9ec48da6560edf4805273ad61f0f4e75c7c2aad62fb",
+      "path": "NAPS2.Lib/Icons/blueprints-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "af82ef5787f8aff1aac848df0a12b05b09219a898e9ce6f35aae6d228327508b",
+      "path": "NAPS2.Lib/Icons/blueprints-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "472c466e94bcd2fef874717ed28addd3d3c69f623e1a6ff1c530ffbacce3b4d9",
+      "path": "NAPS2.Lib/Icons/blueprints.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "fbff0c7547814fa9ab4e48acf74651f1dc1bfc729cb263a05b71089aec9e2f08",
+      "path": "NAPS2.Lib/Icons/broom-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "abe813c9b1129d495e9ad2de555a114c802bf42b45dd5b62f84920c4a5ee144d",
+      "path": "NAPS2.Lib/Icons/broom.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "77e4bf1b71f2742cc645c4cd3998d6f1c6fca7e478e42715f108eff0eb180dd1",
+      "path": "NAPS2.Lib/Icons/cancel-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "03e31685554582ec7331a4f364c72d159da6271742bd23027b26adff05b9fb5e",
+      "path": "NAPS2.Lib/Icons/cancel-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "3feec157c74b46ae11dbc106bf7215beea88f73f28644ea831804f2d4fffd2b1",
+      "path": "NAPS2.Lib/Icons/cancel.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "93d32d076d4f6e4d2570a95bc504592de2cfa1b7244cfd447423f9a2ff380762",
+      "path": "NAPS2.Lib/Icons/close.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "9b15c687dc9e4aebe320b6c8a8e44616657b3134ce2c29ffab0647322ef4d906",
+      "path": "NAPS2.Lib/Icons/cog-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "c405f27fb7f1a5cecb8fa1a776417f2d690d05a1793b054711f13d25c3807aef",
+      "path": "NAPS2.Lib/Icons/cog.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "e8394874a9260f22f75ca2fe03f7138e73f24c91f10f12cfe9f627ce11d9bbef",
+      "path": "NAPS2.Lib/Icons/color_gradient-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "eef8f6c99465567721c8c9c705c34858d8444ffe1674997b936a55c284af180b",
+      "path": "NAPS2.Lib/Icons/color_gradient.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "5202065a6482a9788a182c099f250a168a6c1e273c85d80987eac40cd7176dc7",
+      "path": "NAPS2.Lib/Icons/color_management-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "0e5b374e04effc9be96c831163c15ae4e0011fd2537e5114850b63a978b37d30",
+      "path": "NAPS2.Lib/Icons/color_management.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "80ba9f887425c61c227babdef984dec3dcd5a9e4bbbe23d752d7de404b9b0dc0",
+      "path": "NAPS2.Lib/Icons/color_wheel-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "b5d4ea910ad7404a795cd631a52a00003e82d7d572b3fc529e71efdad7442b2e",
+      "path": "NAPS2.Lib/Icons/color_wheel.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "43b50ae7d26873e295f8ba35c05df75c4d8e185dbbcd7bb5498194e3ae25a1c0",
+      "path": "NAPS2.Lib/Icons/column_double-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "aea9d65f70541f8156af69de73a4d90ef056ca326c154c7acb609171822c9205",
+      "path": "NAPS2.Lib/Icons/column_double.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "dd89ce4cf45c88a63ae36b5c78870b159e7d28db099e0dca69c562e4b6ca573b",
+      "path": "NAPS2.Lib/Icons/combine-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "c412075436605f0110c6e507033d439149c13542b0e279b19e20011bfa17204e",
+      "path": "NAPS2.Lib/Icons/combine.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "c2ac6a3ce75f74f26e055b95cf002aebd0ffb658386b25adf6bb0f82c4f99cd4",
+      "path": "NAPS2.Lib/Icons/combine_hor-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "eca9534faaa5a52b75b4d2d5aac9a492bb5b0c5309315446fe70814a57e60155",
+      "path": "NAPS2.Lib/Icons/combine_hor.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "c8db7c4d944f8567edbf4debaa4338d08352cf5e62f70b308a1ba423c1711a8d",
+      "path": "NAPS2.Lib/Icons/contrast-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "c0c3c2372c0a7915dca943dd58ead680ac02d4b4d0d6ae6fa1c29ff8738963ab",
+      "path": "NAPS2.Lib/Icons/contrast.png",
+      "evidence_class": "R"
+    },
+    {
+      "sha256": "e627632c808b8529b433a415b223f2a884d650b722e333ca98f2b05808d0552d",
+      "path": "NAPS2.Lib/Icons/contrast_high-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "52157d28d0fb322269191834c09688f8e13ad5425a085dd04eae85d84b4f479c",
+      "path": "NAPS2.Lib/Icons/contrast_high.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "adc112a5ca40528eee6070f8cc97f97ac4127500c516b2e86231c425cd285e9e",
+      "path": "NAPS2.Lib/Icons/contrast_with_sun-small.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "655911e4f76e392ebe29cc8f2f41b2a931efd00aa64ba9e055ac0cd3293ab7c1",
+      "path": "NAPS2.Lib/Icons/contrast_with_sun.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "f96abf33d7edf4c4da208f74dd65154c13230ea8d249e88e6a604975eafd204d",
+      "path": "NAPS2.Lib/Icons/control_play_blue-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "d5d7e4d050baa84c616643f7a9a3068014f3a3b724ebddc19e9bbb9646fe9dc3",
+      "path": "NAPS2.Lib/Icons/control_play_blue-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "700c1539e7f4713807dc1428bafa0b86fa5f753b331e174e306d04ba5114362b",
+      "path": "NAPS2.Lib/Icons/control_play_blue.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "eaad37f80a88e470364973a2236e9fe4f6d19079b739ec731f7a02d26556a8c9",
+      "path": "NAPS2.Lib/Icons/copy-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "c06c37d7e9a1ed43f7538eea6b86ef94c7186466f6d7988a98c70189a0a17031",
+      "path": "NAPS2.Lib/Icons/copy.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "5756d0f760d562858a2a551418539a5e0f88e45c3c3d6fe3b63eaa8c5f90455b",
+      "path": "NAPS2.Lib/Icons/cross-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "90e43f3101637c878b993641d87610047390c8ce5f6630484cf56f5e45083fbf",
+      "path": "NAPS2.Lib/Icons/cross-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "14912c25992125463cd7d82e7d89ed7c514969f56d3f51c7714d14646fb17669",
+      "path": "NAPS2.Lib/Icons/cross.png",
+      "evidence_class": "R"
+    },
+    {
+      "sha256": "e0244becf4d1b02970675f81d27289b2696b1c7be4f4615d1f3c64c0b5c1ce5d",
+      "path": "NAPS2.Lib/Icons/device-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "0eb59e83e776ee4c4d0c7ae4d540b3639ac7cc67dc8f3ac91c50c49d3d91418f",
+      "path": "NAPS2.Lib/Icons/device.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "456e8509b2389ddaec8875bf35f6698c1315a53768b47c579577b450ed484baa",
+      "path": "NAPS2.Lib/Icons/document-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "17cac3cf58fc6338b5050ad26c6f2478c9ee1a8bcd6568832a8131ae68c9cdf7",
+      "path": "NAPS2.Lib/Icons/document.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "3e597726ddd1467fc14b43e66841a2d354a62e05bb1f02c8a2566de5878b6874",
+      "path": "NAPS2.Lib/Icons/draw_ellipse-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "fc7ca64bf217c4065dbad3724fa6c1f7b2494aad897a10563571e937d9d0e66c",
+      "path": "NAPS2.Lib/Icons/draw_ellipse.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "b94316b53c9787945527f11bae8d510ed4dd921506c7c6c58110d2d1899fbd86",
+      "path": "NAPS2.Lib/Icons/email-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "b7b451ac6371a1101aee9feb5044c167bdf0878f9f3029d816ba7cfc2e26b6f8",
+      "path": "NAPS2.Lib/Icons/email.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "6944b88a094f8e121070bd90cbe9982087bca34f02dcb530afd9c1d0f5ae6b5c",
+      "path": "NAPS2.Lib/Icons/email_attach-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "9f655e7e04e4fd166da033611aa9498c8079e04702784e1d0ba33193a5002a8b",
+      "path": "NAPS2.Lib/Icons/email_attach.png",
+      "evidence_class": "R"
+    },
+    {
+      "sha256": "80611daa4882c8c3033c86a66ab9227eaf28e6d8cc0dfc8023bbe28f5b49f8e5",
+      "path": "NAPS2.Lib/Icons/email_setting.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "2a8b045657fc840a119466cbdac4936ef364a8d133609d8ab5cc4a09d5bb4ae8",
+      "path": "NAPS2.Lib/Icons/exclamation-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "ded1bf0150eb52de450b011b2c426a49708f85eefb08eb5ade1c58fd306ab136",
+      "path": "NAPS2.Lib/Icons/exclamation.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "77dd9d833690bfce339a9f424ff770154c34de394116de0df7d2591c98d866f2",
+      "path": "NAPS2.Lib/Icons/favicon.ico",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "4fb78910d0e286c25d591f22b36ba6169e3c06dbda863bb7aab49a52c3170479",
+      "path": "NAPS2.Lib/Icons/file_extension_pdf-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "97142ba76871f1b9528ac70d35efd026005e61a0594304cc5bcb0fa9ca072d8b",
+      "path": "NAPS2.Lib/Icons/file_extension_pdf.png",
+      "evidence_class": "R"
+    },
+    {
+      "sha256": "307d5bd804ab9f2fed54815a241cc289ed3ca46b77437b73153720e94bf8fc87",
+      "path": "NAPS2.Lib/Icons/file_extension_pdf_small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "9568f9cc56c547d4aa67cd64201d723d7075ba600169efeeba118d708fd4ac96",
+      "path": "NAPS2.Lib/Icons/folder_picture-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "4a5d59d35576728f317b98b1d2206dc6bb9501f116f9fb89dc7ad6561020c0df",
+      "path": "NAPS2.Lib/Icons/folder_picture.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "8a1c028eb91315c71ca19f53cfecc4b152902d401b0cc9ecf819f5b227e4001a",
+      "path": "NAPS2.Lib/Icons/gmail-hires.png",
+      "evidence_class": "M"
+    },
+    {
+      "sha256": "e8b5a6e8a11ec2655b9b537d84b94185bc64a4e74124662f05fb3f746e924b8f",
+      "path": "NAPS2.Lib/Icons/gmail.png",
+      "evidence_class": "M"
+    },
+    {
+      "sha256": "c83fabe32bc5e524a5817cf869ec375ce78b3fe35a88dc18d9f4b8cf5288a66b",
+      "path": "NAPS2.Lib/Icons/help-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "f56a2cace606852dfb13bcbbc0ca3fecd9d8af17a32274247389a2574651d739",
+      "path": "NAPS2.Lib/Icons/hourglass_grey.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "a58cefbf74621d02eec56c64c36f594dbc2d9325f3bbf3db32c4a76a2f862d18",
+      "path": "NAPS2.Lib/Icons/information-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "67d05c80c87ef9e84b9c030aacc60d94c1102c0de14bc43a70c4f094c627196d",
+      "path": "NAPS2.Lib/Icons/information.png",
+      "evidence_class": "R"
+    },
+    {
+      "sha256": "11e55ce68558b4b7284ffce9ec3d769c1618968272a080fcffa015ae03eacdaa",
+      "path": "NAPS2.Lib/Icons/key-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "a2ad30b6a6951434a49a550a8aea358068c75b09cf555c5e15fb611338c4cb5a",
+      "path": "NAPS2.Lib/Icons/key.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "36447b6a5ed8f3dfe7d78b0932200fd30dedfd32fce831486a604d5b95198af9",
+      "path": "NAPS2.Lib/Icons/keyboard-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "dac231e2cfc1ee06ae87e2f13686ad2e99b66aeb659f07d6cb68201b79dc7b51",
+      "path": "NAPS2.Lib/Icons/keyboard.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "0ab8a21a433128ba0e49848756241fa5d7fadd1e9a476e1c5df79e0499468881",
+      "path": "NAPS2.Lib/Icons/large_tiles-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "764d4cd8f68b48c56ac6c752e81c0279ce9028bea103daff329fccc324348be0",
+      "path": "NAPS2.Lib/Icons/large_tiles.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "9c43fad6cb3c9b104a16c52d5788fd01f2fc0dfd7c914afe573d301d725cd18f",
+      "path": "NAPS2.Lib/Icons/mail_yellow-hires.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "2f1a23b4aaec2eb8d62429f8732b4941da39abcef6f5be98f95fb7614afd35b2",
+      "path": "NAPS2.Lib/Icons/mail_yellow.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "db3ddc1cf06932c9e9d4aa1c8c8ce4683c9375317609eba1566224b165c7d51c",
+      "path": "NAPS2.Lib/Icons/network_ip-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "5869e9a8a782399cd6713ed30222b1b5cb0378f52c8edd58d0a27a8f194971bf",
+      "path": "NAPS2.Lib/Icons/network_ip-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "1d7db14402a0f6da56f52b45065ea4a482343dc3861134af85d50c0ae0dfee63",
+      "path": "NAPS2.Lib/Icons/network_ip.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "f7b5379a2735a520fa2549c845ff9fc00d56d0b41178c216e826bd0e3413d526",
+      "path": "NAPS2.Lib/Icons/outlooknew-hires.png",
+      "evidence_class": "M"
+    },
+    {
+      "sha256": "ca38df6c47191cd2ff90ede72b9b16801cafca065f3fadb52fe244a9ebd82841",
+      "path": "NAPS2.Lib/Icons/outlooknew.png",
+      "evidence_class": "M"
+    },
+    {
+      "sha256": "b12013347b5e5644feeb3b3b24f6cea09ce99eccab6230855d2b607a183dafa9",
+      "path": "NAPS2.Lib/Icons/outlookweb-hires.png",
+      "evidence_class": "M"
+    },
+    {
+      "sha256": "752c76e7ef23460d0b52d3290c55d9b143fda80c648343bd5fab513c7e9c4b12",
+      "path": "NAPS2.Lib/Icons/outlookweb.png",
+      "evidence_class": "M"
+    },
+    {
+      "sha256": "114d1b3e1b8196c085ae5c7d0ef504d6fdf12fd831cc144381abb78e0021f733",
+      "path": "NAPS2.Lib/Icons/paste-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "5d11f6a2fc13ee066b4292a6198b02c462a54674c1d9eadb9dc35db60bcfed56",
+      "path": "NAPS2.Lib/Icons/paste.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "2564eb7b60a4b7eb05508dd37b0de2ee7f260774b4d672b744e0059351b47fa1",
+      "path": "NAPS2.Lib/Icons/pencil-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "9e0ca7b8858354e3d5fd9b03159176e743a8d0a0310187beabe3ca62c4d02d0b",
+      "path": "NAPS2.Lib/Icons/pencil.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "1a285987b963e0c9d5eed1b6c406b11a7d43bf8486075cf460e998a256671417",
+      "path": "NAPS2.Lib/Icons/picture-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "43d7931a428bd31e10007d33cda15033eff3633717e82f7918244e591262e618",
+      "path": "NAPS2.Lib/Icons/picture.png",
+      "evidence_class": "R"
+    },
+    {
+      "sha256": "ce1e89d88543521fb8c93fc2d2721389304118a61048a7d430efde6016e89fcf",
+      "path": "NAPS2.Lib/Icons/picture_edit-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "035deb2e7124ea3893ec1c29e0900ac763ab86ab007389467ff717e84f764336",
+      "path": "NAPS2.Lib/Icons/picture_edit.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "adc29ed90c02a93cad408f0be0776e6af26f1a219a0b587b32463d6ca312a456",
+      "path": "NAPS2.Lib/Icons/pictures-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "4d8053ff7a2c3e8b48e9d9e728c2dd4369df07b794c2019bf3b855da8eac03eb",
+      "path": "NAPS2.Lib/Icons/pictures.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "0d90ec9585f1bfb49b7c44a1795155febc446cfac91a6b7763e4de209f6ed63b",
+      "path": "NAPS2.Lib/Icons/printer-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "c133b31a564af53b6e831db333a6107ce8bdb844e773b7dbbf71f2931f0f2c2f",
+      "path": "NAPS2.Lib/Icons/printer.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "a5648253487a4072fb1a3e94b356cce9375e9a820e69b5dbdbb80fede4db7eae",
+      "path": "NAPS2.Lib/Icons/redo-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "f2435dc846c23de366339d82981ebb4b85b69496b233c197b17196f5919483a1",
+      "path": "NAPS2.Lib/Icons/redo.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "9ba55ccd393451c765f251a4d6814a29673611ce3a88f84f8219a22d54624e18",
+      "path": "NAPS2.Lib/Icons/scanner-128.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "943eddb7676854aec2d03a372c13002f66c18504651f4195ea2ea628090053b4",
+      "path": "NAPS2.Lib/Icons/scanner-16-rev2.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "e1f8b5eac5d710baccd8aeefd8a3dcb6323874c15fdcfa537899a595918f7391",
+      "path": "NAPS2.Lib/Icons/scanner-32-gray.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "fe20c99efa89f3efab24b9b9bb6b5afa70da85a6a483fdfff66abf7afb9657b8",
+      "path": "NAPS2.Lib/Icons/scanner-32-rev2.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "a3981062c649fb28c90d554fd1af72af8b4c7db2e3d3c547a7f2798ad897a772",
+      "path": "NAPS2.Lib/Icons/scanner-48-rev2.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "9bbe3e82d6825247a5fbd5745905ed49fd221d663d690e1185a351df5a9f21ad",
+      "path": "NAPS2.Lib/Icons/scanner-64-rev2.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "66bef4f1d9c8f60d65e8c9085dc201d2eabb9819dd4ebed32f04a14f0a6ef642",
+      "path": "NAPS2.Lib/Icons/scanner-96.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "d28252c095f2f35a106ca4db478bda2c483dc69ca3a6111208d2e8beb73baf82",
+      "path": "NAPS2.Lib/Icons/scanner-default-hires.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "6916e262c848d3fe5213023866788832032a0852f2ce078722a153b88b992695",
+      "path": "NAPS2.Lib/Icons/scanner-default-rev2.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "ed19c99ebcbf7724eaae569b5d6d16b7ba81d0b5ca09d87a3ec48e287a3dc4d4",
+      "path": "NAPS2.Lib/Icons/scanner-lock-default-hires.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "209450b5a487d0536bfbfdb345cab1cb14c38126399fe24327da015a5ed3e07c",
+      "path": "NAPS2.Lib/Icons/scanner-lock-default-rev2.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "b2573b5e5cac635fe4e430fab7f1e63ca5fc760645d749f1368337afe121f5eb",
+      "path": "NAPS2.Lib/Icons/scanner-lock-hires.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "3d40951c3bd10e35d2ee74b645c661fa5ab1e4c9323802c6e5e72e8936d78699",
+      "path": "NAPS2.Lib/Icons/scanner-lock-rev2.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "26cfe70bbc68fb6abdcec426274f667e7aaf22e921242682eff37368b59d4c56",
+      "path": "NAPS2.Lib/Icons/scanner-wireless-hires.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "5db7e7d76e615673e82917cd54a5ff06c1aec639c057854405101a70c9d9c02e",
+      "path": "NAPS2.Lib/Icons/scanner-wireless-rev2.png",
+      "evidence_class": "B"
+    },
+    {
+      "sha256": "1ee029daf81ca30c6912936f235de6fada2b061533ed4c8e1d0501d7440798c1",
+      "path": "NAPS2.Lib/Icons/shape_align_bottom-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "ea7e1a978029e222526662d9823e260661b932547fd13aa58171baf8c1794d5d",
+      "path": "NAPS2.Lib/Icons/shape_align_bottom.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "2854d2f793c369f8785c6bab4b225f2bfa30f134dfb59fa8fce3bffc343f8ced",
+      "path": "NAPS2.Lib/Icons/shape_align_center-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "dc4f90045953654ef91a495b878cd0510c48993d518550b656990cdfb450523e",
+      "path": "NAPS2.Lib/Icons/shape_align_center.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "73e94d048403fd0c9c27b96354fc6e31a9a2385eac1cdd048950f2444b871995",
+      "path": "NAPS2.Lib/Icons/shape_align_left-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "0c85940d82488d086212ff866198026963457ba761815ba766c25204c096af82",
+      "path": "NAPS2.Lib/Icons/shape_align_left.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "118136bb552de12677b21aa5a0584ba7decacd6b5528391ad2629a2cfb310e81",
+      "path": "NAPS2.Lib/Icons/shape_align_middle-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "eb9e8ea2474816dbe2ba6d0a547fdf2cdcf3cf6146a9cf05a3e7eeadd0270396",
+      "path": "NAPS2.Lib/Icons/shape_align_middle.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "a455ab800830d175b463bb3c0eff35951b3391f539623280b7ee60e5803f62d6",
+      "path": "NAPS2.Lib/Icons/shape_align_right-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "9747cb7bc7e6982afd91d4b3a462f1de839b3690d8ded6a957b87d8d12dbfd0b",
+      "path": "NAPS2.Lib/Icons/shape_align_right.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "9156ffac2303e327f71fd167558d1f2ab01b59803ab87f350daa651fcff488d9",
+      "path": "NAPS2.Lib/Icons/shape_align_top-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "afc882d72ff06173382c4495cc1ffea43e9e829d86586d877b2647d48b97eca6",
+      "path": "NAPS2.Lib/Icons/shape_align_top.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "c8bb69a288f6085f0e07f2573967d11ec3a8f10c838379851bba8d6ab7367074",
+      "path": "NAPS2.Lib/Icons/sharpen-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "ff6388311aacab7a66ece95480002bbb09623f2ff41129c30247a203cff28ad0",
+      "path": "NAPS2.Lib/Icons/sharpen.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "ac78f9c0b4c7d24572c5d2f382f6c35e969012c22963b3b8e2bd5092d922c4a9",
+      "path": "NAPS2.Lib/Icons/split-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "e624b876873afdcecb557f23468f83013f9ef975ff17984ff94e6174928d4ec5",
+      "path": "NAPS2.Lib/Icons/split.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "8e0bce343cca48ae9ed48a0fb574100dbc302f9a13ed94b96ee71725b57b87e6",
+      "path": "NAPS2.Lib/Icons/split_hor-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "3d3ecd7ab7a00a0c5fcd751e4fdcff1b54cfb101ec700292a211fa51bd99e2e8",
+      "path": "NAPS2.Lib/Icons/split_hor.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "fc5af91f1abaac83e1704c1db4cd67897282db33f932839e0cf787a09f75c7d0",
+      "path": "NAPS2.Lib/Icons/spring-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "e3cf3ffc583308240621fc644440533c699ce1cdc221c47f184cf639519898bb",
+      "path": "NAPS2.Lib/Icons/spring.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "d5a372dd7a1239edbce0e3f06977a0b2dc04f992ad488541d8b8f3571bf1c3c8",
+      "path": "NAPS2.Lib/Icons/switch-small.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "50c3d94746171cb458481d13598b1c472549a010b1020efb4d8d13d4cdea0cf4",
+      "path": "NAPS2.Lib/Icons/switch.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "e88aee4e2433395482a593eb0411288c22ca78067f8fdd3c1e5ece2c81524077",
+      "path": "NAPS2.Lib/Icons/switch_hor-small.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "8025bc0d583634d39d5a8720584d8db4ddaf6a58a7fe8289c75fa55b41db0fc8",
+      "path": "NAPS2.Lib/Icons/switch_hor.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "ecf801b851e3980f27ff7b40fb5553812f60690d00b6903719b6c900a9317dac",
+      "path": "NAPS2.Lib/Icons/text-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "979a1ccfbfc4cf02e4dec1a716571037a4d4c95a216216771c39529020a1e48b",
+      "path": "NAPS2.Lib/Icons/text-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "a514ea3356032fb4fb613f1311b30914a477cc7e1815ccbe47293e73d3ccc0c8",
+      "path": "NAPS2.Lib/Icons/text.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "62abe3df4fd6c96ebce7c70ddb1ad89a3337ce1a5ff1f7bb9cebd26f9c314a81",
+      "path": "NAPS2.Lib/Icons/text_align_justify-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "0c93da742cb1cdd6e69cbdd37d1501202118fbae9d0297bbb9743e050a46f3f0",
+      "path": "NAPS2.Lib/Icons/text_align_justify.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "737ed8f51a0db101ce30db55bfe8be30a09b7e595c45f015dac5a03398a93758",
+      "path": "NAPS2.Lib/Icons/thunderbird-hires.png",
+      "evidence_class": "M"
+    },
+    {
+      "sha256": "1f3b939b1d356958b7d1a40830ec9780a8d249a1b04a17fb80b65162f02b7626",
+      "path": "NAPS2.Lib/Icons/thunderbird.png",
+      "evidence_class": "M"
+    },
+    {
+      "sha256": "88af95df19b8ddffcbe63b38457ac039725b85373d3039ad5393e6503a936b0a",
+      "path": "NAPS2.Lib/Icons/tick-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "db0179654313473577ae3605e1aef538ae23cd46e5e1b14ea897aa1d112cfbd0",
+      "path": "NAPS2.Lib/Icons/tick.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "fd07f7bc56bc91e251c45e640646c27a9e9c146d7b36471184f3d5dbc0fca1f2",
+      "path": "NAPS2.Lib/Icons/transform_crop-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "8ee3b794983248699a7710abd3570be15567a219a7b08a0f5c48ed1ee025ebe2",
+      "path": "NAPS2.Lib/Icons/transform_crop.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "edd7e56747525dee4740ed19bdc60f043bd38155eeb1c40fd23f7c34495e37b4",
+      "path": "NAPS2.Lib/Icons/undo-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "5e4b154f774f1697edd943ac7013263d2231d214d41e518fe632c24b875f6008",
+      "path": "NAPS2.Lib/Icons/undo.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "2d049effef3a7733fb95e1ad7ed205b6ed777ff75f92de0344a557be596e16aa",
+      "path": "NAPS2.Lib/Icons/weather_sun-small.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "eb0756d9b8c437336a39d733803e71ba8f921388cc979e0d6c8c8b0fc181e239",
+      "path": "NAPS2.Lib/Icons/weather_sun.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "882f21fbdb00536e019ad6e402af5db1f63209d6585d26f3b150cc87c207362b",
+      "path": "NAPS2.Lib/Icons/wireless-small.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "6325381cf6f0dccdea2064fa1d7f5279f6a9e127c1f3d67fbc58640cbd3f9468",
+      "path": "NAPS2.Lib/Icons/wireless.png",
+      "evidence_class": "O"
+    },
+    {
+      "sha256": "4bc9e192c1f08d4197dcd65ba00a9639767181c77255729e6ae55a0331680eeb",
+      "path": "NAPS2.Lib/Icons/world-hires.png",
+      "evidence_class": "H"
+    },
+    {
+      "sha256": "c129f5232be156507fa3a4c94823678de45d41f32203e663c41bdd3a58f08097",
+      "path": "NAPS2.Lib/Icons/world.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "912abe6f62e51c4f7431663b8f09fabd254461af44ab7ab10c6e790d20a0e4c7",
+      "path": "NAPS2.Lib/Icons/zoom-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "cb5559c81922f0b5708c585e0463c191ebf9d2c5f579715d26b3a1f32964615b",
+      "path": "NAPS2.Lib/Icons/zoom.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "0551e7b917477c59d91b3cb30f65bf676e8f3c6253da6f76a81e2d42ba05c5e7",
+      "path": "NAPS2.Lib/Icons/zoom_actual-small.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "1d50e0639254e930c329afa3c6b0df92590d54d4fa3fa62a4e521085793da338",
+      "path": "NAPS2.Lib/Icons/zoom_actual.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "d3e8d5f054f2ec3da639299201d930b95baa85175b6d5d4ad753a69076d412b2",
+      "path": "NAPS2.Lib/Icons/zoom_in-small.png",
+      "evidence_class": "R"
+    },
+    {
+      "sha256": "f516ed335aa42a0c4ee1d6ac98c8197dc7fdf09dfe1d3fd3231f59bf855b35f1",
+      "path": "NAPS2.Lib/Icons/zoom_in.png",
+      "evidence_class": "F"
+    },
+    {
+      "sha256": "a389214dae73fc86e65a9c1c347b7a3e96d7572799c4a0627024bcd56e31c404",
+      "path": "NAPS2.Lib/Icons/zoom_out-small.png",
+      "evidence_class": "R"
+    },
+    {
+      "sha256": "ac4b8c2dd8854b3ee5da06b9bc0e5f57b7649ea6c8db6844b13ac0014e93a038",
+      "path": "NAPS2.Lib/Icons/zoom_out.png",
+      "evidence_class": "F"
+    }
+  ]
+}

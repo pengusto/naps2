@@ -1,0 +1,8 @@
+{
+  "file": "NAPS2.Sdk/Pdf/GlyphlessFont.ttf",
+  "sha256": "c7845420925a23d88ed830a63957b8af85a66a8daf8d9fc90e843673b2ef1a59",
+  "matching_primary_source": "https://github.com/tesseract-ocr/tesseract/blob/64eab6c457b2337dd690746a5fde5c222b40d5f8/tessdata/pdf.ttf",
+  "licence": "Apache-2.0",
+  "root_licence": "https://github.com/tesseract-ocr/tesseract/blob/64eab6c457b2337dd690746a5fde5c222b40d5f8/LICENSE",
+  "exact_bytes_match": true
+}

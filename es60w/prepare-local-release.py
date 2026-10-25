@@ -3,6 +3,7 @@
 
 Requires a committed clean source checkout and a separately built/verified app.
 All outputs are new and outside Git. Existing apps and settings are read only.
+Replay the mbox with git am --keep-cr to preserve original CRLF licence bytes.
 """
 import argparse
 import hashlib
@@ -32,6 +33,8 @@ def main():
     p.add_argument('--app', type=Path, required=True)
     p.add_argument('--downloads', type=Path, required=True)
     p.add_argument('--package-inputs', type=Path, required=True)
+    p.add_argument('--source-supplement', type=Path,
+        help='Recovered third-party sources matching legal/source-supplement.lock.json')
     p.add_argument('--output', type=Path, required=True)
     a = p.parse_args()
     here = Path(__file__).resolve().parent
@@ -42,6 +45,9 @@ def main():
     status = subprocess.check_output(['git', 'status', '--porcelain'], cwd=repo, text=True)
     if status.strip():
         p.error('Commit the source snapshot before making the source kit')
+    supplement_lock = here / 'legal/source-supplement.lock.json'
+    if supplement_lock.exists() and not a.source_supplement:
+        p.error('This revision requires --source-supplement; do not omit recovered sources')
     tracked = subprocess.check_output(['git', 'ls-files', 'es60w'], cwd=repo, text=True).splitlines()
     generated = [n for n in tracked if any(x in Path(n).parts for x in ['bin', 'obj', '__pycache__'])]
     if generated:
@@ -134,6 +140,18 @@ signing/first-launch items have been closed. It is ad-hoc signed, not notarized.
         subprocess.run(['git', 'format-patch', '--stdout', '--no-signature',
             '3481963789af647a9f9e0a19176a0d2f7f593b5d..' + head], cwd=repo, stdout=stream, check=True)
     hashes = {f.name: sha(f) for f in [dmg, source_archive, mbox]}
+    if supplement_lock.exists():
+        supplemental_archive = out / (PREFIX + '-third-party-sources.tar.gz')
+        root = a.source_supplement.resolve(strict=True)
+        recovered = json.loads(supplement_lock.read_text())
+        with tarfile.open(supplemental_archive, 'w:gz', compresslevel=6) as tar:
+            tar.add(supplement_lock, arcname='third-party-sources/source-supplement.lock.json')
+            for r in recovered['sources']:
+                f = root / r['file']
+                if not f.resolve().is_relative_to(root) or sha(f) != r['sha256']:
+                    raise RuntimeError('Recovered third-party source missing or changed')
+                tar.add(f, arcname='third-party-sources/' + r['file'])
+        hashes[supplemental_archive.name] = sha(supplemental_archive)
     (out / 'SHA256SUMS').write_text(''.join(h + '  ' + n + '\n' for n, h in hashes.items()))
     (out / 'RELEASE-MANIFEST.json').write_text(json.dumps({'version': VERSION,
         'branch': 'es60w-macos-release', 'source_head': head, 'artifacts_sha256': hashes,

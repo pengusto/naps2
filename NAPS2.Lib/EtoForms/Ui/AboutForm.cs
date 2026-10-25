@@ -64,6 +64,10 @@ public class AboutForm : EtoDialogBase
                         ).Padding(left: 10)
                 ),
                 GetUpdateWidget(),
+                Paths.FreeScannerResources is { } freeResources
+                    ? C.Button("Lizenzen & Quellen", () => ProcessHelper.OpenUrl(
+                        new Uri(Path.Combine(freeResources, "LicenseReview", "index.html")).AbsoluteUri))
+                    : C.None(),
                 C.TextSpace(),
                 C.NoWrap(string.Format(UiStrings.CopyrightFormat, AssemblyHelper.COPYRIGHT_YEARS)),
                 Config.AppLocked.Has(c => c.EnableDebugLogging)
@@ -96,3 +100,5 @@ public class AboutForm : EtoDialogBase
 #endif
     }
 }
+
+// Modified by Pengusto on 2026-10-25: expose bundled licence/source notices for the ES60W build.

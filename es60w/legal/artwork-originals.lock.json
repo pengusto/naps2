@@ -1,0 +1,20 @@
+[
+  {
+    "url": "https://web.archive.org/web/20160301120638id_/http://www.fatcow.com/free-icons",
+    "file": "artwork-originals/fatcow-original.html",
+    "sha256": "100509ba3cd993720bf6d133b372a79560067d537e89c4b25d9171ab1458aede",
+    "bytes": 16342
+  },
+  {
+    "url": "https://web.archive.org/web/20140702163659id_/http://www.fatcow.com/images/fatcow-icons/fatcow-hosting-icons-3.9.2-all.zip",
+    "file": "artwork-originals/fatcow-official-original.zip",
+    "sha256": "7422e7aa7b3bc6ce21a937287a27501c5a5307dfc978a34e978d8d9948f80a9e",
+    "bytes": 32652636
+  },
+  {
+    "url": "https://creativecommons.org/licenses/by/3.0/us/legalcode",
+    "file": "artwork-originals/cc-by-3.0-us-legalcode.html",
+    "sha256": "f4d77c7b7e4564d4e8691409d3a656047dae972377c106e5640434fb1418306f",
+    "bytes": 36644
+  }
+]

@@ -1,0 +1,390 @@
+{
+  "sources": [
+    {
+      "repository": "google/jpegli",
+      "commit": "031a0077f5799a6041004267fc12b956c1f52a20",
+      "url": "https://codeload.github.com/google/jpegli/tar.gz/031a0077f5799a6041004267fc12b956c1f52a20",
+      "file": "archives/google--jpegli-031a0077f5799a6041004267fc12b956c1f52a20.tar.gz",
+      "sha256": "269b3a75d6b2da2351f7fb2d642043f60f9b6d1bd5839f20c0d7c569be073367",
+      "scope": "pinned wrapper submodule source; not independent binary rebuild",
+      "has_submodule_declarations": true,
+      "retained_local_archive": true
+    },
+    {
+      "repository": "DanBloomberg/leptonica",
+      "commit": "63aef18d98432b8582a1565e241f7bd2ee9cc8d9",
+      "url": "https://codeload.github.com/DanBloomberg/leptonica/tar.gz/63aef18d98432b8582a1565e241f7bd2ee9cc8d9",
+      "file": "archives/DanBloomberg--leptonica-63aef18d98432b8582a1565e241f7bd2ee9cc8d9.tar.gz",
+      "sha256": "beb4804d5cc9d274986e22b01a9c7e1ad4858d8487bfe9215728eb5e906f07dc",
+      "scope": "pinned wrapper submodule source; not independent binary rebuild",
+      "has_submodule_declarations": false,
+      "retained_local_archive": true
+    },
+    {
+      "repository": "libjpeg-turbo/libjpeg-turbo",
+      "commit": "8ecba3647edb6dd940463fedf38ca33a8e2a73d1",
+      "url": "https://codeload.github.com/libjpeg-turbo/libjpeg-turbo/tar.gz/8ecba3647edb6dd940463fedf38ca33a8e2a73d1",
+      "file": "archives/libjpeg-turbo--libjpeg-turbo-8ecba3647edb6dd940463fedf38ca33a8e2a73d1.tar.gz",
+      "sha256": "ed729127097af5000bfeddc6b3e679c4363bb1618ebfc07efb6b47f576471b4b",
+      "scope": "pinned wrapper submodule source; not independent binary rebuild",
+      "has_submodule_declarations": false,
+      "retained_local_archive": true
+    },
+    {
+      "repository": "glennrp/libpng",
+      "commit": "51f5bd68b9b806d2c92b4318164d28b49357da31",
+      "url": "https://codeload.github.com/glennrp/libpng/tar.gz/51f5bd68b9b806d2c92b4318164d28b49357da31",
+      "file": "archives/glennrp--libpng-51f5bd68b9b806d2c92b4318164d28b49357da31.tar.gz",
+      "sha256": "51011aa8b29888a1856e1542e0642ea6c963b35b0798c411e21071164046a4f2",
+      "scope": "pinned wrapper submodule source; not independent binary rebuild",
+      "has_submodule_declarations": false,
+      "retained_local_archive": true
+    },
+    {
+      "repository": "tesseract-ocr/tesseract",
+      "commit": "64eab6c457b2337dd690746a5fde5c222b40d5f8",
+      "url": "https://codeload.github.com/tesseract-ocr/tesseract/tar.gz/64eab6c457b2337dd690746a5fde5c222b40d5f8",
+      "file": "archives/tesseract-ocr--tesseract-64eab6c457b2337dd690746a5fde5c222b40d5f8.tar.gz",
+      "sha256": "a2845cf9a8cd6d673c0893a37ebb8cac1b883f84d8a1bcd801e8bbf88a4b8004",
+      "scope": "pinned wrapper submodule source; not independent binary rebuild",
+      "has_submodule_declarations": true,
+      "retained_local_archive": true
+    },
+    {
+      "repository": "madler/zlib",
+      "commit": "51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf",
+      "url": "https://codeload.github.com/madler/zlib/tar.gz/51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf",
+      "file": "archives/madler--zlib-51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf.tar.gz",
+      "sha256": "d9e270d46252734aa49770fbc544125391617956266f220bd63216c834f3a522",
+      "scope": "pinned wrapper submodule source; not independent binary rebuild",
+      "has_submodule_declarations": false,
+      "retained_local_archive": true
+    },
+    {
+      "repository": "google/highway",
+      "commit": "271a9a0ed9de1232d9117f1572c3fe28f8542ec1",
+      "url": "https://codeload.github.com/google/highway/tar.gz/271a9a0ed9de1232d9117f1572c3fe28f8542ec1",
+      "file": "archives/google--highway-271a9a0ed9de1232d9117f1572c3fe28f8542ec1.tar.gz",
+      "sha256": "c42bcfe44d100223ea0043acb3da6de703103ca44bfb1d46b577c90939177f5f",
+      "scope": "jpegli submodule; exact build usage must follow wrapper CMake flags",
+      "retained_local_archive": true
+    },
+    {
+      "repository": "google/skcms",
+      "commit": "96d9171c94b937a1b5f0293de7309ac16311b722",
+      "url": "https://codeload.github.com/google/skcms/tar.gz/96d9171c94b937a1b5f0293de7309ac16311b722",
+      "file": "archives/google--skcms-96d9171c94b937a1b5f0293de7309ac16311b722.tar.gz",
+      "sha256": "9bb4b5bba0b7c04f6c2bce9ff713d61e23c9a20c4945161ae16290498ad74627",
+      "scope": "jpegli submodule; exact build usage must follow wrapper CMake flags",
+      "retained_local_archive": true
+    },
+    {
+      "package": "CommandLineParser/2.9.1",
+      "repository": "commandlineparser/commandline",
+      "commit": "b0b0ec9f5470bacc0823c013a599ba3b4e115900",
+      "evidence": "declared package commit verified in repository API",
+      "url": "https://codeload.github.com/commandlineparser/commandline/tar.gz/b0b0ec9f5470bacc0823c013a599ba3b4e115900",
+      "file": "archives/commandlineparser--commandline-b0b0ec9f5470bacc0823c013a599ba3b4e115900.tar.gz",
+      "sha256": "a654880fbc9b445224193e142235c43f576fa7268fdfda117f16a80dfb058ae0",
+      "license_files": [
+        "source-notices/commandlineparser--commandline/License.md"
+      ],
+      "retained_local_archive": true
+    },
+    {
+      "package": "NAPS2.Mdns/1.0.1",
+      "repository": "cyanfish/net-mdns",
+      "commit": "9a1b989ff57738849ceda165de49cc76364e8ace",
+      "evidence": "declared package commit verified in repository API",
+      "url": "https://codeload.github.com/cyanfish/net-mdns/tar.gz/9a1b989ff57738849ceda165de49cc76364e8ace",
+      "file": "archives/cyanfish--net-mdns-9a1b989ff57738849ceda165de49cc76364e8ace.tar.gz",
+      "sha256": "d46c17156cdfb0a3079f85ede1ad8bc4dcdd3b603cff232791aea8b0d985dca0",
+      "license_files": [
+        "source-notices/cyanfish--net-mdns/LICENSE"
+      ],
+      "retained_local_archive": true
+    },
+    {
+      "package": "EmbedIO/3.5.2",
+      "repository": "unosquare/embedio",
+      "commit": "ee62ab79fb7ce2f6ad5b7a12eea20076e0d48102",
+      "tag": "v3.5.2",
+      "evidence": "version tag candidate; package source correspondence not independently verified",
+      "url": "https://codeload.github.com/unosquare/embedio/tar.gz/ee62ab79fb7ce2f6ad5b7a12eea20076e0d48102",
+      "file": "archives/unosquare--embedio-ee62ab79fb7ce2f6ad5b7a12eea20076e0d48102.tar.gz",
+      "sha256": "8f83de89d9f1b103a2fc9b51a3597809c3dd749ef05870d5a60851412cf30bcb",
+      "license_files": [
+        "source-notices/unosquare--embedio/LICENSE"
+      ],
+      "retained_local_archive": true
+    },
+    {
+      "package": "MimeKitLite/4.17.0",
+      "repository": "jstedfast/MimeKit",
+      "commit": "ce7b503c1ca09997dc77a180aac7b3333f057d85",
+      "tag": "4.17.0",
+      "evidence": "version tag candidate; package source correspondence not independently verified",
+      "url": "https://codeload.github.com/jstedfast/MimeKit/tar.gz/ce7b503c1ca09997dc77a180aac7b3333f057d85",
+      "file": "archives/jstedfast--MimeKit-ce7b503c1ca09997dc77a180aac7b3333f057d85.tar.gz",
+      "sha256": "8a5756f93212c1fa4fce673a1ad65ad20b49e96bced58356fdc266f16289cd90",
+      "license_files": [
+        "source-notices/jstedfast--MimeKit/LICENSE"
+      ],
+      "retained_local_archive": true
+    },
+    {
+      "package": "StandardSocketsHttpHandler/2.2.0.10",
+      "repository": "TalAloni/StandardSocketsHttpHandler",
+      "commit": "f5fc220a0e0086baf72e027f91420acf6530f88d",
+      "tag": "v2.2.0.10",
+      "evidence": "version tag candidate; package source correspondence not independently verified",
+      "url": "https://codeload.github.com/TalAloni/StandardSocketsHttpHandler/tar.gz/f5fc220a0e0086baf72e027f91420acf6530f88d",
+      "file": "archives/TalAloni--StandardSocketsHttpHandler-f5fc220a0e0086baf72e027f91420acf6530f88d.tar.gz",
+      "sha256": "0864d23c5126c410618d3f4142de92e329891301e091f839ab364d764397afe0",
+      "license_files": [
+        "source-notices/TalAloni--StandardSocketsHttpHandler/LICENSE.TXT"
+      ],
+      "retained_local_archive": true
+    },
+    {
+      "package": "Unosquare.Swan.Lite/3.1.0",
+      "repository": "unosquare/swan",
+      "commit": "4b33e5f943a4513124243c0fcf8e9b9f7503b858",
+      "tag": "3.1.0",
+      "evidence": "version tag candidate; package source correspondence not independently verified",
+      "url": "https://codeload.github.com/unosquare/swan/tar.gz/4b33e5f943a4513124243c0fcf8e9b9f7503b858",
+      "file": "archives/unosquare--swan-4b33e5f943a4513124243c0fcf8e9b9f7503b858.tar.gz",
+      "sha256": "0bddc1e123859cabec0d4202897f911de48d1ef0252b5ff11e6e4d103bbc76a7",
+      "license_files": [
+        "source-notices/unosquare--swan/LICENSE"
+      ],
+      "retained_local_archive": true
+    },
+    {
+      "package": "ZXing.Net/0.16.11",
+      "repository": "micjahn/ZXing.Net",
+      "commit": "fd58f3c4a5d80ccf45ef1237899a65b0ba5b83a0",
+      "tag": "v0.16.11.0",
+      "evidence": "version tag candidate; package source correspondence not independently verified",
+      "url": "https://codeload.github.com/micjahn/ZXing.Net/tar.gz/fd58f3c4a5d80ccf45ef1237899a65b0ba5b83a0",
+      "file": "archives/micjahn--ZXing.Net-fd58f3c4a5d80ccf45ef1237899a65b0ba5b83a0.tar.gz",
+      "sha256": "4e48fb0d641434f97b785651ed829667691f014503ce4d7d24de762dd60a514f",
+      "license_files": [
+        "source-notices/micjahn--ZXing.Net/COPYING"
+      ],
+      "retained_local_archive": true
+    },
+    {
+      "package": "SimpleBase/1.3.1",
+      "repository": "ssg/SimpleBase",
+      "commit": "c6f8f955a48f198aec4e9f063ba9e2b4ec3e6780",
+      "evidence": "historical publication-date candidate; exact package source correspondence unverified",
+      "url": "https://codeload.github.com/ssg/SimpleBase/tar.gz/c6f8f955a48f198aec4e9f063ba9e2b4ec3e6780",
+      "file": "archives/ssg--SimpleBase-c6f8f955a48f198aec4e9f063ba9e2b4ec3e6780.tar.gz",
+      "sha256": "980186c620d55d38d7fb15c0e60b337b9174298f6fe8a01259ba72041be53b94",
+      "license_files": [
+        "source-notices/ssg--SimpleBase/LICENSE.txt"
+      ],
+      "retained_local_archive": true
+    },
+    {
+      "repository": "dotnet/macios",
+      "commit": "d813e2baef17cd3a2bb5adc1e37610258d01cda3",
+      "url": "https://codeload.github.com/dotnet/macios/tar.gz/d813e2baef17cd3a2bb5adc1e37610258d01cda3",
+      "file": "archives/dotnet--macios-d813e2baef17cd3a2bb5adc1e37610258d01cda3.tar.gz",
+      "sha256": "1727bf6924d80aaab1737a433fd7e5c04f545a41b63eb7e7855881104aa58333",
+      "scope": "exact declared platform/build repository; submodule closure separately recorded",
+      "retained_local_archive": true
+    },
+    {
+      "repository": "bblanchon/pdfium-binaries",
+      "commit": "a068e5317bb780d0afdf00d8b341938d9f36d2fe",
+      "url": "https://codeload.github.com/bblanchon/pdfium-binaries/tar.gz/a068e5317bb780d0afdf00d8b341938d9f36d2fe",
+      "file": "archives/bblanchon--pdfium-binaries-a068e5317bb780d0afdf00d8b341938d9f36d2fe.tar.gz",
+      "sha256": "b0c2b21a1b3a9561f52a3cf5c950f91e0bba4c076ca0412f5fa78cadb4699553",
+      "scope": "exact declared platform/build repository; submodule closure separately recorded",
+      "retained_local_archive": true
+    },
+    {
+      "repository": "chromium/pdfium",
+      "commit": "d3e62278db7489af9e0b686835d1c8aca218c3d7",
+      "url": "https://codeload.github.com/chromium/pdfium/tar.gz/d3e62278db7489af9e0b686835d1c8aca218c3d7",
+      "file": "archives/chromium--pdfium-d3e62278db7489af9e0b686835d1c8aca218c3d7.tar.gz",
+      "sha256": "0bd42b4148d1130439468b4c652890655dece6fd9f597ef6321979be163fcadb",
+      "scope": "exact declared platform/build repository; submodule closure separately recorded",
+      "retained_local_archive": true
+    },
+    {
+      "repository": "dotnet/dotnet",
+      "commit": "95017c711e6afc1085133d440e42b4bd78155701",
+      "url": "https://codeload.github.com/dotnet/dotnet/tar.gz/95017c711e6afc1085133d440e42b4bd78155701",
+      "file": "archives/dotnet--dotnet-95017c711e6afc1085133d440e42b4bd78155701.tar.gz",
+      "sha256": "89a33016cfc4815b31a638aae8fcb16aced2393d44401ad042a565d694421c7f",
+      "scope": "Exact runtime informational revision belongs to unified dotnet repository; not dotnet/runtime. Standard-runtime build not repeated.",
+      "retained_local_archive": true
+    },
+    {
+      "path": "third_party/abseil-cpp",
+      "git_ref": "https://chromium.googlesource.com/chromium/src/third_party/abseil-cpp.git@d8e483edd8b44da1845874ee84b42489589bb90f",
+      "url": "https://chromium.googlesource.com/chromium/src/third_party/abseil-cpp/+archive/d8e483edd8b44da1845874ee84b42489589bb90f.tar.gz",
+      "commit": "d8e483edd8b44da1845874ee84b42489589bb90f",
+      "condition": null,
+      "retrieved": true,
+      "file": "archives/pdfium-third_party--abseil-cpp-d8e483edd8b44da1845874ee84b42489589bb90f.tar.gz",
+      "sha256": "259ea1d069cbf504fdf1ef9f74aff415626e05458e8bc2b98cc7e2997675487f",
+      "retained_local_archive": true
+    },
+    {
+      "path": "third_party/fast_float/src",
+      "git_ref": "https://chromium.googlesource.com/external/github.com/fastfloat/fast_float.git@34164f547b7df3f5d794ff67e9f885c36819ebfc",
+      "url": "https://chromium.googlesource.com/external/github.com/fastfloat/fast_float/+archive/34164f547b7df3f5d794ff67e9f885c36819ebfc.tar.gz",
+      "commit": "34164f547b7df3f5d794ff67e9f885c36819ebfc",
+      "condition": null,
+      "retrieved": true,
+      "file": "archives/pdfium-third_party--fast_float--src-34164f547b7df3f5d794ff67e9f885c36819ebfc.tar.gz",
+      "sha256": "5ee1d64f46becb2eb2bb68117d670efe84b569692947dbf11abe4af4b3449f74",
+      "retained_local_archive": true
+    },
+    {
+      "path": "third_party/freetype/src",
+      "git_ref": "https://chromium.googlesource.com/chromium/src/third_party/freetype2.git@12f5eb32aedb3e27d47c22b0447dc4363703ed94",
+      "url": "https://chromium.googlesource.com/chromium/src/third_party/freetype2/+archive/12f5eb32aedb3e27d47c22b0447dc4363703ed94.tar.gz",
+      "commit": "12f5eb32aedb3e27d47c22b0447dc4363703ed94",
+      "condition": null,
+      "retrieved": true,
+      "file": "archives/pdfium-third_party--freetype--src-12f5eb32aedb3e27d47c22b0447dc4363703ed94.tar.gz",
+      "sha256": "695967c594356e0c5c276a1ee749581880aa8363b12f2fea1d0aaca92ebc9d3e",
+      "retained_local_archive": true
+    },
+    {
+      "path": "third_party/icu",
+      "git_ref": "https://chromium.googlesource.com/chromium/deps/icu.git@d578f2e8b7bd5938e21cfb6bf15c079e0aa5b738",
+      "url": "https://chromium.googlesource.com/chromium/deps/icu/+archive/d578f2e8b7bd5938e21cfb6bf15c079e0aa5b738.tar.gz",
+      "commit": "d578f2e8b7bd5938e21cfb6bf15c079e0aa5b738",
+      "condition": null,
+      "retrieved": true,
+      "file": "archives/pdfium-third_party--icu-d578f2e8b7bd5938e21cfb6bf15c079e0aa5b738.tar.gz",
+      "sha256": "04b9b7ac87408f3a176e13bc8136f56ee463af6c25abbc215469afe6123bcab9",
+      "retained_local_archive": true
+    },
+    {
+      "path": "third_party/libjpeg_turbo",
+      "git_ref": "https://chromium.googlesource.com/chromium/deps/libjpeg_turbo.git@640f254ad0fa03f6b1f29f89b7dd9366f2f6e533",
+      "url": "https://chromium.googlesource.com/chromium/deps/libjpeg_turbo/+archive/640f254ad0fa03f6b1f29f89b7dd9366f2f6e533.tar.gz",
+      "commit": "640f254ad0fa03f6b1f29f89b7dd9366f2f6e533",
+      "condition": null,
+      "retrieved": true,
+      "file": "archives/pdfium-third_party--libjpeg_turbo-640f254ad0fa03f6b1f29f89b7dd9366f2f6e533.tar.gz",
+      "sha256": "35b5cc6c73345096b149488dc45f885e8f0912377191de3986e2af12ea57d765",
+      "retained_local_archive": true
+    },
+    {
+      "path": "third_party/libpng",
+      "git_ref": "https://chromium.googlesource.com/chromium/src/third_party/libpng.git@6d5341764ef4e38cbc07d35514a8aa73de50de8a",
+      "url": "https://chromium.googlesource.com/chromium/src/third_party/libpng/+archive/6d5341764ef4e38cbc07d35514a8aa73de50de8a.tar.gz",
+      "commit": "6d5341764ef4e38cbc07d35514a8aa73de50de8a",
+      "condition": null,
+      "retrieved": true,
+      "file": "archives/pdfium-third_party--libpng-6d5341764ef4e38cbc07d35514a8aa73de50de8a.tar.gz",
+      "sha256": "51d881bf52430f23aeefef74bc84e873dc55f047753407aac01d1de22f57c5a4",
+      "retained_local_archive": true
+    },
+    {
+      "path": "third_party/zlib",
+      "git_ref": "https://chromium.googlesource.com/chromium/src/third_party/zlib.git@3246f1b60849cc505e231c5d19d0cbf358093555",
+      "url": "https://chromium.googlesource.com/chromium/src/third_party/zlib/+archive/3246f1b60849cc505e231c5d19d0cbf358093555.tar.gz",
+      "commit": "3246f1b60849cc505e231c5d19d0cbf358093555",
+      "condition": null,
+      "retrieved": true,
+      "file": "archives/pdfium-third_party--zlib-3246f1b60849cc505e231c5d19d0cbf358093555.tar.gz",
+      "sha256": "e4131f390c54f2c85311ac96406d5db79ace587862f5abfd03714ef1b80c91d4",
+      "retained_local_archive": true
+    },
+    {
+      "path": "third_party/libc++/src",
+      "git_ref": "https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libcxx.git@5abc7f839700f0f17338434e1c1c6a8c87c00c11",
+      "url": "https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libcxx/+archive/5abc7f839700f0f17338434e1c1c6a8c87c00c11.tar.gz",
+      "commit": "5abc7f839700f0f17338434e1c1c6a8c87c00c11",
+      "condition": null,
+      "retrieved": true,
+      "file": "archives/pdfium-third_party--libc++--src-5abc7f839700f0f17338434e1c1c6a8c87c00c11.tar.gz",
+      "sha256": "4f8fbbd0a1f9a4fc94c51edcfa458f6c3cfcf05efc1e6fbbb56c32038c71bc56",
+      "retained_local_archive": true
+    },
+    {
+      "path": "third_party/libc++abi/src",
+      "git_ref": "https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libcxxabi.git@8f11bb1d4438d0239d0dfc1bd9456a9f31629dda",
+      "url": "https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libcxxabi/+archive/8f11bb1d4438d0239d0dfc1bd9456a9f31629dda.tar.gz",
+      "commit": "8f11bb1d4438d0239d0dfc1bd9456a9f31629dda",
+      "condition": null,
+      "retrieved": true,
+      "file": "archives/pdfium-third_party--libc++abi--src-8f11bb1d4438d0239d0dfc1bd9456a9f31629dda.tar.gz",
+      "sha256": "a81ec0cf9305ffa1e9ab12db89029fe4651cbe8a1b88714fdb636fb149614dd8",
+      "retained_local_archive": true
+    },
+    {
+      "path": "third_party/libunwind/src",
+      "git_ref": "https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libunwind.git@1b601b7f07cd1511b4ba52bfe0625387f51f72a7",
+      "url": "https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libunwind/+archive/1b601b7f07cd1511b4ba52bfe0625387f51f72a7.tar.gz",
+      "commit": "1b601b7f07cd1511b4ba52bfe0625387f51f72a7",
+      "condition": "checkout_android",
+      "retrieved": true,
+      "file": "archives/pdfium-third_party--libunwind--src-1b601b7f07cd1511b4ba52bfe0625387f51f72a7.tar.gz",
+      "sha256": "4f65a2df389f80a8aeafab7b3b59549035ebcb3e34eab457c73f10de00c4012b",
+      "retained_local_archive": true
+    },
+    {
+      "path": "third_party/llvm-libc/src",
+      "git_ref": "https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libc.git@9a821f4e58bbb7f6701f9951d087f8750f523647",
+      "url": "https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libc/+archive/9a821f4e58bbb7f6701f9951d087f8750f523647.tar.gz",
+      "commit": "9a821f4e58bbb7f6701f9951d087f8750f523647",
+      "condition": null,
+      "retrieved": true,
+      "file": "archives/pdfium-third_party--llvm-libc--src-9a821f4e58bbb7f6701f9951d087f8750f523647.tar.gz",
+      "sha256": "e41e4218e36bb1a92f0e120da6ff7b9e2be7ad0858169b652ac4294674017a07",
+      "retained_local_archive": true
+    },
+    {
+      "path": "build",
+      "git_ref": "https://chromium.googlesource.com/chromium/src/build.git@73c0fa98c5cf963c60ea685c57826fa7ba6253d8",
+      "url": "https://chromium.googlesource.com/chromium/src/build/+archive/73c0fa98c5cf963c60ea685c57826fa7ba6253d8.tar.gz",
+      "commit": "73c0fa98c5cf963c60ea685c57826fa7ba6253d8",
+      "condition": null,
+      "retrieved": true,
+      "file": "archives/pdfium-build-73c0fa98c5cf963c60ea685c57826fa7ba6253d8.tar.gz",
+      "sha256": "ac6c4c13febba779d2e24c07c6b4eec6b6994157f8525364f5c23a9d2d57fb4b",
+      "retained_local_archive": true
+    },
+    {
+      "path": "buildtools",
+      "git_ref": "https://chromium.googlesource.com/chromium/src/buildtools.git@0d39be5a3f129cf1f35e7812108a2184e2193315",
+      "url": "https://chromium.googlesource.com/chromium/src/buildtools/+archive/0d39be5a3f129cf1f35e7812108a2184e2193315.tar.gz",
+      "commit": "0d39be5a3f129cf1f35e7812108a2184e2193315",
+      "condition": null,
+      "retrieved": true,
+      "file": "archives/pdfium-buildtools-0d39be5a3f129cf1f35e7812108a2184e2193315.tar.gz",
+      "sha256": "449e0669a0a1acbca28a1ad6a9b4015f6e6ed7ef3bbfe426f297eee7754c1964",
+      "retained_local_archive": true
+    },
+    {
+      "url": "https://codeload.github.com/cyanfish/naps2-jpeg/tar.gz/eadca9f4b13cdc75f1c9eec605844063f2782409",
+      "sha256": "b8199a620502ab383bbaa702f6a599e4b5191f949e575b4edb12162350cfe973",
+      "commit": "eadca9f4b13cdc75f1c9eec605844063f2782409",
+      "package_input_blob_matching_evidence": "outputs/private-license-resolution/package-native-origins.json",
+      "file": "archives/naps2-jpeg-eadca9f4b13cdc75f1c9eec605844063f2782409.tar.gz",
+      "retained_local_archive": true,
+      "scope": "Exact wrapper commit independently linked to the NuGet native input by prior original Git-blob comparison"
+    },
+    {
+      "package": "ZXing.Net/0.16.11",
+      "repository": "micjahn/ZXing.Net",
+      "commit": "a334de0239ee1cbd2aadef3396929fa031d2292b",
+      "url": "https://codeload.github.com/micjahn/ZXing.Net/tar.gz/a334de0239ee1cbd2aadef3396929fa031d2292b",
+      "file": "archives/micjahn--ZXing.Net-a334de0239ee1cbd2aadef3396929fa031d2292b.tar.gz",
+      "sha256": "b4479535d230fee0e9cda892ebf78cf79de0d0cbd6e9b19af5e2f4e749eb5795",
+      "evidence": "Exact informational commit read from the delivered zxing.dll metadata; version-tag candidate was a different commit",
+      "retained_local_archive": true
+    }
+  ],
+  "scope": "Additional exact declared revisions, version-tag candidates, and explicit unresolved source attribution; not blanket closure clearance"
+}

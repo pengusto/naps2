@@ -1,0 +1,479 @@
+[
+  {
+    "package": "Autofac/9.3.1",
+    "managed_outputs": [
+      "Autofac.dll"
+    ],
+    "license_expression_or_file": "MIT",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/MIT",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/autofac/Autofac",
+      "commit": "7f0d04b7722f2230901ffe1bec68f25ce61f8d76"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "Ben.Demystifier/0.4.1",
+    "managed_outputs": [
+      "Ben.Demystifier.dll"
+    ],
+    "license_expression_or_file": "Apache-2.0",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/benaadams/Ben.Demystifier",
+      "commit": "ca0293534037c88f29a4d4460de6d9c62f4ee9ad"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "CommandLineParser/2.9.1",
+    "managed_outputs": [
+      "CommandLine.dll"
+    ],
+    "license_expression_or_file": "License.md",
+    "license_type": "file",
+    "licenseUrl": "https://aka.ms/deprecateLicenseUrl",
+    "declared_repository": {
+      "type": "git",
+      "commit": "b0b0ec9f5470bacc0823c013a599ba3b4e115900"
+    },
+    "immutable_source_archived": false
+  },
+  {
+    "package": "EmbedIO/3.5.2",
+    "managed_outputs": [
+      "EmbedIO.dll"
+    ],
+    "license_expression_or_file": null,
+    "license_type": null,
+    "licenseUrl": "https://raw.githubusercontent.com/unosquare/embedio/master/LICENSE",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/unosquare/embedio/"
+    },
+    "immutable_source_archived": false
+  },
+  {
+    "package": "Eto.Forms/2.11.0",
+    "managed_outputs": [
+      "Eto.dll"
+    ],
+    "license_expression_or_file": "Eto-LICENSE.txt",
+    "license_type": "file",
+    "licenseUrl": "https://aka.ms/deprecateLicenseUrl",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/picoe/Eto.git",
+      "commit": "73e42ec0b24e9e82162fb12a88b752a0a55fe5b8"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "Eto.Platform.macOS/2.11.0",
+    "managed_outputs": [
+      "Eto.macOS.dll"
+    ],
+    "license_expression_or_file": "Eto-LICENSE.txt",
+    "license_type": "file",
+    "licenseUrl": "https://aka.ms/deprecateLicenseUrl",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/picoe/Eto.git",
+      "commit": "73e42ec0b24e9e82162fb12a88b752a0a55fe5b8"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "Google.Protobuf/3.29.3",
+    "managed_outputs": [
+      "Google.Protobuf.dll"
+    ],
+    "license_expression_or_file": "BSD-3-Clause",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/BSD-3-Clause",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/protocolbuffers/protobuf.git",
+      "commit": "b407e8416e3893036aee5af9a12bd9b6a0e2b2e6"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "Grpc.Core.Api/2.67.0",
+    "managed_outputs": [
+      "Grpc.Core.Api.dll"
+    ],
+    "license_expression_or_file": "Apache-2.0",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/grpc/grpc-dotnet.git",
+      "commit": "7c43ddb5d68008782dc0dba2d0feaa3ed91a9fb2"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "GrpcDotNetNamedPipes/3.1.0",
+    "managed_outputs": [
+      "GrpcDotNetNamedPipes.dll"
+    ],
+    "license_expression_or_file": "LICENSE",
+    "license_type": "file",
+    "licenseUrl": "https://aka.ms/deprecateLicenseUrl",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/cyanfish/grpc-dotnet-namedpipes",
+      "commit": "da307b551a9d56b62f5780e91a2d95a699f32430"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "Makaretu.Dns/2.0.1",
+    "managed_outputs": [
+      "Makaretu.Dns.dll"
+    ],
+    "license_expression_or_file": null,
+    "license_type": null,
+    "licenseUrl": null,
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/richardschneider/net-dns.git",
+      "commit": "701463d2091e6d98d4cc4490abb0e0ead8ae2985"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "Microsoft.Extensions.Configuration.Abstractions/8.0.0",
+    "managed_outputs": [
+      "Microsoft.Extensions.Configuration.Abstractions.dll"
+    ],
+    "license_expression_or_file": "MIT",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/MIT",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/dotnet/runtime",
+      "commit": "5535e31a712343a63f5d7d796cd874e563e5ac14"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.10",
+    "managed_outputs": [
+      "Microsoft.Extensions.DependencyInjection.Abstractions.dll"
+    ],
+    "license_expression_or_file": "MIT",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/MIT",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/dotnet/dotnet",
+      "commit": "f7d90799ce4ef09a0bb257852a57248d2a8fb8dd"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "Microsoft.Extensions.Logging/8.0.0",
+    "managed_outputs": [
+      "Microsoft.Extensions.Logging.dll"
+    ],
+    "license_expression_or_file": "MIT",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/MIT",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/dotnet/runtime",
+      "commit": "5535e31a712343a63f5d7d796cd874e563e5ac14"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "Microsoft.Extensions.Logging.Abstractions/10.0.10",
+    "managed_outputs": [
+      "Microsoft.Extensions.Logging.Abstractions.dll"
+    ],
+    "license_expression_or_file": "MIT",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/MIT",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/dotnet/dotnet",
+      "commit": "f7d90799ce4ef09a0bb257852a57248d2a8fb8dd"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "Microsoft.Extensions.Options/8.0.0",
+    "managed_outputs": [
+      "Microsoft.Extensions.Options.dll"
+    ],
+    "license_expression_or_file": "MIT",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/MIT",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/dotnet/runtime",
+      "commit": "5535e31a712343a63f5d7d796cd874e563e5ac14"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "Microsoft.Extensions.Primitives/8.0.0",
+    "managed_outputs": [
+      "Microsoft.Extensions.Primitives.dll"
+    ],
+    "license_expression_or_file": "MIT",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/MIT",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/dotnet/runtime",
+      "commit": "5535e31a712343a63f5d7d796cd874e563e5ac14"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "MimeKitLite/4.17.0",
+    "managed_outputs": [
+      "MimeKitLite.dll"
+    ],
+    "license_expression_or_file": "MIT",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/MIT",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/jstedfast/MimeKit"
+    },
+    "immutable_source_archived": false
+  },
+  {
+    "package": "NAPS2.Jpeg.Binaries/1.0.0",
+    "managed_outputs": [
+      "NAPS2.Jpeg.Binaries.dll"
+    ],
+    "license_expression_or_file": "Apache-2.0 AND BSD-3-Clause",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/Apache-2.0%20AND%20BSD-3-Clause",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/cyanfish/naps2-jpeg"
+    },
+    "immutable_source_archived": false
+  },
+  {
+    "package": "NAPS2.Mdns/1.0.1",
+    "managed_outputs": [
+      "Makaretu.Dns.Multicast.New.dll"
+    ],
+    "license_expression_or_file": "MIT",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/MIT",
+    "declared_repository": {
+      "type": "git",
+      "commit": "9a1b989ff57738849ceda165de49cc76364e8ace"
+    },
+    "immutable_source_archived": false
+  },
+  {
+    "package": "NAPS2.Pdfium.Binaries/1.3.0",
+    "managed_outputs": [
+      "NAPS2.Pdfium.Binaries.dll"
+    ],
+    "license_expression_or_file": "Apache-2.0",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/cyanfish/naps2-pdfium",
+      "commit": "2b189e0edae6c0b4f9bdd97681bde8eea8b44661"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "NAPS2.PdfSharp/1.0.2",
+    "managed_outputs": [
+      "PdfSharpCore.dll"
+    ],
+    "license_expression_or_file": "LICENCE.md",
+    "license_type": "file",
+    "licenseUrl": "https://aka.ms/deprecateLicenseUrl",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/cyanfish/naps2-pdfsharp",
+      "commit": "8d30f069e6cef9ee9b001372a94432de7f6a3146"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "NAPS2.Sane.Binaries/1.2.3",
+    "managed_outputs": [
+      "NAPS2.Sane.Binaries.dll"
+    ],
+    "license_expression_or_file": "GPL-2.0-only",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/GPL-2.0-only",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/cyanfish/naps2-sane",
+      "commit": "e620b173d5ac9efdadfa723b5c80ac4aa16fe086"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "NAPS2.Tesseract.Binaries/1.4.0",
+    "managed_outputs": [
+      "NAPS2.Tesseract.Binaries.dll"
+    ],
+    "license_expression_or_file": "Apache-2.0",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/cyanfish/naps2-tesseract",
+      "commit": "95d99470446d1b87610d20dab8b9ab277b39e5dc"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "Newtonsoft.Json/13.0.4",
+    "managed_outputs": [
+      "Newtonsoft.Json.dll"
+    ],
+    "license_expression_or_file": "MIT",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/MIT",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/JamesNK/Newtonsoft.Json",
+      "commit": "4e13299d4b0ec96bd4df9954ef646bd2d1b5bf2a"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "NLog/5.5.1",
+    "managed_outputs": [
+      "NLog.dll"
+    ],
+    "license_expression_or_file": "BSD-3-Clause",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/BSD-3-Clause",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/NLog/NLog.git",
+      "commit": "afa9a2046639736a54530be3ee34c32e8bc94ea6"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "NLog.Extensions.Logging/5.5.0",
+    "managed_outputs": [
+      "NLog.Extensions.Logging.dll"
+    ],
+    "license_expression_or_file": "BSD-2-Clause",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/BSD-2-Clause",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/NLog/NLog.Extensions.Logging.git",
+      "commit": "5caec9dd9186024b333b5ea4d1c37388ef9c309a"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "SharpZipLib/1.4.2",
+    "managed_outputs": [
+      "ICSharpCode.SharpZipLib.dll"
+    ],
+    "license_expression_or_file": "MIT",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/MIT",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/icsharpcode/SharpZipLib",
+      "commit": "33f64eb0f28cdd2b084cb822fcc224c7c5aba553"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "SimpleBase/1.3.1",
+    "managed_outputs": [
+      "SimpleBase.dll"
+    ],
+    "license_expression_or_file": null,
+    "license_type": null,
+    "licenseUrl": "http://www.apache.org/licenses/",
+    "declared_repository": {},
+    "immutable_source_archived": false
+  },
+  {
+    "package": "SixLabors.Fonts/1.0.1",
+    "managed_outputs": [
+      "SixLabors.Fonts.dll"
+    ],
+    "license_expression_or_file": "Apache-2.0",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/SixLabors/Fonts",
+      "commit": "be8883caf13f364292508274d68c39c2455ec3e2"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "StandardSocketsHttpHandler/2.2.0.10",
+    "managed_outputs": [
+      "StandardSocketsHttpHandler.dll"
+    ],
+    "license_expression_or_file": "MIT",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/MIT",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/TalAloni/StandardSocketsHttpHandler"
+    },
+    "immutable_source_archived": false
+  },
+  {
+    "package": "System.Security.Cryptography.ProtectedData/10.0.10",
+    "managed_outputs": [
+      "System.Security.Cryptography.ProtectedData.dll"
+    ],
+    "license_expression_or_file": "MIT",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/MIT",
+    "declared_repository": {
+      "type": "git",
+      "url": "https://github.com/dotnet/dotnet",
+      "commit": "f7d90799ce4ef09a0bb257852a57248d2a8fb8dd"
+    },
+    "immutable_source_archived": true
+  },
+  {
+    "package": "Unosquare.Swan.Lite/3.1.0",
+    "managed_outputs": [
+      "Swan.Lite.dll"
+    ],
+    "license_expression_or_file": null,
+    "license_type": null,
+    "licenseUrl": "https://raw.githubusercontent.com/unosquare/swan/master/LICENSE",
+    "declared_repository": {},
+    "immutable_source_archived": false
+  },
+  {
+    "package": "ZXing.Net/0.16.11",
+    "managed_outputs": [
+      "zxing.dll"
+    ],
+    "license_expression_or_file": "Apache-2.0",
+    "license_type": "expression",
+    "licenseUrl": "https://licenses.nuget.org/Apache-2.0",
+    "declared_repository": {},
+    "immutable_source_archived": false
+  }
+]
