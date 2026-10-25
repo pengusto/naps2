@@ -1,42 +1,30 @@
-# NAPS2 - Not Another PDF Scanner
+# NAPS2 ES60W for macOS
 
-<p align="center">
-<img src="https://www.naps2.com/images/naps2-desktop-win.png?1" width="400" alt="NAPS2 on Windows" /> <img src="https://www.naps2.com/images/naps2-desktop-mac.png?1" width="400" alt="NAPS2 on Mac" /> <img src="https://www.naps2.com/images/naps2-desktop-linux.png?1" width="400" alt="NAPS2 on Linux" />
-  <br/>
-  <i>NAPS2 on Windows, Mac, and Linux</i>
-</p>
+**One app for a USB Epson ES-60W on an Apple Silicon Mac.** Independent NAPS2 fork with a bundled free SANE/epsonds scan helper. No separate Epson software, Homebrew or .NET installation is needed for scanning.
 
-NAPS2 is a document scanning application with a focus on simplicity and ease of use. Scan your documents from WIA, TWAIN, SANE, and ESCL scanners, organize the pages as you like, and save them as PDF, TIFF, JPEG, or PNG. Optical character recognition (OCR) is available using [Tesseract](https://github.com/tesseract-ocr/tesseract).
+**[Download the DMG](https://github.com/pengusto/naps2/releases/download/es60w-v8.5.1-2/NAPS2-ES60W-8.5.1-es60w.2-arm64.dmg)** · [All release files, sources and SHA-256 checksums](https://github.com/pengusto/naps2/releases/tag/es60w-v8.5.1-2) · [Deutsch: Installation](es60w/INSTALL.de.md)
 
-System requirements:
-- Windows 7+ (x64, x86)
-- macOS 10.15+ (x64, arm64)
-- Linux (x64, arm64) (GTK 3.20+, glibc 2.27+, libsane)
+1. Open the DMG and drag **NAPS2 ES60W.app** to Applications. Keep another working copy under its existing name or location; do not overwrite it.
+2. Open the app. This prerelease is **ad-hoc signed and not Apple-notarized**. If macOS blocks it, first try to open it, then use **System Settings → Privacy & Security → Open Anyway**. [Apple's instructions](https://support.apple.com/en-us/102445). Leave Gatekeeper enabled.
+3. Connect the ES-60W by USB, insert a sheet and click **Scan**. The preset is colour, 300 dpi and automatic framing. Each new scan saves a PDF in **Documents/Scans**.
 
-Visit the NAPS2 home page at [www.naps2.com](http://www.naps2.com).
+The physical scanner button is optional: enable its listener in the Scan menu each session and keep the app running. Paperless is a separate optional destination; this download has no Paperless account or automatic upload configured.
 
-Other links:
-- [Downloads](https://www.naps2.com/download)
-- [Documentation](https://www.naps2.com/support)
-- [Translations](https://translate.naps2.com/)
-- [File a Ticket](https://sourceforge.net/p/naps2/tickets/)
-- [Donate](https://www.naps2.com/donate?src=readme)
+## Supported scope
 
-## NAPS2.Sdk (for developers)
+- Apple Silicon (arm64), one **ES-60W via USB**. Intel Macs, Wi-Fi and other Epson models are not validated by this fork.
+- macOS minimum in the bundle: 14.0. Software checks ran on 26.6.2; other macOS versions and first launch on a different Mac remain untested.
+- Earlier builds were tested with the physical ES-60W. This release rebuild changes dependency/source packaging and has **not received a new physical scan test**. It is a prerelease, with conservative framing: a small residual dark border can remain. Exact millimetre accuracy and Epson-identical cropping are not claimed.
+- No background Epson service is needed. The app bundles its runtime and a separate free helper. No proprietary Epson driver, resources, decompiled implementation, private documents or credentials are included.
 
-[![NuGet](https://img.shields.io/nuget/v/NAPS2.Sdk)](https://www.nuget.org/packages/NAPS2.Sdk/)
+## Sources, licences and contributions
 
-[NAPS2.Sdk](https://github.com/cyanfish/naps2/tree/master/NAPS2.Sdk) is a fully-featured scanning library, supporting WIA, TWAIN, SANE, and ESCL scanners on Windows, Mac, and Linux.
-[Read more.](https://github.com/cyanfish/naps2/tree/master/NAPS2.Sdk)
+[Build instructions and architecture](es60w/README.md) · [Release assessment](es60w/legal/release-assessment-2026-10-25.md) · [Licences](es60w/licenses/DISTRIBUTION-LICENSE.md) · [Artwork credits](es60w/licenses/ARTWORK-NOTICES.md)
 
-## Build Instructions
-Looking to contribute to NAPS2 or NAPS2.Sdk? Have a look at the [Github wiki](https://github.com/cyanfish/naps2/wiki/1.-Building-&-Development-Environment) for build instructions and more.
+The release contains the complete editable fork source, native source archives, NuGet build inputs, additional third-party source snapshots, patch series and checksums. These source downloads are for developers; **users only need the DMG**. The app's About dialog links to local component notices and the source release.
 
-## License
+This is maintained separately while focused upstream changes are reviewed: [NAPS2 PR #938](https://github.com/cyanfish/naps2/pull/938) and [SANE MR !1061](https://gitlab.com/sane-project/backends/-/merge_requests/1061). Those contributions cover parts of the integration; accepting them alone does not ship this complete macOS app.
 
-NAPS2 is licensed under the GNU GPL 2.0 (or later). Some projects have additional license options:
-- NAPS2.Escl.* - GNU LGPL 2.1 (or later)
-- NAPS2.Images.* - GNU LGPL 2.1 (or later)
-- NAPS2.Internals - GNU LGPL 2.1 (or later)
-- NAPS2.Sdk - GNU LGPL 2.1 (or later)
-- NAPS2.Sdk.Samples - MIT
+NAPS2 and Epson are their respective owners' names. This fork is not an official release or an endorsement by either project or Epson. Original copyright and component notices remain. Main application code is distributed under GPLv3 using upstream's GPL-2.0-or-later option; the separate SANE helper retains its own licence.
+
+For the original cross-platform application, see [NAPS2](https://github.com/cyanfish/naps2) and the [upstream README](es60w/UPSTREAM-README.md).

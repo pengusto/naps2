@@ -10,6 +10,7 @@ p = argparse.ArgumentParser(description=__doc__)
 p.add_argument('--app', type=Path, required=True)
 p.add_argument('--output', type=Path, required=True, help='NEW JSON outside Git')
 a = p.parse_args()
+a.output = a.output.resolve()  # Validate the destination, not relative traversal through the checkout.
 app = a.app.resolve(strict=True)
 if a.output.exists() or any((d / '.git').exists() for d in [a.output.parent, *a.output.parents]):
     p.error('Requires a new output outside Git')

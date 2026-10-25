@@ -103,9 +103,9 @@ def main():
         config.write(resources / 'appsettings.xml', encoding='utf-8', xml_declaration=True)
         info = stage / 'Contents/Info.plist'
         data = plistlib.loads(info.read_bytes())
-        data.update(CFBundleIdentifier='de.pengusto.naps2.es60w.release.local',
+        data.update(CFBundleIdentifier='de.pengusto.naps2.es60w',
                     CFBundleName='NAPS2 ES60W', CFBundleDisplayName='NAPS2 ES60W',
-                    CFBundleVersion='851001', CFBundleShortVersionString='8.5.1')
+                    CFBundleVersion='851002', CFBundleShortVersionString='8.5.1')
         data.pop('LSEnvironment', None)
         data.pop('CFBundleDocumentTypes', None)
         data.pop('CFBundleURLTypes', None)

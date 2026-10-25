@@ -16,7 +16,7 @@ import sys
 import tarfile
 import tempfile
 
-VERSION = '8.5.1-es60w.1'
+VERSION = '8.5.1-es60w.2'
 PREFIX = 'NAPS2-ES60W-' + VERSION
 
 
@@ -99,9 +99,11 @@ def main():
             'native_source_archives': lock, 'nuget_build_inputs': len(inventory['packages']),
             'preferred_application_and_free_helper_sources_present': True,
             'third_party_source_closure_verified': False, 'private_history_included': False,
+            'source_assessment': 'naps2/es60w/legal/release-assessment-2026-10-25.md',
+            'distribution_channel': 'independent ad-hoc-signed prerelease',
             'no_proprietary_epson_inputs': True, 'public_release_cleared': False}
         (root / 'SOURCE-MANIFEST.json').write_text(json.dumps(manifest, indent=2) + '\n')
-        (root / 'README-build.md').write_text('''# NAPS2 ES60W local source kit
+        (root / 'README-build.md').write_text('''# NAPS2 ES60W source kit
 
 `naps2/` is the complete editable committed application source tree, including
 the ES60W helper integration and its build/package/check tools. No private Git
@@ -112,7 +114,7 @@ in `dependencies/`; `package-inputs/nuget-feed/` preserves the restored NuGet
 build inputs. `package-inputs/declared-sources/` contains the available immutable
 repository snapshots declared by package metadata. That metadata and archived
 repositories do not prove complete transitive/submodule source closure or
-independent reproduction of all bundled libraries. Unresolved cases remain
+independent reproduction of all bundled libraries. Source evidence levels remain
 explicit in `package-inputs/MANIFEST.json` and `naps2/es60w/SOURCE-STATUS.json`.
 
 Build serially with the documented Xcode/.NET/macOS workload and CMake/autotools
@@ -128,10 +130,13 @@ python3 es60w/build-app.py --native-build /NEW/native-build \\
 For an isolated rebuild, pass `--nuget-source ../package-inputs/nuget-feed` and
 `--nuget-packages /NEW/package-cache` to build-app.py.
 
-The complete preferred sources of this application and helper are present;
-this local preparation is not yet a cleared public corresponding-source offer.
-Do not publish this package until the recorded source/licence/artwork and trusted
-signing/first-launch items have been closed. It is ad-hoc signed, not notarized.
+The complete preferred sources of this application and helper are present.
+The separately delivered third-party-sources archive is part of this source set.
+The release assessment distinguishes exact source pins, matching official
+version sources and independent rebuild evidence. SimpleBase is built from its
+delivered preferred sources before restoring the app. This is an independent
+ad-hoc-signed prerelease, not Apple-notarized; see the documented first-start
+instructions and validation limits. Preserve all source downloads with the DMG.
 ''')
         with tarfile.open(source_archive, 'w:gz', compresslevel=6) as tar:
             tar.add(root, arcname=root.name)
@@ -156,7 +161,8 @@ signing/first-launch items have been closed. It is ad-hoc signed, not notarized.
     (out / 'RELEASE-MANIFEST.json').write_text(json.dumps({'version': VERSION,
         'branch': 'es60w-macos-release', 'source_head': head, 'artifacts_sha256': hashes,
         'architecture': 'arm64', 'developer_id_signed': False, 'notarized': False,
-        'public_release_cleared': False, 'new_physical_scans': 0,
+        'public_release_cleared': False, 'distribution_channel': 'independent ad-hoc-signed prerelease',
+        'source_assessment': 'es60w/legal/release-assessment-2026-10-25.md', 'new_physical_scans': 0,
         'installed_working_app_changed': False}, indent=2) + '\n')
     shutil.copy2(here / 'FIRST-START.de.txt', out / 'FIRST-START.de.txt')
     print('Local app, DMG, source kit, patch series and SHA256SUMS prepared', flush=True)

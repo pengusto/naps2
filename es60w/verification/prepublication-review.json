@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-25",
+  "scope": "Fork current tree and 3 reachable original preparation commits; repeated on clean publication head before push",
+  "scanners": [
+    "Gitleaks 8.30.1",
+    "heuristic current/history"
+  ],
+  "trufflehog_available": false,
+  "initial_heuristic_historical_blobs_over_4MiB": 2,
+  "manual_adjudication": {
+    "NAPS2.App.Mac/obj/Release/net10.0-macos/osx-arm64/linker-cache/registrar.mm": "Ignored generated registrar Objective-C type mapping, excluded from Git/source export",
+    "NAPS2.Lib/Automation/ConsolePdfPasswordProvider.cs": "Unchanged upstream source expression passing a runtime value; no literal secret",
+    "NAPS2.Lib/EtoForms/Ui/PdfPasswordForm.cs": "Unchanged upstream source expression passing a runtime value; no literal secret",
+    "NAPS2.Lib/ImportExport/Email/Oauth/OauthClientCreds.cs": "Unchanged upstream source expression passing a runtime value; no literal secret",
+    "NAPS2.Sdk.Tests/Resources/testcert.key": "Unchanged public upstream TLS test fixture; referenced exclusively by SDK tests, no deployment credential",
+    "NAPS2.Sdk.Tests/Resources/testcert.pfx": "Unchanged public upstream TLS test fixture; referenced exclusively by SDK tests, no deployment credential",
+    "NAPS2.Sdk/Pdf/PdfExporter.cs": "Unchanged upstream source expression passing a runtime value; no literal secret",
+    "NAPS2.Sdk/Pdf/PdfImporter.cs": "Unchanged upstream source expression passing a runtime value; no literal secret",
+    "NAPS2.Tools/Project/Releasing/WebsiteUpdateCommand.cs": "Unchanged upstream source expression passing a runtime value; no literal secret",
+    "es60w/verification/build-evidence.json": "SHA-256 file digest in explicitly labelled build manifest, not a credential"
+  },
+  "remaining_credential_blockers_after_review": 0,
+  "privacy_notes": "Copyright-author contacts retained as licence notices; ignored local build paths are not included in Git archive. Private REA history and scan images are excluded.",
+  "full_tracked_tree_scan_required_before_push": true
+}

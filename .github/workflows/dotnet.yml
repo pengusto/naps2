@@ -1,6 +1,13 @@
 name: .NET
 
-on: [push, pull_request]
+# The standalone macOS release is verified by es60w/build-app.py and the
+# versioned offline checks. This upstream multi-platform job does not prepare
+# the fork's source-built dependency feed; keep its scope on upstream branches.
+on:
+  push:
+    branches-ignore: ['es60w-macos-release']
+    tags-ignore: ['es60w-*']
+  pull_request:
 
 jobs:
   build:

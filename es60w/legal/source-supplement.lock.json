@@ -384,6 +384,26 @@
       "sha256": "b4479535d230fee0e9cda892ebf78cf79de0d0cbd6e9b19af5e2f4e749eb5795",
       "evidence": "Exact informational commit read from the delivered zxing.dll metadata; version-tag candidate was a different commit",
       "retained_local_archive": true
+    },
+    {
+      "path": "third_party/harfbuzz/src",
+      "git_ref": "https://chromium.googlesource.com/external/github.com/harfbuzz/harfbuzz.git@511df88b82e697cd2a0f1f0635787aa0b18bddbb",
+      "url": "https://chromium.googlesource.com/external/github.com/harfbuzz/harfbuzz/+archive/511df88b82e697cd2a0f1f0635787aa0b18bddbb.tar.gz",
+      "commit": "511df88b82e697cd2a0f1f0635787aa0b18bddbb",
+      "file": "archives/pdfium-third_party--harfbuzz--src-511df88b82e697cd2a0f1f0635787aa0b18bddbb.tar.gz",
+      "sha256": "f790e53009d4a575956bf8e7b7a1369407119df1393ba40fb940c9bc80b2a06a",
+      "scope": "PDFium build graph completion; HarfBuzz unconditional, Brotli captured conservatively even if disabled",
+      "retained_local_archive": true
+    },
+    {
+      "path": "third_party/brotli",
+      "git_ref": "https://chromium.googlesource.com/chromium/src/third_party/brotli.git@803ac71664ad62af1de39ff55e63ebbe07006fc8",
+      "url": "https://chromium.googlesource.com/chromium/src/third_party/brotli/+archive/803ac71664ad62af1de39ff55e63ebbe07006fc8.tar.gz",
+      "commit": "803ac71664ad62af1de39ff55e63ebbe07006fc8",
+      "file": "archives/pdfium-third_party--brotli-803ac71664ad62af1de39ff55e63ebbe07006fc8.tar.gz",
+      "sha256": "fe63a0f7f0d5b59cc6374ca8788c13e8bba9efe127d96fb2347387f4257e306b",
+      "scope": "PDFium build graph completion; HarfBuzz unconditional, Brotli captured conservatively even if disabled",
+      "retained_local_archive": true
     }
   ],
   "scope": "Additional exact declared revisions, version-tag candidates, and explicit unresolved source attribution; not blanket closure clearance"

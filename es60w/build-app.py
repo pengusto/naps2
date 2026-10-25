@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 
 
 def main():
@@ -45,14 +46,35 @@ def main():
                DOTNET_CLI_UI_LANGUAGE='en', DOTNET_CLI_USE_MSBUILD_SERVER='0',
                MSBUILDDISABLENODEREUSE='1', COPYFILE_DISABLE='1')
     log = out / 'full-app-build.log'
+    # Build the historical transitive dependency from the delivered preferred
+    # sources, rather than guessing which commit produced an old NuGet binary.
+    feed = out / 'source-built-feed'
+    feed.mkdir()
+    config = ET.Element('configuration')
+    sources = ET.SubElement(config, 'packageSources')
+    ET.SubElement(sources, 'clear')
+    ET.SubElement(sources, 'add', key='source-built', value=str(feed))
+    upstream_feed = str(a.nuget_source.resolve(strict=True)) if a.nuget_source else 'https://api.nuget.org/v3/index.json'
+    ET.SubElement(sources, 'add', key='build-inputs', value=upstream_feed)
+    nuget_config = out / 'NuGet.Config'
+    ET.ElementTree(config).write(nuget_config, encoding='utf-8', xml_declaration=True)
+    pack = [str(a.dotnet.resolve()), 'pack',
+        str(repo / 'es60w/dependencies/SimpleBase/SimpleBase.Es60w.csproj'),
+        '-c', 'Release', '--disable-build-servers', '-maxcpucount:1',
+        '-p:BuildInParallel=false', '-p:UseSharedCompilation=false',
+        '-p:DebugSymbols=false', '-p:DebugType=None',
+        '-p:RestoreConfigFile=' + str(nuget_config), '-o', str(feed)]
+    if a.nuget_packages:
+        pack.append('-p:RestorePackagesPath=' + str(a.nuget_packages.resolve()))
+    with (out / 'source-built-dependency.log').open('wb') as stream:
+        subprocess.run(pack, cwd=repo, env=env, stdout=stream, stderr=subprocess.STDOUT, check=True)
     command = [str(a.dotnet.resolve()), 'build', 'NAPS2.App.Mac/NAPS2.App.Mac.csproj',
         '-c', 'Release', '-r', 'osx-arm64', '--nologo', '--disable-build-servers', '--no-incremental',
         '-maxcpucount:1', '-p:BuildInParallel=false', '-p:UseSharedCompilation=false',
         '-p:SupportedOSPlatformVersion=14.0', '-p:EnableCodeSigning=false',
         '-p:RestoreIgnoreFailedSources=true', '-p:DebugSymbols=false', '-p:DebugType=None',
         '-p:TrimmerRemoveSymbols=true', '-p:PathMap=' + str(repo) + '=/src/naps2']
-    if a.nuget_source:
-        command.append('-p:RestoreSources=' + str(a.nuget_source.resolve(strict=True)))
+    command.append('-p:RestoreConfigFile=' + str(nuget_config))
     if a.nuget_packages:
         command.append('-p:RestorePackagesPath=' + str(a.nuget_packages.resolve()))
     with log.open('wb') as stream:
@@ -81,7 +103,7 @@ def main():
         '--entitlements', str(repo / 'NAPS2.App.Mac/Entitlements.plist'),
         '--scanner-button-header', str(native / 'prefix/include/libusb-1.0/libusb.h'),
         '--report', str(out / 'package.json')], check=True)
-    result = {'architecture': 'arm64', 'release_version': '8.5.1-es60w.1-local',
+    result = {'architecture': 'arm64', 'release_version': '8.5.1-es60w.2',
               'full_app_and_static_registrar_rebuilt': True,
               'helper_libusb_jpeg_built_from_pinned_sources': True,
               'build_log_sha256': hashlib.sha256(log.read_bytes()).hexdigest(),
@@ -89,7 +111,8 @@ def main():
               'personal_build_paths_permitted_in_app': False,
               'neutral_build_root': str(repo),
               'developer_id_signed': False, 'notarized': False,
-              'public_release_cleared': False}
+              'simplebase_built_from_delivered_sources': True,
+              'distribution_channel': 'independent ad-hoc-signed prerelease'}
     (out / 'build-result.json').write_text(json.dumps(result, indent=2) + '\n')
     print(str(app), flush=True)
 

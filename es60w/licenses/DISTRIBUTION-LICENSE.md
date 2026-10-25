@@ -30,6 +30,6 @@ https://www.gnu.org/licenses/gpl.en.html#section1
 
 The source download must remain available beside the exact binary version.
 Matching source and build instructions are required; byte-identical binary
-reproduction is a different claim. The notices are not a completed public
-source offer while the corresponding release remains local.
+reproduction is a different claim. The release provides the matching source downloads alongside its binary; retain
+all parts of that download set when redistributing this package.
 https://www.gnu.org/licenses/gpl-faq.en.html#MustSourceBuildToMatchExactHashOfBinary
