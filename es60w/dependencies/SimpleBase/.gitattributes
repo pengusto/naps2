@@ -1,0 +1,3 @@
+# Preserve original upstream source/readme bytes, including trailing spaces.
+src/** whitespace=-blank-at-eol
+README.md whitespace=-blank-at-eol
