@@ -128,3 +128,18 @@ to 222 (96.4%); this is a seam metric for this example, not quality equivalence.
 Some dark pixels remain near acquisition-clipped corners. The right response is
 to retain those uncertain areas rather than claim total border removal or shrink
 the whole page. No scan images or machine paths are committed.
+
+
+### Interpolation boundary follow-up
+
+The renderer previously checked only each destination pixel centre against the
+paper mask, then interpolated four unmasked source neighbours. A black exterior
+neighbour could reintroduce a dark fringe. Each neighbour now uses the same
+confirmed paper bounds; no new segmentation, inward crop or wider threshold is
+introduced. A dedicated all-white-paper/black-exterior regression asserts that
+no dark interpolation sample crosses the mask. The original 401 cases remain.
+On the saved stress scan, dark outer-band candidates drop only from 222 to 212;
+the complete region more than 15 output pixels from the edge is byte-identical
+to the prior output. Residual clipped-corner seams are not claimed solved.
+Further deletion would require additional reliable paper evidence; dark ink at
+a physical edge can be indistinguishable from backing. Keep source/recovery.

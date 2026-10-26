@@ -366,4 +366,21 @@ foreach (string kind in new[] { "dust", "exterior-mark", "printed-frame", "dark-
     else Assert(op.Frame?.Top==null,"ambiguous large-angle image accepted: "+kind);
     passed++;
 }
+// Interpolation must never bring black backing across a confirmed fill edge.
+// The output sample is inside; one source neighbour is outside the mask.
+{
+    const int w=20,h=20;
+    var info=new PixelInfo(w,h,SubPixelType.Rgb);var bytes=new byte[info.Length];
+    var frame=new PaperFrameTransform(0,20,.2,w,h) { Top=0,Bottom=20,PaperLeft=7.3 };
+    var g=frame.Geometry(w,h);
+    for(int y=0;y<h;y++)for(int x=0;x<w;x++)
+    {
+        byte value=g.c*x-g.s*y>=frame.PaperLeft*g.c ? (byte)255 : (byte)0;
+        for(int k=0;k<3;k++)bytes[(y*w+x)*3+k]=value;
+    }
+    var dstInfo=new PixelInfo(g.width,g.height,SubPixelType.Rgb);var output=new byte[dstInfo.Length];
+    new PaperFrameImageOp(frame).Perform(bytes,info,output,dstInfo);
+    Assert(output.All(value=>value==255),"black exterior interpolation neighbour leaked into white paper");
+    passed++;
+}
 Console.WriteLine($"PASS {passed} synthetic paper-frame/serialization cases; no hardware scans");
