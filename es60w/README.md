@@ -15,6 +15,12 @@ Use a dotnet executable whose SDK list includes that exact pin. If `xcode-select
 points to Command Line Tools, set `DEVELOPER_DIR` to the licensed full Xcode
 developer directory for the build process; do not change the global selection.
 An unaccepted Xcode licence is a user action gate, not a reason to skip SDK checks.
+The pinned macOS workload also requires Xcode 27.0 specifically. If the local
+Xcode has moved to a newer minor version, the `ES60W complete app` PR workflow
+builds on the official ARM64 `xcode-27` image with Xcode 27.0 selected. It restores
+the verified release-4 dependency feed, builds the full app/helper, and performs
+startup/PDF checks with scanner access denied. This workflow only produces
+artifacts; release signing/publishing and physical device validation remain separate.
 
 ```sh
 python3 es60w/build-native.py --downloads /path/to/downloads --output /NEW/native-build
