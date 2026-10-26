@@ -1,4 +1,5 @@
 // Prepared NAPS2 SDK integration; opt-in marker only. MIT + LGPL-2.1-or-later.
+#if MAC
 using System.Collections.Immutable;
 using System.Threading;
 using NAPS2.Images;
@@ -84,3 +85,4 @@ internal sealed class ExternalSaneScanDriver(ScanningContext context, string hel
 }
 
 // Modified by Pengusto on 2026-10-25: ES-60W free-helper release preparation.
+#endif
