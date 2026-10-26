@@ -140,8 +140,18 @@ def main():
         manifest = helper / 'Contents/Resources/staging-input-manifest.json'
         provenance = json.loads(manifest.read_text())
         for path in stage.rglob('*'):
-            if path.is_file() and not path.is_symlink() and str(Path.home()).encode() in path.read_bytes():
-                raise RuntimeError('Personal build path remains in package: ' + str(path.relative_to(stage)))
+            if path.is_file() and not path.is_symlink():
+                content = path.read_bytes()
+                # Microsoft's pinned CoreCLR binary contains its own public CI
+                # source paths. On hosted macOS its builder HOME happens to be
+                # our HOME too. Exclude only that upstream source-root literal;
+                # keep rejecting this job's checkout/temp/cache paths. Do not
+                # rewrite or re-sign third-party runtime bytes to remove strings.
+                if (str(Path.home()) == '/Users/runner' and
+                        path.relative_to(stage).as_posix() == 'Contents/MonoBundle/libcoreclr.dylib'):
+                    content = content.replace(b'/Users/runner/work/1/s/', b'/src/dotnet-runtime/')
+                if str(Path.home()).encode() in content:
+                    raise RuntimeError('Personal build path remains in package: ' + str(path.relative_to(stage)))
         provenance['manifest_scope'] = 'Standalone staging inputs before final whole-app signing'
         manifest.write_text(json.dumps(provenance, indent=2) + '\n')
         subprocess.run([sys.executable, str(scripts / 'sign-test-copy.py'), str(stage), str(dest),
