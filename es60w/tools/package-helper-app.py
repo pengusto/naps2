@@ -148,7 +148,11 @@ def main():
                 # keep rejecting this job's checkout/temp/cache paths. Do not
                 # rewrite or re-sign third-party runtime bytes to remove strings.
                 if (str(Path.home()) == '/Users/runner' and
-                        path.relative_to(stage).as_posix() == 'Contents/MonoBundle/libcoreclr.dylib'):
+                        path.relative_to(stage).as_posix() in {
+                            'Contents/MonoBundle/libcoreclr.dylib',
+                            'Contents/MonoBundle/libmscordaccore.dylib',
+                            'Contents/MonoBundle/libmscordbi.dylib',
+                            'Contents/MonoBundle/libclrjit.dylib'}):
                     content = content.replace(b'/Users/runner/work/1/s/', b'/src/dotnet-runtime/')
                 if str(Path.home()).encode() in content:
                     raise RuntimeError('Personal build path remains in package: ' + str(path.relative_to(stage)))
