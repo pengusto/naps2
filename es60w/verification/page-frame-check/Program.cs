@@ -299,4 +299,70 @@ foreach (double slope in new[] { -.025, 0, .025 })
     Assert(source.SequenceEqual(before), "ambiguous source changed");
     passed++;
 }
+// Large-angle paper: printed marks within two pixels of every corner must remain
+// within BOTH the enclosing canvas and the exterior-fill predicates.
+foreach (var format in new[] { SubPixelType.Rgb, SubPixelType.Bgra, SubPixelType.Rgbn })
+foreach (bool inverted in new[] { false, true })
+foreach (int centerY in new[] { 300, 500 })
+foreach (double degrees in new[] { -39, -30, -15, 15, 30, 39 })
+{
+    const int w = 1000, h = 1000;
+    double radians = degrees * Math.PI / 180, c = Math.Cos(radians), s = Math.Sin(radians);
+    var info = new PixelInfo(w,h,format,strideAlign:16) { InvertY = inverted };
+    var bytes = new byte[info.Length]; var ink = new List<(int x,int y)>();
+    for (int y=0;y<h;y++) for(int x=0;x<w;x++)
+    {
+        double u=c*(x-500)-s*(y-centerY), v=s*(x-500)+c*(y-centerY);
+        bool paper = Math.Abs(u)<=320 && Math.Abs(v)<=190;
+        // Short edge/corner marks, not a closed dark frame.
+        bool mark = paper && (Math.Abs(u)>310 && Math.Abs(u)<318 && Math.Abs(v)>178 && Math.Abs(v)<188 ||
+                              Math.Abs(u)<25 && Math.Abs(v)>178 && Math.Abs(v)<188);
+        byte value = mark ? (byte)15 : paper ? (byte)240 : (byte)30;
+        int at=(inverted?h-1-y:y)*info.Stride+x*format.BytesPerPixel;
+        for(int k=0;k<format.BytesPerPixel;k++) bytes[at+k]=value;
+        if(mark) ink.Add((x,y));
+    }
+    var before=(byte[])bytes.Clone(); var op=new DarkBackingPageImageOp();op.Perform(bytes,info);
+    var frame=op.Frame; Assert(frame?.Top!=null,"large-angle rectangle missing: "+degrees);
+    Assert(Math.Abs(Math.Atan(frame!.Slope)*180/Math.PI-degrees)<.3,"large-angle estimate");
+    var g=frame.Geometry(w,h);
+    foreach(var point in ink)
+    {
+        double u=g.c*point.x-g.s*point.y,v=g.s*point.x+g.c*point.y;
+        Assert(u-g.u>=0 && u-g.u<=g.width-1 && v-g.v>=0 && v-g.v<=g.height-1,"large-angle print outside canvas");
+        Assert((frame.PaperLeft==null || u>=frame.PaperLeft*g.c) &&
+               (frame.PaperRight==null || u<frame.PaperRight*g.c) &&
+               (frame.PaperTop==null || v>=frame.PaperTop*g.c) &&
+               (frame.PaperBottom==null || v<frame.PaperBottom*g.c),"large-angle print cleared");
+    }
+    var dstInfo=new PixelInfo(g.width,g.height,format,strideAlign:16) { InvertY=!inverted };
+    var output=new byte[dstInfo.Length];new PaperFrameImageOp(frame).Perform(bytes,info,output,dstInfo);
+    Assert(bytes.SequenceEqual(before),"large-angle source modified");
+    passed++;
+}
+// Exterior marks / printed-frame ambiguity must not be swallowed as scanner
+// dust by the large-angle refinement. One isolated dust pixel is tolerated.
+foreach (string kind in new[] { "dust", "exterior-mark", "printed-frame", "dark-photo", "white-backing", "triangle" })
+{
+    const int w=1000,h=1000; double c=Math.Cos(Math.PI/6),s=Math.Sin(Math.PI/6);
+    var info=new PixelInfo(w,h,SubPixelType.Rgb);var bytes=new byte[info.Length];
+    for(int y=0;y<h;y++)for(int x=0;x<w;x++)
+    {
+        double u=c*(x-500)-s*(y-500),v=s*(x-500)+c*(y-500);
+        bool paper=Math.Abs(u)<=320 && Math.Abs(v)<=190;
+        if(kind=="triangle")paper=paper && v>u*.5;
+        byte value=paper ? (byte)240 : kind=="white-backing" ? (byte)220 : (byte)30;
+        if(kind=="dark-photo" && paper)value=(byte)(55+(x+y)%35);
+        if(kind=="printed-frame" && paper &&
+            ((Math.Abs(u)>300 && Math.Abs(u)<305 && Math.Abs(v)<175) ||
+             (Math.Abs(v)>170 && Math.Abs(v)<175 && Math.Abs(u)<305)))value=15;
+        if(kind=="dust" && x==30 && y==30)value=200;
+        if(kind=="exterior-mark" && x>=25 && x<35 && y>=25 && y<35)value=240;
+        for(int k=0;k<3;k++)bytes[(y*w+x)*3+k]=value;
+    }
+    var op=new DarkBackingPageImageOp();op.Perform(bytes,info);
+    if(kind=="dust")Assert(op.Frame?.Top!=null,"isolated backing dust prevents large-angle frame");
+    else Assert(op.Frame?.Top==null,"ambiguous large-angle image accepted: "+kind);
+    passed++;
+}
 Console.WriteLine($"PASS {passed} synthetic paper-frame/serialization cases; no hardware scans");

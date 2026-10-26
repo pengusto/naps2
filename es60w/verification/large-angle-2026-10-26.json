@@ -1,0 +1,27 @@
+{
+  "method": "Compiled DarkBackingPageImageOp/PaperFrameImageOp on a saved private raw scan; no hardware or scanner helper invoked",
+  "synthetic_cases_passed": 329,
+  "tested_large_angles_degrees": [
+    -39,
+    -30,
+    -15,
+    15,
+    30,
+    39
+  ],
+  "acquisition_clipped_corner_tested": true,
+  "saved_scan_correction_degrees": 29.453672726920946,
+  "checked_dark_candidate_pixels_in_manually_inspected_content_region": 58339,
+  "outside_canvas_or_whitened": 0,
+  "original_png_checksum_unchanged": true,
+  "private_images_committed": false,
+  "new_physical_feeds": 0,
+  "limitations": [
+    "Source acquisition already clipped some paper corners; absent pixels cannot be restored.",
+    "Regional geometric/visual check, not universal semantic proof.",
+    "Bilinear sampling resamples pixels.",
+    "Dust classification and light-paper assumptions are heuristic.",
+    "Thin safety seam may remain at some edges.",
+    "New app installation and new physical validation not performed."
+  ]
+}

@@ -71,3 +71,37 @@ A residual seam is preferable to extending an uncertain crop into content.
 Lesson: a passing source build and synthetic bounds check alone do not prove a
 clean delivered scan. Keep a visual before/after and check the actual transform's
 fill predicates, as well as its output bounds, against source content.
+
+
+## Large-angle offline refinement, 26 October 2026
+
+The skew stress test exposed a scope gap: the previous side/row fit only covered
+about ±2.9°, while a saved scan was about 30° off-axis. Do not widen that fit's
+slope threshold alone: its row extrema switch between different physical edges.
+The new path fits a minimum-area rectangle to the convex envelope of the largest
+connected light-paper surface, verifies substantial support on three sides and
+both perpendicular axes, and encloses all observed paper before rotation. The
+existing sampler fills only outside that complete paper envelope. It does not
+apply an inscribed crop or change colours, scale or perspective.
+
+The restricted candidate range is 3–40° relative to the nearest acquisition axis;
+±15/30/39° cases are tested, including a corner clipped by acquisition. It is not
+a general guarantee for all angles, dark artwork, perspective or damaged paper.
+Few isolated bright/coloured exterior components below 16 pixels are treated as
+scanner dust, with a strict total-area bound; substantial disconnected exterior
+marks, printed frames, inconsistent edges and insufficient dark backing reject
+the new path. Dust classification is a heuristic, not semantic content knowledge.
+Original data and undo/recovery remain intact. Absent source corners cannot be
+recovered. The previous small-angle/fallback paths are preserved.
+
+329 portable checks pass, with known print close to all four corners, ±39° skew,
+RGB/BGRA/RGBn and inverted source/output rows, acquisition clipping, printed-frame,
+triangle/dark/white-backing counterexamples, exterior marks, and XML recovery.
+The private raw scan was processed by that same compiled C# operation without
+scanner code. In a manually specified and visually inspected source content
+region, 58,339 dark candidate pixels were checked against both output bounds and
+all exterior-fill predicates; none were excluded. This regional geometric check
+is not a universal semantic proof or pixel-identity claim after interpolation.
+Private before/after images remain outside Git. Local source PNG hash matched the
+pre-existing scan archive checksum. Public evidence is in
+`large-angle-2026-10-26.json` and includes no scan image or machine-specific path.

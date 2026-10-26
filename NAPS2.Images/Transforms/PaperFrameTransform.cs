@@ -28,7 +28,7 @@ public record PaperFrameTransform : Transform
 
     internal (double u, double v, double c, double s, int width, int height) Geometry(int width, int height)
     {
-        if (OriginalWidth <= 0 || OriginalHeight <= 0 || Right <= Left || Math.Abs(Slope) > .05)
+        if (OriginalWidth <= 0 || OriginalHeight <= 0 || Right <= Left || double.IsNaN(Slope) || double.IsInfinity(Slope) || Math.Abs(Slope) > 1)
             throw new InvalidOperationException("Invalid paper frame");
         double xScale = (double)width / OriginalWidth, yScale = (double)height / OriginalHeight;
         double slope = Slope * xScale / yScale;

@@ -73,6 +73,8 @@ internal static class DarkBackingRectangleDetector
             left[y] = Math.Min(left[y], x); right[y] = Math.Max(right[y], x);
             top[x] = Math.Min(top[x], y); bottom[x] = Math.Max(bottom[x], y);
         }
+        var rotated = RotatedPaperRectangle.Detect(data, paper, left, right);
+        if (rotated != null) return rotated;
         int minX = paper.Min(n => n % w), maxX = paper.Max(n => n % w);
         int minY = paper.Min(n => n / w), maxY = paper.Max(n => n / w);
         if (maxX - minX < 80 || maxY - minY < 25 ||
