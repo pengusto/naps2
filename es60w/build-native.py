@@ -11,6 +11,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tarfile
 
 
@@ -72,9 +73,15 @@ def main():
     usb = sources['libusb']
     run('usb-bootstrap', ['./bootstrap.sh'], usb)
     run('usb-configure', ['./configure', '--prefix=' + str(prefix), '--disable-static'], usb,
-        {'CFLAGS': '-O2 -g -mmacosx-version-min=14.0 -Wl,-headerpad_max_install_names'})
+        {'CFLAGS': '-O2 -g -mmacosx-version-min=14.0 -Wl,-headerpad_max_install_names',
+         # New Apple SDKs weak-link pipe2 even when the deployment target lacks it.
+         # Use libusb's existing pipe + fcntl(FD_CLOEXEC) path on supported macOS.
+         'ac_cv_func_pipe2': 'no'})
     run('usb-build', ['make', '-j1'], usb)
     run('usb-install-private-prefix', ['make', '-j1', 'install'], usb)
+    run('usb-macos-compatibility', [sys.executable,
+        str(here / 'verification/check-macos-libusb.py'),
+        str(prefix / 'lib/libusb-1.0.0.dylib')], out)
     jpeg_build = out / 'jpeg-build'
     run('jpeg-configure', ['cmake', '-S', str(sources['jpeg']), '-B', str(jpeg_build),
         '-DCMAKE_INSTALL_PREFIX=' + str(prefix), '-DCMAKE_BUILD_TYPE=Release',

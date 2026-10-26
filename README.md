@@ -2,7 +2,7 @@
 
 **One app for a USB Epson ES-60W on an Apple Silicon Mac.** Independent NAPS2 fork with a bundled free SANE/epsonds scan helper. No separate Epson software, Homebrew or .NET installation is needed for scanning.
 
-**[Download the DMG](https://github.com/pengusto/naps2/releases/download/es60w-v8.5.1-4/NAPS2-ES60W-8.5.1-es60w.4-arm64.dmg)** · [All release files, sources and SHA-256 checksums](https://github.com/pengusto/naps2/releases/tag/es60w-v8.5.1-4) · [Deutsch: Installation](es60w/INSTALL.de.md)
+**[Download the DMG](https://github.com/pengusto/naps2/releases/download/es60w-v8.5.1-5/NAPS2-ES60W-8.5.1-es60w.5-arm64.dmg)** · [All release files, sources and SHA-256 checksums](https://github.com/pengusto/naps2/releases/tag/es60w-v8.5.1-5) · [Deutsch: Installation](es60w/INSTALL.de.md)
 
 1. Open the DMG and drag **NAPS2 ES60W.app** to Applications. Keep another working copy under its existing name or location; do not overwrite it.
 2. Open the app. This prerelease is **ad-hoc signed and not Apple-notarized**. If macOS blocks it, first try to open it, then use **System Settings → Privacy & Security → Open Anyway**. [Apple's instructions](https://support.apple.com/en-us/102445). Leave Gatekeeper enabled.
@@ -19,7 +19,7 @@ ES60W integration retained. [Previous ES60W release](https://github.com/pengusto
 
 - Apple Silicon (arm64), one **ES-60W via USB**. Intel Macs, Wi-Fi and other Epson models are not validated by this fork.
 - macOS minimum in the bundle: 14.0. Software checks ran on 26.6.2; other macOS versions and first launch on a different Mac remain untested.
-- Earlier builds were tested with the physical ES-60W. This release integrates upstream Mac UI, saving and SDK changes and has **not received a new physical scan test**. It is a prerelease, with conservative framing: a small residual dark border can remain. Exact millimetre accuracy and Epson-identical cropping are not claimed.
+- ES60W 5 fixes the bundled USB helper startup crash on macOS 26.6.2; see [validation scope and release notes](es60w/RELEASE-NOTES.es60w5.md). One locally repaired ES60W 4 test app completed a 300 dpi colour USB scan; this does not silently validate a subsequently rebuilt package. Conservative framing can retain a small dark border. Exact millimetre accuracy and Epson-identical cropping are not claimed.
 - No background Epson service is needed. The app bundles its runtime and a separate free helper. No proprietary Epson driver, resources, decompiled implementation, private documents or credentials are included.
 
 ## Updates

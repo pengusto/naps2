@@ -25,6 +25,13 @@ python3 es60w/tools/make-private-dmg.py --app '/NEW/app-build/NAPS2 ES60W.app' \
 
 The native builder verifies the three archives in sources.lock.json and applies
 the delivered SANE changes. It installs only to its private output prefix.
+The macOS libusb configure step forces `ac_cv_func_pipe2=no`: newer SDKs can
+weak-link `pipe2` although it is absent on the deployment target (reproduced on
+macOS 26.6.2). This selects libusb's existing `pipe`/`fcntl(FD_CLOEXEC)` fallback.
+`verification/check-macos-libusb.py` inspects the built library's imports and
+rejects `pipe2` before packaging. This static gate must be followed by a real
+device-enumeration check on the target macOS before claiming USB readiness;
+neither check requires a paper feed.
 The app builder builds SimpleBase from the delivered preferred C# sources first,
 then performs the full macOS/static Objective-C registrar build, never a DLL
 swap. One worker, no shared compilation or buildservers; a neutral temporary
