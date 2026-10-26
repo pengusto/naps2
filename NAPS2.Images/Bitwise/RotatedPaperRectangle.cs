@@ -71,6 +71,63 @@ internal static class RotatedPaperRectangle
             support[2] > width * .35, support[3] > width * .35 };
         if (supported.Count(x => x) < 3 || !supported.Take(2).Any(x => x) || !supported.Skip(2).Any(x => x))
             return null;
+        // Fit the long physical edge segments rather than using extreme hull
+        // pixels: single fringe/noise pixels otherwise retain a black line.
+        double Refine(int side, double fallback)
+        {
+            var offsets = new List<double>();
+            for (int i = 0; i < hull.Count; i++)
+            {
+                var a = hull[i]; var b = hull[(i + 1) % hull.Count];
+                double au = cos * a.x - sin * a.y, av = sin * a.x + cos * a.y;
+                double bu = cos * b.x - sin * b.y, bv = sin * b.x + cos * b.y;
+                double aa = side < 2 ? au : av, bb = side < 2 ? bu : bv;
+                double span = side < 2 ? Math.Abs(av - bv) : Math.Abs(au - bu);
+                double dimension = side < 2 ? height : width;
+                if (Math.Abs(aa - fallback) <= 2 && Math.Abs(bb - fallback) <= 2 && span > dimension * .15)
+                    offsets.Add((aa + bb) / 2);
+            }
+            if (!supported[side] || offsets.Count == 0) return fallback;
+            // Refine with all observed threshold transitions close to the long
+            // edge. Ignore acquisition-clipped endpoints and hull dust extrema.
+            var transitions = new List<double>();
+            foreach (var point in points)
+            {
+                if (point.x <= 1 || point.x >= w-2 || point.y <= 1 || point.y >= h-2) continue;
+                double value = side < 2 ? cos*point.x-sin*point.y : sin*point.x+cos*point.y;
+                if (Math.Abs(value-fallback) <= 3) transitions.Add(value);
+            }
+            if (transitions.Count >= 20)
+            { transitions.Sort(); return transitions[transitions.Count/2]; }
+            offsets.Sort(); return offsets[offsets.Count / 2];
+        }
+        double paperLeft = Refine(0, g.loU) + (supported[0] ? 1 : 0);
+        double paperRight = Refine(1, g.hiU) - (supported[1] ? 1 : 0);
+        double paperTop = Refine(2, g.loV) + (supported[2] ? 1 : 0);
+        double paperBottom = Refine(3, g.hiV) - (supported[3] ? 1 : 0);
+        // Inward movement is limited to the detected threshold transition. If
+        // dark print is adjacent to that transition, retain the original frame.
+        var firstRow = Enumerable.Repeat(h, w).ToArray(); var lastRow = new int[w];
+        foreach (int n in paper) { firstRow[n%w]=Math.Min(firstRow[n%w],n/w); lastRow[n%w]=Math.Max(lastRow[n%w],n/w); }
+        bool safeRefinement = true;
+        for (int y = 0; y < h && safeRefinement; y++)
+        {
+            var row = data.ptr + (data.invertY ? h - 1 - y : y) * data.stride;
+            for (int x = left[y] + 2; x < right[y] - 1; x++)
+            {
+                if (y <= firstRow[x] + 2 || y >= lastRow[x] - 2) continue;
+                double u = cos * x - sin * y, v = sin * x + cos * y;
+                if (u > paperLeft + 2 && u < paperRight - 2 && v > paperTop + 2 && v < paperBottom - 2) continue;
+                // Only the narrow INSIDE edge band is a content veto. Pixels
+                // beyond the fitted rectangle are scanner backing, not this band.
+                if (u < paperLeft || u > paperRight || v < paperTop || v > paperBottom) continue;
+                var p = row + x * data.bytesPerPixel;
+                if ((299*p[data.rOff]+587*p[data.gOff]+114*p[data.bOff])/1000 < 140)
+                { safeRefinement = false; break; }
+            }
+        }
+        if (!safeRefinement)
+        { paperLeft=g.loU-.5; paperRight=g.hiU+1.5; paperTop=g.loV-.5; paperBottom=g.hiV+1.5; }
         const double margin = 3;
         long exterior = 0, backing = 0;
         var dust = new HashSet<int>();
@@ -119,7 +176,7 @@ internal static class RotatedPaperRectangle
         return new PaperFrameTransform((g.loU - margin) / cos, (g.hiU + margin + 1) / cos,
             Math.Tan(best), w, h)
         { Top = (g.loV - margin) / cos, Bottom = (g.hiV + margin + 1) / cos,
-          PaperLeft = (g.loU - .5) / cos, PaperRight = (g.hiU + 1.5) / cos,
-          PaperTop = (g.loV - .5) / cos, PaperBottom = (g.hiV + 1.5) / cos };
+          PaperLeft = paperLeft / cos, PaperRight = paperRight / cos,
+          PaperTop = paperTop / cos, PaperBottom = paperBottom / cos };
     }
 }

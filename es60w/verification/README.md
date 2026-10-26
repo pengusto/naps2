@@ -105,3 +105,26 @@ is not a universal semantic proof or pixel-identity claim after interpolation.
 Private before/after images remain outside Git. Local source PNG hash matched the
 pre-existing scan archive checksum. Public evidence is in
 `large-angle-2026-10-26.json` and includes no scan image or machine-specific path.
+
+
+## Exterior seam refinement, 26 October 2026
+
+Extreme convex-hull pixels retained a black seam after large-angle rotation.
+Long supported edge segments now refine their offset with the median of nearby
+observed light transitions (excluding acquisition-clipped endpoints). Only a
+supported edge receives a one-source-pixel transition cleanup. The enclosing
+canvas and observed full-paper envelope are unchanged. An interior dark-print
+band near a proposed cleaned boundary cancels the refinement and restores the
+previous conservative fill bounds. This is a threshold/geometry heuristic, not
+semantic proof of paper versus borderless ink; incomplete acquisition corners
+remain uncertain and can retain a small seam. Do not erase arbitrary dark pixels.
+
+401 tests pass: the large-angle corner/edge marks now exercise 2- and 5-pixel
+insets, in addition to all previous ambiguity and recovery cases. On the same
+private saved raw scan, all 58,339 controlled content candidates remain within
+output and outside every fill predicate; source checksum unchanged. The number
+of pixels below mean RGB 140 in the outer 15-pixel output band falls from 6,166
+to 222 (96.4%); this is a seam metric for this example, not quality equivalence.
+Some dark pixels remain near acquisition-clipped corners. The right response is
+to retain those uncertain areas rather than claim total border removal or shrink
+the whole page. No scan images or machine paths are committed.

@@ -304,6 +304,7 @@ foreach (double slope in new[] { -.025, 0, .025 })
 foreach (var format in new[] { SubPixelType.Rgb, SubPixelType.Bgra, SubPixelType.Rgbn })
 foreach (bool inverted in new[] { false, true })
 foreach (int centerY in new[] { 300, 500 })
+foreach (int edgeInset in new[] { 2, 5 })
 foreach (double degrees in new[] { -39, -30, -15, 15, 30, 39 })
 {
     const int w = 1000, h = 1000;
@@ -315,8 +316,8 @@ foreach (double degrees in new[] { -39, -30, -15, 15, 30, 39 })
         double u=c*(x-500)-s*(y-centerY), v=s*(x-500)+c*(y-centerY);
         bool paper = Math.Abs(u)<=320 && Math.Abs(v)<=190;
         // Short edge/corner marks, not a closed dark frame.
-        bool mark = paper && (Math.Abs(u)>310 && Math.Abs(u)<318 && Math.Abs(v)>178 && Math.Abs(v)<188 ||
-                              Math.Abs(u)<25 && Math.Abs(v)>178 && Math.Abs(v)<188);
+        bool mark = paper && (Math.Abs(u)>310-edgeInset+2 && Math.Abs(u)<320-edgeInset && Math.Abs(v)>178-edgeInset+2 && Math.Abs(v)<190-edgeInset ||
+                              Math.Abs(u)<25 && Math.Abs(v)>178-edgeInset+2 && Math.Abs(v)<190-edgeInset);
         byte value = mark ? (byte)15 : paper ? (byte)240 : (byte)30;
         int at=(inverted?h-1-y:y)*info.Stride+x*format.BytesPerPixel;
         for(int k=0;k<format.BytesPerPixel;k++) bytes[at+k]=value;
