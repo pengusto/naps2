@@ -1,7 +1,7 @@
 {
-  "version": "8.5.1-es60w.4",
-  "tag": "es60w-v8.5.1-4",
-  "bundle_version": "851004",
+  "version": "8.5.1-es60w.5",
+  "tag": "es60w-v8.5.1-5",
+  "bundle_version": "851005",
   "short_version": "8.5.1",
   "architecture": "arm64",
   "complete_app_updates": true

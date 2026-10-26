@@ -1,4 +1,5 @@
 // Original process adapter; no native SANE API or private RPC. MIT (repository LICENSE).
+#if MAC
 using System.Diagnostics;
 using System.Text;
 using System.Threading;
@@ -91,3 +92,4 @@ internal sealed class ScanImageProcess(string root, bool synthetic = false)
 }
 
 // Modified by Pengusto on 2026-10-25: ES-60W free-helper release preparation.
+#endif

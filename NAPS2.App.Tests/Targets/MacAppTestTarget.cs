@@ -2,7 +2,9 @@ namespace NAPS2.App.Tests.Targets;
 
 public class MacAppTestTarget : IAppTestTarget
 {
-    public AppTestExe Console => GetAppTestExe("console");
+    // Mac image/error handling uses Eto's UI dispatcher. Initialize it just as
+    // the standalone offline-export check does; otherwise the CLI waits forever.
+    public AppTestExe Console => GetAppTestExe("console --progress");
     public AppTestExe Gui => GetAppTestExe(null);
     public AppTestExe Worker => GetAppTestExe("worker");
     public AppTestExe Server => GetAppTestExe("server");

@@ -17,6 +17,8 @@ internal abstract class UnaryBitwiseImageOp : BitwiseImageOp
         }
     }
 
+    internal void Perform(BitwiseImageData data) => ValidateAndPerform(data);
+
     private void ValidateAndPerform(BitwiseImageData data)
     {
         ValidateConsistency(data);

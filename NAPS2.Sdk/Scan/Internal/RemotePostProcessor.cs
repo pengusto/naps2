@@ -185,8 +185,9 @@ internal class RemotePostProcessor : IRemotePostProcessor
                 if (!options.AutoDeskew && options.RotateDegrees == 0) pageOp.Perform(transformed);
                 if (pageOp.Frame != null)
                 {
-                    _logger.LogDebug("ES-60W page frame: {Left}..{Right}, slope {Slope}; complete source rows retained",
-                        pageOp.Frame.Left, pageOp.Frame.Right, pageOp.Frame.Slope);
+                    _logger.LogDebug("ES-60W page frame: {Left}..{Right}, slope {Slope}, observed vertical bounds {Top}..{Bottom}",
+                        pageOp.Frame.Left, pageOp.Frame.Right, pageOp.Frame.Slope,
+                        pageOp.Frame.Top, pageOp.Frame.Bottom);
                     processedImage = processedImage.WithTransform(pageOp.Frame, true);
                 }
                 else

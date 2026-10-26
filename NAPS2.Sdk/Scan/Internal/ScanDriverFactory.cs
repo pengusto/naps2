@@ -31,9 +31,11 @@ internal class ScanDriverFactory : IScanDriverFactory
                 return new Twain.TwainScanDriver(_scanningContext);
 #endif
             case Driver.Sane:
+#if MAC
                 var helperRoot = External.ExternalSaneScanDriver.FindOptInHelper();
                 if (helperRoot != null)
                     return new External.ExternalSaneScanDriver(_scanningContext, helperRoot);
+#endif
                 return new Sane.SaneScanDriver(_scanningContext);
             case Driver.Escl:
                 return new Escl.EsclScanDriver(_scanningContext);

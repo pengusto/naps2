@@ -16,6 +16,7 @@ internal class PaperFrameImageOp(PaperFrameTransform frame) : BinaryBitwiseImage
     protected override unsafe void PerformCore(BitwiseImageData src, BitwiseImageData dst, int start, int end)
     {
         var g = frame.Geometry(src.w, src.h);
+        double xs = (double)src.w / frame.OriginalWidth, ys = (double)src.h / frame.OriginalHeight;
         for (int y = start; y < end; y++)
         {
             var row = dst.ptr + (dst.invertY ? dst.h - 1 - y : y) * dst.stride;
@@ -25,7 +26,11 @@ internal class PaperFrameImageOp(PaperFrameTransform frame) : BinaryBitwiseImage
                 var p = row + x * dst.bytesPerPixel;
                 double u = g.u + x;
                 double sx = g.c * u + g.s * v, sy = -g.s * u + g.c * v;
-                if (sx < 0 || sy < 0 || sx > src.w - 1 || sy > src.h - 1)
+                if ((frame.PaperLeft.HasValue && u < frame.PaperLeft * xs * g.c) ||
+                    (frame.PaperRight.HasValue && u >= frame.PaperRight * xs * g.c) ||
+                    (frame.PaperTop.HasValue && v < frame.PaperTop * ys * g.c) ||
+                    (frame.PaperBottom.HasValue && v >= frame.PaperBottom * ys * g.c) ||
+                    sx < 0 || sy < 0 || sx > src.w - 1 || sy > src.h - 1)
                 {
                     for (int k = 0; k < dst.bytesPerPixel; k++) p[k] = 255;
                     continue;
@@ -35,10 +40,26 @@ internal class PaperFrameImageOp(PaperFrameTransform frame) : BinaryBitwiseImage
                 var r0 = src.ptr + (src.invertY ? src.h - 1 - y0 : y0) * src.stride;
                 var r1 = src.ptr + (src.invertY ? src.h - 1 - y1 : y1) * src.stride;
                 double fx = sx - x0, fy = sy - y0;
+                // Test each interpolation neighbour against the same paper mask.
+                // Testing only the destination centre lets a black exterior source
+                // neighbour bleed back into an otherwise white paper boundary.
+                bool OutsidePaper(int xSample, int ySample)
+                {
+                    double sampleU = g.c * xSample - g.s * ySample;
+                    double sampleV = g.s * xSample + g.c * ySample;
+                    return (frame.PaperLeft.HasValue && sampleU < frame.PaperLeft * xs * g.c) ||
+                        (frame.PaperRight.HasValue && sampleU >= frame.PaperRight * xs * g.c) ||
+                        (frame.PaperTop.HasValue && sampleV < frame.PaperTop * ys * g.c) ||
+                        (frame.PaperBottom.HasValue && sampleV >= frame.PaperBottom * ys * g.c);
+                }
+                bool out00 = OutsidePaper(x0, y0), out10 = OutsidePaper(x1, y0);
+                bool out01 = OutsidePaper(x0, y1), out11 = OutsidePaper(x1, y1);
                 byte Read(int offset)
                 {
-                    double a = r0[x0 * src.bytesPerPixel + offset] * (1 - fx) + r0[x1 * src.bytesPerPixel + offset] * fx;
-                    double b = r1[x0 * src.bytesPerPixel + offset] * (1 - fx) + r1[x1 * src.bytesPerPixel + offset] * fx;
+                    double a = (out00 ? 255 : r0[x0 * src.bytesPerPixel + offset]) * (1 - fx) +
+                               (out10 ? 255 : r0[x1 * src.bytesPerPixel + offset]) * fx;
+                    double b = (out01 ? 255 : r1[x0 * src.bytesPerPixel + offset]) * (1 - fx) +
+                               (out11 ? 255 : r1[x1 * src.bytesPerPixel + offset]) * fx;
                     return (byte)Math.Round(a * (1 - fy) + b * fy);
                 }
                 p[dst.rOff] = Read(src.rOff); p[dst.gOff] = Read(src.gOff); p[dst.bOff] = Read(src.bOff);
