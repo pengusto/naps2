@@ -37,7 +37,7 @@ jobs:
         dotnet nuget add source "$RUNNER_TEMP/es60w-feed" --name es60w-source-built
     - name: Install workloads
       if: matrix.os == 'xcode-27'
-      run: dotnet workload install macos --version 10.0.401
+      run: dotnet workload install macos --version 10.0.401.1
     - name: Build
       run: dotnet run --project NAPS2.Tools -- build debug -v
     - name: Test

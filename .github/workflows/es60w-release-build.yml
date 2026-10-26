@@ -22,7 +22,7 @@ jobs:
     - name: Prepare pinned build tools
       run: |
         test "$(uname -m)" = arm64
-        dotnet workload install macos --version 10.0.401
+        dotnet workload install macos --version 10.0.401.1
         HOMEBREW_NO_AUTO_UPDATE=1 brew install autoconf automake libtool cmake pkgconf
     - name: Restore verified release 4 dependency inputs
       run: |
@@ -54,4 +54,17 @@ jobs:
         name: es60w-complete-app-arm64
         path: ${{ runner.temp }}/es60w-artifacts/
         if-no-files-found: error
+        retention-days: 7
+    - name: Preserve bounded build diagnostics on failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: es60w-build-diagnostics
+        path: |
+          ${{ runner.temp }}/es60w-app/full-app-build.log
+          ${{ runner.temp }}/es60w-app/source-built-dependency.log
+          ${{ runner.temp }}/es60w-native/stages.json
+          ${{ runner.temp }}/es60w-startup-check/*.log
+          ${{ runner.temp }}/es60w-pdf-check/*.log
+        if-no-files-found: warn
         retention-days: 7

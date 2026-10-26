@@ -23,7 +23,9 @@
     "local_pdf_and_lossless_png_export": true,
     "images_published": false
   },
-  "release5_app_build": "pending personally accepted Xcode licence; no final artifact claim",
+  "release5_app_build": "in progress on hosted ARM64 Xcode 27.0; local Xcode 27.1 is not bypassed",
   "quality_or_paper_accuracy_claim": false,
-  "systemwide_epson_driver_changes": false
+  "systemwide_epson_driver_changes": false,
+  "required_workload_set_version": "10.0.401.1",
+  "legacy_net462_regression_build": "passed, 0 warnings, 0 errors"
 }
