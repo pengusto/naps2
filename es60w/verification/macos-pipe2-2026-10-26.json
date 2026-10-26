@@ -27,5 +27,13 @@
   "quality_or_paper_accuracy_claim": false,
   "systemwide_epson_driver_changes": false,
   "required_workload_set_version": "10.0.401.1",
-  "legacy_net462_regression_build": "passed, 0 warnings, 0 errors"
+  "legacy_net462_regression_build": "passed, 0 warnings, 0 errors",
+  "comparison": {
+    "feeds": 3,
+    "automatic_retries": 0,
+    "helper_top_edge_content_clipping_observed": true,
+    "helper_thin_dark_border_observed": true,
+    "scan_images_published": false,
+    "framing_fix_included": false
+  }
 }

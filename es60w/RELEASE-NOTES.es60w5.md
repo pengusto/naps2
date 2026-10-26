@@ -18,6 +18,10 @@ export. No private test image is included in sources, this PR or release assets.
 Final package checks and their scope are recorded in the release evidence.
 This is not a claim of Epson-identical quality, exact paper dimensions or
 validation on another Mac.
+In the three single-feed comparisons, the local repaired helper retained a thin
+dark border and clipped the upper decorative petal on the small test card;
+ScanSmart retained that detail. This existing framing limitation is not corrected
+by the startup-only fix and remains follow-up work.
 
 Download the single arm64 DMG, which includes the complete app and helper.
 Keep existing working apps and settings. The signed update channel replaces the
