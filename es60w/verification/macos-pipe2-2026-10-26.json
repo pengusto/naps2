@@ -1,0 +1,29 @@
+{
+  "platform": "macOS 26.6.2 arm64",
+  "original_release": "8.5.1-es60w.4",
+  "failure": "SIGSEGV during usbi_create_event: absent weak _pipe2 import",
+  "fix": "ac_cv_func_pipe2=no; upstream pipe/fcntl fallback",
+  "import_gate": {
+    "original_rejected": true,
+    "rebuilt_accepted": true
+  },
+  "full_native_build": {
+    "libusb": true,
+    "jpeg": true,
+    "sane_epsonds": true,
+    "private_prefix_only": true
+  },
+  "local_repair_validation": {
+    "base": "ES60W 4 full app; replaced libusb only",
+    "device_enumeration": true,
+    "ui_device_selection": true,
+    "physical_usb_scans": 1,
+    "dpi": 300,
+    "color": true,
+    "local_pdf_and_lossless_png_export": true,
+    "images_published": false
+  },
+  "release5_app_build": "pending personally accepted Xcode licence; no final artifact claim",
+  "quality_or_paper_accuracy_claim": false,
+  "systemwide_epson_driver_changes": false
+}

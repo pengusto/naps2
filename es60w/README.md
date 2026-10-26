@@ -11,6 +11,10 @@ Build prerequisites: Xcode (licence/first launch completed), .NET SDK 10.0.401
 and macOS workload 27.0.10722, Python 3, CMake, autoconf, automake, libtool and
 pkg-config. These are developer requirements, not end-user installers. The root
 global.json pins the SDK. Build serially in new output directories outside Git.
+Use a dotnet executable whose SDK list includes that exact pin. If `xcode-select -p`
+points to Command Line Tools, set `DEVELOPER_DIR` to the licensed full Xcode
+developer directory for the build process; do not change the global selection.
+An unaccepted Xcode licence is a user action gate, not a reason to skip SDK checks.
 
 ```sh
 python3 es60w/build-native.py --downloads /path/to/downloads --output /NEW/native-build
