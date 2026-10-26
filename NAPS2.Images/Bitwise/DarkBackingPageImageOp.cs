@@ -14,7 +14,8 @@ internal class DarkBackingPageImageOp : UnaryBitwiseImageOp
 
     protected override unsafe void PerformCore(BitwiseImageData data, int partStart, int partEnd)
     {
-        Frame = null;
+        Frame = DarkBackingRectangleDetector.Detect(data);
+        if (Frame != null) return;
         int w = data.w, h = data.h;
         if (w < 100 || h < 30 || data.invertColorSpace || data.bytesPerPixel is not (3 or 4)) return;
         var points = new List<(int y, int left, int right)>();

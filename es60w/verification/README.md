@@ -37,3 +37,37 @@ The Apple trimmer was observed retaining CodeView PDB paths despite symbol-remov
 The legal-input check rejects the obsolete direct-SANE placeholder, verifies every notice against the packaged file, and checks every supplemental source archive. Build scripts whose names contain `deps` must not be classified as licence texts: only notice/licence content belongs under `licenses/`; original build scripts stay in the source archives.
 
 Preserved vendor notices may use CRLF. Replay the exported mbox with `git am --keep-cr`: Git's default mail parser otherwise normalizes an original notice and breaks the exact source-tree/hash proof. Keep the notice bytes unchanged; prefer the full source archive as the primary source payload.
+
+
+## ES-60W framing regression, 26 October 2026
+
+A width-only fallback retained a skewed bottom/right backing border when one
+side of a small page met the acquisition boundary. The refinement first keeps
+that established width decision, then fits the connected light-paper surface.
+An observed vertical and horizontal edge must agree on a small rotation.
+Unobserved acquisition edges are not invented. The output canvas encloses the
+complete detected paper envelope, with bilinear sampling and an outward margin;
+only confidently fitted exterior edges can be filled white. The transform and
+its optional bounds are undoable and serialized with the untouched source.
+Ambiguous light coverage, inconsistent edges, dark/photographic pages, exterior
+light/saturated marks and detected near-edge print retain the old conservative
+path. This is specialized light-paper framing, not general photo segmentation.
+
+The native portable `page-frame-check` now checks 251 cases, including known
+printed marks near all four edges, positive/negative skew, inverted buffers,
+recovery XML and a closed printed rectangle that must not become a paper crop.
+The Linux CI job runs this executable; it has no scanner code or hardware access.
+
+Private saved scans were evaluated locally by the same compiled image operations:
+no helper or scanner was invoked. In manually inspected content rectangles, all
+58,227 (second scan) and 58,013 (first scan) pixels below RGB mean 180 remained
+inside the output and outside all backing-fill predicates in the initial check.
+Final counts/geometry are in the local evaluation report, not private source
+fixtures. This is a geometric retention check on those selected regions, not a
+proof of semantic completeness on arbitrary documents. The first source already
+clipped an upper motif: processing cannot recover content absent from the source.
+A residual seam is preferable to extending an uncertain crop into content.
+
+Lesson: a passing source build and synthetic bounds check alone do not prove a
+clean delivered scan. Keep a visual before/after and check the actual transform's
+fill predicates, as well as its output bounds, against source content.

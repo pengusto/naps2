@@ -50,6 +50,11 @@ jobs:
         # launcher that hangs in CLI image operations on the macOS 27 runner.
         dotnet build NAPS2.App.Mac/NAPS2.App.Mac.csproj -c Release -r osx-arm64 --disable-build-servers -maxcpucount:1 -p:BuildInParallel=false -p:UseSharedCompilation=false -p:SupportedOSPlatformVersion=14.0 -p:EnableCodeSigning=false
         NAPS2_TEST_ROOT="$GITHUB_WORKSPACE/NAPS2.App.Mac/bin/Release/net10.0-macos/osx-arm64" dotnet run --project NAPS2.Tools -- test -v --nogui --nonetwork
+    - name: Test ES60W page framing without scanner access
+      if: matrix.os == 'ubuntu-24.04'
+      run: |
+        dotnet build NAPS2.Images/NAPS2.Images.csproj -c Release -f net10.0 --disable-build-servers -p:UseSharedCompilation=false
+        dotnet run --project es60w/verification/page-frame-check -p:Naps2Source="$GITHUB_WORKSPACE"
     - name: Test (WPF images)
       if: matrix.os == 'windows-2025'
       run: dotnet run --project NAPS2.Tools -- test -v --nogui --images wpf --scope sdk

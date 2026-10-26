@@ -19,7 +19,8 @@ if (args.Length == 4)
             destination, new PixelInfo(g.width, g.height, SubPixelType.Rgb));
         File.WriteAllBytes(args[3], destination);
         result = new { mode = "paper-frame", width = g.width, height = g.height,
-            frame.Left, frame.Right, frame.Slope, u = g.u, v = g.v, c = g.c, s = g.s };
+            frame.Left, frame.Right, frame.Slope, frame.Top, frame.Bottom,
+            frame.PaperLeft, frame.PaperRight, frame.PaperTop, frame.PaperBottom, u = g.u, v = g.v, c = g.c, s = g.s };
     }
     else
     {
@@ -138,7 +139,7 @@ foreach (string kind in new[] { "full-width", "dark-paper", "light-backing", "ti
     var serializer = new NAPS2.Serialization.XmlSerializer<List<Transform>>();
     var original = new PaperFrameTransform(12.25, 2489.5, .008, 2544, 3438);
     var copy = serializer.DeserializeFromXDocument(serializer.SerializeToXDocument(new List<Transform> { original }));
-    Assert(copy.Count == 1 && copy[0] is PaperFrameTransform restored && restored == original,
+    Assert(copy?.Count == 1 && copy[0] is PaperFrameTransform restored && restored == original,
         "paper frame cannot be restored from undo/recovery XML");
     passed++;
 }
@@ -214,6 +215,88 @@ foreach (string kind in new[] { "clean", "mirrored", "sparse-lip", "short-lip", 
     else if(kind is "no-lip" or "short-lip") Assert(end==508,"ambiguous edge tightened");
     else Assert(end>=507 && end<=508,"margin guard lost visible/ambiguous pixels: "+kind+" "+end);
     Assert(bytes.SequenceEqual(before),"refinement mutated source");
+    passed++;
+}
+// Four-edge refinement: verify every known source content pixel survives both
+// output bounds and exterior clearing, across skew, pixel layout and row order.
+foreach (var format in new[] { SubPixelType.Rgb, SubPixelType.Bgra, SubPixelType.Rgbn })
+foreach (bool inverted in new[] { false, true })
+foreach (double slope in new[] { -.025, 0, .025 })
+{
+    const int w = 1000, h = 700;
+    var info = new PixelInfo(w, h, format, strideAlign: 16) { InvertY = inverted };
+    var source = new byte[info.Length];
+    var ink = new List<(int x, int y)>();
+    for (int y = 0; y < h; y++) for (int x = 0; x < w; x++)
+    {
+        double u = x - slope * y, v = y + slope * x;
+        bool paper = u >= 160 && u < 840 && v >= 130 && v < 570;
+        // Print within 8 pixels of ALL four edges, plus an interior cross.
+        bool mark = paper && ((u >= 168 && u < 172 || u >= 828 && u < 832) && v > 200 && v < 240 ||
+            (v >= 138 && v < 142 || v >= 558 && v < 562) && u > 450 && u < 500);
+        byte value = mark ? (byte)15 : paper ? (byte)240 : (byte)30;
+        int at = (inverted ? h - 1 - y : y) * info.Stride + x * format.BytesPerPixel;
+        for (int k = 0; k < format.BytesPerPixel; k++) source[at + k] = value;
+        if (mark) ink.Add((x, y));
+    }
+    var before = (byte[])source.Clone();
+    var op = new DarkBackingPageImageOp(); op.Perform(source, info);
+    var frame = op.Frame;
+    Assert(frame?.Top != null && frame.Bottom != null, "four-edge frame missing");
+    var g = frame!.Geometry(w, h);
+    Assert(Math.Abs(frame.Slope - slope) < .001, "rectangle edge skew incorrect");
+    foreach (var point in ink)
+    {
+        double u = g.c * point.x - g.s * point.y, v = g.s * point.x + g.c * point.y;
+        Assert(u - g.u >= 0 && u - g.u <= g.width - 1 && v - g.v >= 0 && v - g.v <= g.height - 1,
+            "known near-edge content outside output");
+        Assert((frame.PaperLeft == null || u >= frame.PaperLeft * g.c) &&
+               (frame.PaperRight == null || u < frame.PaperRight * g.c) &&
+               (frame.PaperTop == null || v >= frame.PaperTop * g.c) &&
+               (frame.PaperBottom == null || v < frame.PaperBottom * g.c), "known content cleared as backing");
+    }
+    var dstInfo = new PixelInfo(g.width, g.height, format, strideAlign: 16) { InvertY = !inverted };
+    var dst = new byte[dstInfo.Length];
+    new PaperFrameImageOp(frame).Perform(source, info, dst, dstInfo);
+    Assert(source.SequenceEqual(before), "rectangle changed original");
+    int dark = 0;
+    for (int y = 0; y < g.height; y++) for (int x = 0; x < g.width; x++)
+    {
+        int at = (dstInfo.InvertY ? g.height - 1 - y : y) * dstInfo.Stride + x * format.BytesPerPixel;
+        if (dst[at] < 100) dark++;
+    }
+    Assert(dark >= ink.Count * .8, "rendered near-edge print lost");
+    passed++;
+}
+// New horizontal fields survive the same recovery/undo XML used by the app.
+{
+    var serializer = new NAPS2.Serialization.XmlSerializer<List<Transform>>();
+    var frame = new PaperFrameTransform(12, 900, .01, 1000, 700)
+        { Top = 10, Bottom = 650, PaperLeft = 13, PaperRight = 899, PaperTop = 11, PaperBottom = 649 };
+    var restored = serializer.DeserializeFromXDocument(serializer.SerializeToXDocument(new List<Transform> { frame }));
+    Assert(restored?.Single() == frame, "horizontal/exterior frame recovery serialization failed");
+    passed++;
+}
+// A closed printed border can enclose a larger white area than the actual
+// paper margin. It must NOT become a new four-edge crop through that border.
+foreach (double slope in new[] { -.025, 0, .025 })
+{
+    const int w = 1000, h = 700;
+    var info = new PixelInfo(w, h, SubPixelType.Rgb);
+    var source = new byte[info.Length];
+    for (int y = 0; y < h; y++) for (int x = 0; x < w; x++)
+    {
+        double u = x - slope * y, v = y + slope * x;
+        bool paper = u >= 160 && u < 840 && v >= 130 && v < 570;
+        bool border = paper && ((u >= 168 && u < 172 || u >= 828 && u < 832) && v >= 138 && v < 562 ||
+            (v >= 138 && v < 142 || v >= 558 && v < 562) && u >= 168 && u < 832);
+        byte value = border ? (byte)15 : paper ? (byte)240 : (byte)30;
+        for (int k = 0; k < 3; k++) source[(y * w + x) * 3 + k] = value;
+    }
+    var before = (byte[])source.Clone();
+    var op = new DarkBackingPageImageOp(); op.Perform(source, info);
+    Assert(op.Frame?.Top == null, "printed border mistaken for paper height");
+    Assert(source.SequenceEqual(before), "ambiguous source changed");
     passed++;
 }
 Console.WriteLine($"PASS {passed} synthetic paper-frame/serialization cases; no hardware scans");

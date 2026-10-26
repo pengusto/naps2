@@ -16,6 +16,7 @@ internal class PaperFrameImageOp(PaperFrameTransform frame) : BinaryBitwiseImage
     protected override unsafe void PerformCore(BitwiseImageData src, BitwiseImageData dst, int start, int end)
     {
         var g = frame.Geometry(src.w, src.h);
+        double xs = (double)src.w / frame.OriginalWidth, ys = (double)src.h / frame.OriginalHeight;
         for (int y = start; y < end; y++)
         {
             var row = dst.ptr + (dst.invertY ? dst.h - 1 - y : y) * dst.stride;
@@ -25,7 +26,11 @@ internal class PaperFrameImageOp(PaperFrameTransform frame) : BinaryBitwiseImage
                 var p = row + x * dst.bytesPerPixel;
                 double u = g.u + x;
                 double sx = g.c * u + g.s * v, sy = -g.s * u + g.c * v;
-                if (sx < 0 || sy < 0 || sx > src.w - 1 || sy > src.h - 1)
+                if ((frame.PaperLeft.HasValue && u < frame.PaperLeft * xs * g.c) ||
+                    (frame.PaperRight.HasValue && u >= frame.PaperRight * xs * g.c) ||
+                    (frame.PaperTop.HasValue && v < frame.PaperTop * ys * g.c) ||
+                    (frame.PaperBottom.HasValue && v >= frame.PaperBottom * ys * g.c) ||
+                    sx < 0 || sy < 0 || sx > src.w - 1 || sy > src.h - 1)
                 {
                     for (int k = 0; k < dst.bytesPerPixel; k++) p[k] = 255;
                     continue;
